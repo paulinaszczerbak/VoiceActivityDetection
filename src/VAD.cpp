@@ -5,7 +5,7 @@
  *      Author: paula
  */
 
-#include "VAD.h"
+#include "../inc/VAD.h"
 
 VAD::VAD() {
 	// TODO Auto-generated constructor stub

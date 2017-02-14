@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/paulina/github/VoiceActivityDetection/zsiciarz-aquila-d5e3bde/lib/ooura/fft4g.c
+math.h
+-
+

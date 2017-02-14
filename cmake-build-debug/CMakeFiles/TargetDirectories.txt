@@ -1,0 +1,3 @@
+/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir

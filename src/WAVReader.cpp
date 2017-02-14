@@ -5,7 +5,7 @@
  *      Author: paula
  */
 
-#include "WAVReader.h"
+#include "../inc/WAVReader.h"
 
 WAVReader::WAVReader() {
 	// TODO Auto-generated constructor stub

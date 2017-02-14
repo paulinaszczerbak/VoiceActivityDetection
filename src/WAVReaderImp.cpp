@@ -5,7 +5,7 @@
  *      Author: paula
  */
 
-#include "WAVReaderImp.h"
+#include "../inc/WAVReaderImp.h"
 
 WAVReaderImp::WAVReaderImp() {
 	// TODO Auto-generated constructor stub
@@ -21,7 +21,7 @@ WAVReaderImp::~WAVReaderImp() {
 
 void WAVReaderImp::readFile() {
 
-	FILE * infile = fopen("mbi02kaban.wav","rb");		// Open wave file in read mode
+	FILE * infile = fopen("../kabanos.wav","rb");		// Open wave file in read mode
 	FILE * outfile = fopen("Output.wav","wb");		// Create output ( wave format) file in write mode
 
 	int BUFSIZE = 512;					// BUFSIZE can be changed according to the frame size required (eg:512)

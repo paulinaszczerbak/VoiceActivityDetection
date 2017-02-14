@@ -1,0 +1,149 @@
+%PrzykĹ‚adowy plik uĹ‚atwiajÄ…cy zĹ‚oĹĽenie projektu dyplomowego inĹĽynierskiego.
+%UWAGA: Generowany napis na stronie tytuĹ‚owej o treĹ›ci PROJEKT DYPLOMOWY INĹ»YNIERSKI zostaĹ‚ zaproponowany przeze mnie i nie jest, pĂłki co, potwierdzony przez wĹ‚adze wydziaĹ‚u. Przed ostatecznym oddaniem tak zĹ‚oĹĽonej pracy naleĹĽy upewniÄ‡ siÄ™ jaka powinna byÄ‡ treĹ›Ä‡ tego napisu. W momencie gdy uzyskam informacjÄ™ na temat treĹ›ci tego napisu, dokonam niezbÄ™dnych zmian w ĹşrĂłdĹ‚ach.
+
+\documentclass[eng,printmode]{mgr}
+%opcje klasy dokumentu mgr.cls zostaĹ‚y opisane w doĹ‚Ä…czonej instrukcji
+
+%poniĹĽej deklaracje uĹĽycia pakietĂłw, usunÄ…Ä‡ to co jest niepotrzebne
+\usepackage{polski} %przydatne podczas skĹ‚adania dokumentĂłw w j. polskim
+%\usepackage[polish]{babel}%alternatywnie do pakietu polski, wybraÄ‡ jeden z nich
+\usepackage[utf8]{inputenc} %kodowanie znakĂłw, zaleĹĽne od systemu
+\usepackage[T1]{fontenc} %poprawne skĹ‚adanie polskich czcionek
+
+%pakiety do grafiki
+\usepackage{graphicx}
+%\usepackage{subfigure}
+\usepackage{psfrag}
+
+%pakiety dodajÄ…ce duĹĽo dodatkowych poleceĹ„ matematycznych
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+%pakiety wspomagajÄ…ce i poprawiajÄ…ce skĹ‚adanie tabel
+%\usepackage{supertabular}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{hhline}
+
+%pakiet wypisujÄ…cy na marginesie etykiety rĂłwnaĹ„ i rysunkĂłw zdefiniowanych przez \label{}, chcÄ…c wygenerowaÄ‡ finalnÄ… wersjÄ™ dokumentu wystarczy usunÄ…Ä‡ poniĹĽszÄ… liniÄ™
+%\usepackage{showlabels}
+
+%definicje wĹ‚asnych poleceĹ„
+\newcommand{\R}{I\!\!R} %symbol liczb rzeczywistych, dziaĹ‚a tylko w trybie matematycznym
+\newtheorem{theorem}{Twierdzenie}[section] %nowe otoczenie do skĹ‚adania twierdzeĹ„
+
+%dane do zĹ‚oĹĽenia strony tytuĹ‚owej
+\title{Detekcja aktywności mówcy w systemach automatycznego rozpoznawania mowy}
+\engtitle{Voice activity detection in automatic speech recognition systems}
+\author{Paulina Szczerbak}
+\supervisor{Prof. dr hab. inż. Ryszard Makowski}
+%\guardian{dr hab. inĹĽ. ImiÄ™ Nazwisko Prof. PWr, I-6} %nie uĹĽywaÄ‡ jeĹ›li opiekun jest tÄ… samÄ… osobÄ… co prowadzÄ…cy pracÄ™
+
+%\date{2008} %standardowo u doĹ‚u strony tytuĹ‚owej umieszczany jest bieĹĽÄ…cy rok, to polecenie pozwala wstawiÄ‡ dowolny rok
+
+%poniĹĽej jest lista kierunkĂłw i specjalnoĹ›ci na wydziale elektroniki, naleĹĽy wybraÄ‡ wĹ‚aĹ›ciwe lub dopisaÄ‡ jeĹ›li nie ma odpowiednich
+\field{Automatyka i Robotyka (AIR)}
+\specialisation{Technologie informacyjne w systemach automatyki (ART)}
+
+%tutaj zaczyna siÄ™ wĹ‚aĹ›ciwa treĹ›Ä‡ dokumentu
+\begin{document}
+\bibliographystyle{plabbrv} %tylko gdy uĹĽywamy BibTeXa, ustawia polski styl bibliografii
+
+\maketitle %polecenie generujÄ…ce stronÄ™ tytuĹ‚owÄ…
+%\dedication{6cm}{Dla mamy i taty heheheheheh xD \texttt{$\backslash$dedykacja}}
+
+\tableofcontents %spis treĹ›ci
+
+%poniĹĽej znajduje siÄ™ przykĹ‚adowa treĹ›Ä‡ dalszej czÄ™Ĺ›ci dokumentu, zainteresowanych zachÄ™cam do rozszyfrowania frazy "Lorem ipsum" :)
+\chapter{Wstęp}
+Celem niniejszej pracy jest zaprezentowanie wybranych metod detekcji aktywności mówcy (VAD) w systemach automatycznego rozpoznawania mowy w oparciu o napisany program w języku C++. Kolejnym etapem jest porównanie zaimplementowanych metod pod względem dokładności detekcji w separowanych wyrazach oraz w dłuższych ciągach słów.
+
+Rozdział 2. opisuje w uproszczony sposób proces wytwarzania mowy przez człowieka. Prezentuje, w jaki sposób działa aparat mowy oraz z jakich narządów się składa. Wyjaśnione zostaje zagadnienie fonemów oraz ich wykorzystanie w polskim alfabecie. Na koniec pokazany jest matematyczny model jaki można stworzyć wzorując się na naturalnym systemie generowania mowy.
+
+Rozdział 3. zawiera wyjaśnienie na temat detekcji aktywności mówcy - czym jest oraz gdzie jest wykorzystywana. W tym rodziale opisane są również wybrane algorytmy, które zostały zestawione w dalszej części pracy. Przedstawiona jest zasada ich działania oraz pokrótce wyjaśniona kwestia implementacyjna każdego z nich.
+ 
+Rozdział 4. prezentuje wyniki działania wybranych algorytmów dla separowanych słów. Pokazane są różnice w detekcji oraz ocena każdego z algorytmów.
+
+Rozdział 5. zawiera  wyniki detekcji dla całych ciągów słów oraz porównanie w działaniu wybranych algorytmów i ich ocenę.
+
+\chapter{Generowanie sygnału mowy}
+ \section{Mowa w życiu człowieka}
+ 
+ Mowa w życiu większości ludzi stanowi podstawę komunikacji interpersonalnej. Jest sygnałem akustycznym, czyli rozważany jest zakres częstotliwości słyszanych przez człowieka, to jest od 20Hz do 16kHz. Zatem mowa to nic innego jak system artykułowanych dźwięków, które układają się zgodnie z konwencją wybranego języka. Pełni ona funkcję nie tylko komunikacyjną (przekazywanie informacji drugiej osobie o tym, co doświadczyliśmy, czy czego się dowiedzieliśmy), ale również ekspresyjną (można w niej zawrzeć informacje o emocjach nadawcy) oraz regulacyjną (wydawanie i przyjmowanie dyspozycji). 
+ 
+ 
+ \section{Biologiczny proces generowania mowy}
+ Wszelkie metody przetwarzania sygnału mowy muszą bazować na strukturze sygnału, a ta jest niewątpliwie uzależniona od sposobu, w jaki jest on wytwarzany. Niegdyś generowanie sygnałów mowy było domeną jedynie organizmu człowieka, czyli systemu naturalnego. W celu stworzenia systemu, który w jakiś sposób operuje na sygnałach mowy, czyli np. syntezatora mowy, systemu generującego sygnały mowopodobne, systemu automatycznego rozpoznawania mowy czy detekcji aktywności mówcy, należy mieć przynajmniej podstawową wiedzę na temat systemu naturalnego - tego, w jaki sposób działa aparat mowy człowieka.
+ 
+ Wytwarzanie mowy przez człowieka jest procesem niezwykle skomplikowanym, który ma swój początek w mózgu, gdzie następuje konstrukcja wypowiedzi. Później następuje sformułowanie fonetyki i artykulacja poprzez aparat mowy. Ponadto, w procesie generowania mowy można wyróżnić cztery pomniejsze etapy:
+	 
+	 - proces psychologiczny - wymyślenie i skonstruowanie wypowiedzi,
+	 
+	 - proces neurologiczny - pobudzenie przez układ nerwowy mięśni, które biorą udział w wytwarzaniu mowy,
+	 
+	 - proces fizjologiczny - proces kształtowania dźwięków mowy ludzkiej,
+	 
+	 - proces aerodynamiczny - drgania i przepływ powietrza przez aparat mowy. 
+  
+  Pierwszym narządem wchodzącym w skład traktu głosowego człowieka są płuca - dostarczają one powietrze do procesu artykulacji, są źródłem zmian ciśnienia akustycznego. Organ mowy człowieka jest napędzany przez wydychane powietrze. Powietrze to, jest prowadzone przez oskrzela i tchawicę do krtani, a drgające w niej struny głosowe modyfikują ciśnienie i wytwarzają dźwięczne fragmenty mowy.  Następnie, dzięki wnękom rezonansowym, tworzonym przez język, podniebienie, zęby oraz wargi, dźwięk ten jest modulowany. Niezwykle ważną rolę przy formowaniu tych wnęk, odgrywają ruchy żuchwy i policzków. Podczas generowania głosek nosowych zamknięta jama ustna spełnia rolę bocznika akustycznego, a dzięki odpowiedniemu ustawieniu języczka podniebienia miękkiego, fala dźwiękowa jest emitowana przez jamę nosową i nozdrza. Struktura traktu głosowego jest przedstawiona schematycznie na rysunku 2.1.
+
+\begin{figure}
+	\includegraphics[scale=0.45]{speechmech.png}
+	\caption{Aparat mowy człowieka}
+\end{figure}
+
+ Ponadto, sterowanie całym systemem generowania mowy jest bardzo złożone i w dużej mierze opiera się na licznych sprzężeniach zwrotnych. Główną rolę odgrywa tutaj sprzężenie zwrotne, które poddaje jakość wydawanych dźwięków bezpośredniej ocenie poprzez analizator słuchowy. Dzięki temu proces artykulacji jest odpowiednio sterowany. Istotę tego sprzężenia zwrotnego potwierdzają trudności z mową wśród ludzi głuchych oraz ludzi słyszących, którzy tymczasowo przebywają w trudnych warunkach środowiskowych, które uniemożliwiają słyszenie własnego głosu.
+ 
+ SCHEMAT Z PDFA STR 23 SPRZERZENIE ZWROTNE  
+  
+ \section{Jednostki fonetyczne}
+ W celu przeprowadzania badań nad sygnałem mowy, należy wprowadzić jednostkę, która ułatwi wykonywanie operacji na całych słowach. Należy tutaj zaznaczyć, że słowo to dźwiękowy odpowiednik wyrazu, a wyraz to zapis słowa. Każde słowo zawiera w sobie przynajmniej jedną sylabę, każdą sylabę można również podzielić na mniejsze stany. W związku z tym, że każdy wyraz zawiera w sobie ciąg liter, to najczęściej wyróżnianymi elementami słowa są fonemy, zwane również głoskami. W większości przypadków na każdy fonem przypada odpowiadająca mu litera, ale są fonemy, które takiego odpowiednika nie posiadają. Istotne jest rownież, że każda litera może mieć różną reprezentację akustyczną w zależnośći od sąsiadujących z nią fonemów. Listę fonemów języka polskiego przedstawiono w tabeli 2.3.1.
+ 
+ TABELA Z FONEMAMI MOWY POLSKIEJ
+ 
+ \section{Matematyczny model procesu generowania mowy}
+ 
+ 
+
+\chapter{Wybrane metody detekcji aktywności mówcy}
+ \section{Detekcja aktywności mówcy}
+ + schemat jak w ksiazce RM, w ktorym miejscu jest vad w systemie ARM
+ 
+ Podczas rejestrowania wypowiedzi do późniejszego przetwarzania jej przez system ARM, zostaje zarejestrowana cała wypowiedź mówcy, włącznie z częścią, gdy nie jest on aktywny. Aktywnością mówcy nazywa się emitowny przez niego dźwięk. Zawartość semantyczna wypowiedzi jest zawarta w głównej mierze we fragmentach, kiedy mówca jest aktywny. Analizowanie całego  zarejestrowanego sygnału mowy, bez wykorzystania systemu VAD, jest oczywiście możliwe, aczkolwiek niepotrzebnie zwiększa czas obliczeń oraz istnieje prawdopodobieństwo, że fragment, gdy mówca nie jest aktywny, zostanie błędnie zaklasyfikowany jako jakiś konkretny fonem. Detekcja aktywności mówcy w ogólnym przypadku zakłada, że sygnał może występować w dwóch stanach: tylko szum (brak sygnału mowy), szum + sygnał mowy. Korzystając z zagadnienia hipotez ze statystyki, możemy pierwszy stan oznaczyć jako hipotezę $H_{0}$, a drugi jako $H_{1}$, dzięki czemu możemy przedstawić to w następujący sposób:
+ \begin{equation}
+  \begin{array}{c}
+	  H_{0}: f(n)=x(n)\\
+	  H_{1}: f(n)=v(n)+x(n)
+  \end{array} 	 
+ \end{equation}
+  Przy takim rozumowaniu konieczne jest określenie statystyki $S(n)$ sygnału, dzięki czemu możliwe będzie dokonywanie detekcji, a w dalszej kolejności zastosowanie kryterium decyzyjnego. Kryterium decyzyjne zwykle polega na porównaniu wartości $S(n)$ z progiem detekcji, który w mniej skomplikowanych algorytmach przyjmuje stałą wartość. Natomiast w tych bardziej złożonych, może występować np. jako funkcja czasu. Wartość stałej wartości progu jest ustalana w wyniku teoretycznych rozważań lub empirycznie. Zatem detekcja $\gamma(n)$, w ogólnej postaci, będzie prezentować się następująco:
+   \begin{equation}
+   \begin{array}{c}
+	   S(n)\geq\gamma(n)\to H_{1}\\
+	   S(n)<\gamma(n)\to H_{0}
+   \end{array} 	 
+   \end{equation}
+ 
+ \section{Algorytm bazujący na energii pojedynczej ramki}
+ \section{Algorytm bazujący na obwiedni sygnału}
+ \section{Algorytm Sohn}
+Donec cursus nulla vitae pede. Etiam quam pede, aliquet ut, pellentesque sed, sagittis non, est. Quisque egestas malesuada risus. Maecenas ultricies libero a quam. Nullam feugiat arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. In interdum, risus ut gravida sollicitudin, leo sapien commodo dui, non consectetuer nisl nunc ac massa. Mauris a orci in eros venenatis euismod. Curabitur orci. Quisque pharetra, dui sed dignissim hendrerit, nibh ante malesuada eros, sed tincidunt magna lorem a tellus. Aliquam erat volutpat. Aenean pulvinar, metus et mattis dictum, massa lacus semper purus, quis vehicula augue mi et leo. Ut eu ipsum. Sed dictum dapibus nisi. Cras mattis. Nulla sed augue ac sem tempus condimentum. 
+
+\chapter{Wyniki dla pojedynczych słów}
+ \section{Sposób oceny}
+Donec cursus nulla vitae pede. Etiam quam pede, aliquet ut, pellentesque sed, sagittis non, est. Quisque egestas malesuada risus. Maecenas ultricies libero a quam. Nullam feugiat arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. In interdum, risus ut gravida sollicitudin, leo sapien commodo dui, non consectetuer nisl nunc ac massa. Mauris a orci in eros venenatis euismod. Curabitur orci. Quisque pharetra, dui sed dignissim hendrerit, nibh ante malesuada eros, sed tincidunt magna lorem a tellus. Aliquam erat volutpat. Aenean pulvinar, metus et mattis dictum, massa lacus semper purus, quis vehicula augue mi et leo. Ut eu ipsum. Sed dictum dapibus nisi. Cras mattis. Nulla sed augue ac sem tempus condimentum. 
+
+\chapter{Wyniki dla ciągów słów}
+
+\chapter{Podsumowanie}
+
+\addcontentsline{toc}{chapter}{Bibliografia} %utworzenie w spisie treĹ›ci pozycji Bibliografia
+\bibliography{bibliografia} % wstawia bibliografiÄ™ korzystajÄ…c z pliku bibliografia.bib - dotyczy BibTeXa, jeĹĽeli nie korzystamy z BibTeXa naleĹĽy uĹĽyÄ‡ otoczenia thebibliography
+%http://otworzksiazke.pl/images/ksiazki/sygnal_mowy/sygnal_mowy.pdf
+
+
+%opcjonalnie moĹĽe siÄ™ tu pojawiÄ‡ spis rysunkĂłw i tabel
+ \listoffigures
+ \listoftables
+\end{document}
+

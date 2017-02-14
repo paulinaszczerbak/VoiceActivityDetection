@@ -5,7 +5,7 @@
  *      Author: paula
  */
 
-#include "VADImp.h"
+#include "../inc/VADImp.h"
 
 VADImp::VADImp() {
 	// TODO Auto-generated constructor stub
