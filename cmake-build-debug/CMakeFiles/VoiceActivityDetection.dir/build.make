@@ -177,52 +177,52 @@ CMakeFiles/VoiceActivityDetection.dir/src/WAVReaderImp.cpp.o.provides: CMakeFile
 CMakeFiles/VoiceActivityDetection.dir/src/WAVReaderImp.cpp.o.provides.build: CMakeFiles/VoiceActivityDetection.dir/src/WAVReaderImp.cpp.o
 
 
-CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.o: CMakeFiles/VoiceActivityDetection.dir/flags.make
-CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.o: ../ThresholdFinder.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.o -c /home/paulina/github/VoiceActivityDetection/ThresholdFinder.cpp
+CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o: CMakeFiles/VoiceActivityDetection.dir/flags.make
+CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o: ../src/ThresholdFinder.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o -c /home/paulina/github/VoiceActivityDetection/src/ThresholdFinder.cpp
 
-CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/paulina/github/VoiceActivityDetection/ThresholdFinder.cpp > CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.i
+CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/paulina/github/VoiceActivityDetection/src/ThresholdFinder.cpp > CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.i
 
-CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/paulina/github/VoiceActivityDetection/ThresholdFinder.cpp -o CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.s
+CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/paulina/github/VoiceActivityDetection/src/ThresholdFinder.cpp -o CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.s
 
-CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.o.requires:
+CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o.requires:
 
-.PHONY : CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.o.requires
+.PHONY : CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o.requires
 
-CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.o.provides: CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.o.requires
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.o.provides.build
-.PHONY : CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.o.provides
+CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o.provides: CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o.requires
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o.provides.build
+.PHONY : CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o.provides
 
-CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.o.provides.build: CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.o
+CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o.provides.build: CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o
 
 
-CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.o: CMakeFiles/VoiceActivityDetection.dir/flags.make
-CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.o: ../EnergyBasedDetector.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.o -c /home/paulina/github/VoiceActivityDetection/EnergyBasedDetector.cpp
+CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o: CMakeFiles/VoiceActivityDetection.dir/flags.make
+CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o: ../src/EnergyBasedDetector.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o -c /home/paulina/github/VoiceActivityDetection/src/EnergyBasedDetector.cpp
 
-CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/paulina/github/VoiceActivityDetection/EnergyBasedDetector.cpp > CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.i
+CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/paulina/github/VoiceActivityDetection/src/EnergyBasedDetector.cpp > CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.i
 
-CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/paulina/github/VoiceActivityDetection/EnergyBasedDetector.cpp -o CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.s
+CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/paulina/github/VoiceActivityDetection/src/EnergyBasedDetector.cpp -o CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.s
 
-CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.o.requires:
+CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o.requires:
 
-.PHONY : CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.o.requires
+.PHONY : CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o.requires
 
-CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.o.provides: CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.o.requires
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.o.provides.build
-.PHONY : CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.o.provides
+CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o.provides: CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o.requires
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o.provides.build
+.PHONY : CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o.provides
 
-CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.o.provides.build: CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.o
+CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o.provides.build: CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o
 
 
 # Object files for target VoiceActivityDetection
@@ -232,8 +232,8 @@ VoiceActivityDetection_OBJECTS = \
 "CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o" \
 "CMakeFiles/VoiceActivityDetection.dir/src/WAVReader.cpp.o" \
 "CMakeFiles/VoiceActivityDetection.dir/src/WAVReaderImp.cpp.o" \
-"CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.o" \
-"CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.o"
+"CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o" \
+"CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o"
 
 # External object files for target VoiceActivityDetection
 VoiceActivityDetection_EXTERNAL_OBJECTS =
@@ -243,8 +243,8 @@ VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/src/VAD.cpp.o
 VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o
 VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/src/WAVReader.cpp.o
 VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/src/WAVReaderImp.cpp.o
-VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.o
-VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.o
+VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o
+VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o
 VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/build.make
 VoiceActivityDetection: ../aquila/lib/libAquila.a
 VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/link.txt
@@ -261,8 +261,8 @@ CMakeFiles/VoiceActivityDetection.dir/requires: CMakeFiles/VoiceActivityDetectio
 CMakeFiles/VoiceActivityDetection.dir/requires: CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o.requires
 CMakeFiles/VoiceActivityDetection.dir/requires: CMakeFiles/VoiceActivityDetection.dir/src/WAVReader.cpp.o.requires
 CMakeFiles/VoiceActivityDetection.dir/requires: CMakeFiles/VoiceActivityDetection.dir/src/WAVReaderImp.cpp.o.requires
-CMakeFiles/VoiceActivityDetection.dir/requires: CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.o.requires
-CMakeFiles/VoiceActivityDetection.dir/requires: CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.o.requires
+CMakeFiles/VoiceActivityDetection.dir/requires: CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o.requires
+CMakeFiles/VoiceActivityDetection.dir/requires: CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o.requires
 
 .PHONY : CMakeFiles/VoiceActivityDetection.dir/requires
 

@@ -9,8 +9,11 @@ algorytm VAD bazujacy na energii sygnalu
 
 class EnergyBasedDetector {
 private:
-
+    float singleFrameEnergy;
 public:
+    EnergyBasedDetector();
+    void countSingleFrameEnergy(int frameNumber);
+    float getSingleFrameEnergy();
 };
 
 

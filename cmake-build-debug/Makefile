@@ -123,59 +123,59 @@ VoiceActivityDetection/fast:
 	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/build
 .PHONY : VoiceActivityDetection/fast
 
-EnergyBasedDetector.o: EnergyBasedDetector.cpp.o
+src/EnergyBasedDetector.o: src/EnergyBasedDetector.cpp.o
 
-.PHONY : EnergyBasedDetector.o
-
-# target to build an object file
-EnergyBasedDetector.cpp.o:
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.o
-.PHONY : EnergyBasedDetector.cpp.o
-
-EnergyBasedDetector.i: EnergyBasedDetector.cpp.i
-
-.PHONY : EnergyBasedDetector.i
-
-# target to preprocess a source file
-EnergyBasedDetector.cpp.i:
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.i
-.PHONY : EnergyBasedDetector.cpp.i
-
-EnergyBasedDetector.s: EnergyBasedDetector.cpp.s
-
-.PHONY : EnergyBasedDetector.s
-
-# target to generate assembly for a file
-EnergyBasedDetector.cpp.s:
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/EnergyBasedDetector.cpp.s
-.PHONY : EnergyBasedDetector.cpp.s
-
-ThresholdFinder.o: ThresholdFinder.cpp.o
-
-.PHONY : ThresholdFinder.o
+.PHONY : src/EnergyBasedDetector.o
 
 # target to build an object file
-ThresholdFinder.cpp.o:
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.o
-.PHONY : ThresholdFinder.cpp.o
+src/EnergyBasedDetector.cpp.o:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o
+.PHONY : src/EnergyBasedDetector.cpp.o
 
-ThresholdFinder.i: ThresholdFinder.cpp.i
+src/EnergyBasedDetector.i: src/EnergyBasedDetector.cpp.i
 
-.PHONY : ThresholdFinder.i
+.PHONY : src/EnergyBasedDetector.i
 
 # target to preprocess a source file
-ThresholdFinder.cpp.i:
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.i
-.PHONY : ThresholdFinder.cpp.i
+src/EnergyBasedDetector.cpp.i:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.i
+.PHONY : src/EnergyBasedDetector.cpp.i
 
-ThresholdFinder.s: ThresholdFinder.cpp.s
+src/EnergyBasedDetector.s: src/EnergyBasedDetector.cpp.s
 
-.PHONY : ThresholdFinder.s
+.PHONY : src/EnergyBasedDetector.s
 
 # target to generate assembly for a file
-ThresholdFinder.cpp.s:
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/ThresholdFinder.cpp.s
-.PHONY : ThresholdFinder.cpp.s
+src/EnergyBasedDetector.cpp.s:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.s
+.PHONY : src/EnergyBasedDetector.cpp.s
+
+src/ThresholdFinder.o: src/ThresholdFinder.cpp.o
+
+.PHONY : src/ThresholdFinder.o
+
+# target to build an object file
+src/ThresholdFinder.cpp.o:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o
+.PHONY : src/ThresholdFinder.cpp.o
+
+src/ThresholdFinder.i: src/ThresholdFinder.cpp.i
+
+.PHONY : src/ThresholdFinder.i
+
+# target to preprocess a source file
+src/ThresholdFinder.cpp.i:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.i
+.PHONY : src/ThresholdFinder.cpp.i
+
+src/ThresholdFinder.s: src/ThresholdFinder.cpp.s
+
+.PHONY : src/ThresholdFinder.s
+
+# target to generate assembly for a file
+src/ThresholdFinder.cpp.s:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.s
+.PHONY : src/ThresholdFinder.cpp.s
 
 src/VAD.o: src/VAD.cpp.o
 
@@ -321,12 +321,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... VoiceActivityDetection"
-	@echo "... EnergyBasedDetector.o"
-	@echo "... EnergyBasedDetector.i"
-	@echo "... EnergyBasedDetector.s"
-	@echo "... ThresholdFinder.o"
-	@echo "... ThresholdFinder.i"
-	@echo "... ThresholdFinder.s"
+	@echo "... src/EnergyBasedDetector.o"
+	@echo "... src/EnergyBasedDetector.i"
+	@echo "... src/EnergyBasedDetector.s"
+	@echo "... src/ThresholdFinder.o"
+	@echo "... src/ThresholdFinder.i"
+	@echo "... src/ThresholdFinder.s"
 	@echo "... src/VAD.o"
 	@echo "... src/VAD.i"
 	@echo "... src/VAD.s"

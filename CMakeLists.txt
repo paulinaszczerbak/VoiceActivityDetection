@@ -8,12 +8,15 @@ set(SOURCE_FILES
         inc/VADImp.h
         inc/WAVReader.h
         inc/WAVReaderImp.h
+        inc/ThresholdFinder.h
+        inc/EnergyBasedDetector.h
         src/main.cpp
         src/VAD.cpp
         src/VADImp.cpp
         src/WAVReader.cpp
         src/WAVReaderImp.cpp
-        ThresholdFinder.cpp ThresholdFinder.h EnergyBasedDetector.cpp EnergyBasedDetector.h)
+        src/ThresholdFinder.cpp
+        src/EnergyBasedDetector.cpp )
 
 add_executable(VoiceActivityDetection ${SOURCE_FILES})
 
