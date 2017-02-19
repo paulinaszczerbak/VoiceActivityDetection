@@ -9,7 +9,7 @@
 \contentsline {section}{\numberline {3.2}Algorytm bazuj\IeC {\k a}cy na energii pojedynczej ramki}{10}
 \contentsline {section}{\numberline {3.3}Algorytm bazuj\IeC {\k a}cy na obwiedni sygna\IeC {\l }u}{10}
 \contentsline {section}{\numberline {3.4}Algorytm Sohn}{10}
-\contentsline {chapter}{\numberline {4}Aspekty implementacyjne}{11}
+\contentsline {chapter}{\numberline {4}Implementacja programu}{11}
 \contentsline {chapter}{\numberline {5}Wyniki dla pojedynczych s\IeC {\l }\IeC {\'o}w}{13}
 \contentsline {section}{\numberline {5.1}Spos\IeC {\'o}b oceny}{13}
 \contentsline {section}{\numberline {5.2}Wyniki}{13}

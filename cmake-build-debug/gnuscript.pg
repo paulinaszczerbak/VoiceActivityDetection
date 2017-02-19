@@ -1,30 +1,31 @@
 
 #set term postscript eps enhanced
-set title "Energy vs. Time for Sample Data"     #tytul wykresu
+set terminal pngcairo size 2200,1000 enhanced font 'Verdana,10'
+#set title "Voice activity detection"     #tytul wykresu
 set output "VAD.png"  #zapisywanie do pliku
 
 set multiplot
 
+set key off
+set key noautotitle
+unset ytics
+unset xtics
 set xlabel "Time"
 set ylabel "Energy"
 
-set size 1.0,0.5              # skalowanie względem rozmiaru ramki
+set border 0
+set size 1.0,1.0              # skalowanie względem rozmiaru ramki
 set origin 0.0,0.0          # położenie insetu
-#set xrange [0:20]
-#set yrange [0:10]
-plot "sigToPlot" with lines
-#plot sin(x)
+plot "sigToPlot" with lines lt rgb "black" lw 1
+set grid
 
-set size 1.0,0.5              # skalowanie względem rozmiaru ramki
-set origin 0.0,0.5          # położenie insetu
+set size 1.0,1.0              # skalowanie względem rozmiaru ramki
+set origin 0.0,0.0          # położenie insetu
 # Lepiej jak inset nie ma title i opisów osi.
 #set title ""
 #set xlabel ""
 #set ylabel ""
-#set xrange [0:20]
-#set yrange [0:10]
-plot "resultToPlot" with lines
-#plot cos(x) 
+plot "resultToPlot" with lines lt rgb "red" lw 1
 unset multiplot
 
 set output	#zamkniecie pliku

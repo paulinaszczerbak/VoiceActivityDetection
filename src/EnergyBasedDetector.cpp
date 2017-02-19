@@ -55,12 +55,19 @@ void EnergyBasedDetector::detect() {
     system("touch resultToPlot");
     //otwieram plik do zapisu
     std::ofstream file("resultToPlot");
+    int xValue(0);
     if(file){
         for (int i = 0; i <this->framesAmount ; i++) {
-            if(this->countSingleFrameEnergy(i)<threshold.getThreshold()) file<<0<<std::endl;//result[i]=0;
-            else //result[i]=1;
-                file<<1<<std::endl;
-            //std::cout<<result[i]<<std::endl;
+            if(this->countSingleFrameEnergy(i)<threshold.getThreshold()) {
+                //file<<0<<std::endl<<0<<std::endl<<0<<std::endl<<0<<std::endl<<0<<std::endl;
+                file<<xValue<<" "<<0<<std::endl;
+                xValue+=5;
+            }
+            else {
+                //file << 10000 << std::endl << 10000 << std::endl << 10000 << std::endl << 10000 << std::endl << 10000<< std::endl;
+                file<<xValue<<" "<<10000<<std::endl;
+                xValue+=5;
+            }
         }
         file.close();
     } else{

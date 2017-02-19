@@ -18,8 +18,6 @@ private:
     int samplesPerFrame;
     int commonSamples;
     int framesAmount;
-    //lista lub tablica z wynikami detekcji
-    bool result[16000];
 public:
     EnergyBasedDetector();
     virtual ~EnergyBasedDetector();

@@ -3,7 +3,7 @@
 //
 
 #include "../inc/ThresholdFinder.h"
-#define THRESHOLD 300
+#define THRESHOLD 5000
 
 ThresholdFinder::ThresholdFinder() {
     this->threshold=THRESHOLD;
