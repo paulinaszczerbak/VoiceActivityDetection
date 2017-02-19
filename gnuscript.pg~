@@ -1,0 +1,33 @@
+
+#set term postscript eps enhanced
+set title "Energy vs. Time for Sample Data"     #tytul wykresu
+set output "dupa.png"  #zapisywanie do pliku
+
+set multiplot
+
+set xlabel "Time"
+set ylabel "Energy"
+
+set size 1.0,1.0              # skalowanie względem rozmiaru ramki
+set origin 0.0,0.0          # położenie insetu
+#set xrange [0:20]
+#set yrange [0:10]
+#plot "../habababa" with lines
+plot sin(x)
+
+set size 1.0,1.0              # skalowanie względem rozmiaru ramki
+set origin 0.0,0.0          # położenie insetu
+# Lepiej jak inset nie ma title i opisów osi.
+set title ""
+set xlabel ""
+set ylabel ""
+#set xrange [0:20]
+#set yrange [0:10]
+#plot "../hehe" with lines
+plot cos(x) 
+unset multiplot
+
+set output	#zamkniecie pliku
+pause -1 "Hit any key to continue"
+
+

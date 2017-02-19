@@ -36,6 +36,14 @@ functional
 vector
 -
 
+/home/paulina/github/VoiceActivityDetection/aquila/include/aquila/source/PlainTextFile.h
+../global.h
+/home/paulina/github/VoiceActivityDetection/aquila/include/aquila/global.h
+SignalSource.h
+/home/paulina/github/VoiceActivityDetection/aquila/include/aquila/source/SignalSource.h
+string
+-
+
 /home/paulina/github/VoiceActivityDetection/aquila/include/aquila/source/SignalSource.h
 ../global.h
 /home/paulina/github/VoiceActivityDetection/aquila/include/aquila/global.h
@@ -81,27 +89,37 @@ vector
 -
 
 /home/paulina/github/VoiceActivityDetection/inc/EnergyBasedDetector.h
+../aquila/include/aquila/source/WaveFile.h
+/home/paulina/github/VoiceActivityDetection/aquila/include/aquila/source/WaveFile.h
+ThresholdFinder.h
+/home/paulina/github/VoiceActivityDetection/inc/ThresholdFinder.h
+WAVFileSetterImp.h
+/home/paulina/github/VoiceActivityDetection/inc/WAVFileSetterImp.h
+
+/home/paulina/github/VoiceActivityDetection/inc/ResultPlotter.h
 
 /home/paulina/github/VoiceActivityDetection/inc/ThresholdFinder.h
 
 /home/paulina/github/VoiceActivityDetection/inc/VAD.h
 
 /home/paulina/github/VoiceActivityDetection/inc/VADImp.h
-WAVReaderImp.h
-/home/paulina/github/VoiceActivityDetection/inc/WAVReaderImp.h
 
-/home/paulina/github/VoiceActivityDetection/inc/WAVReader.h
-
-/home/paulina/github/VoiceActivityDetection/inc/WAVReaderImp.h
+/home/paulina/github/VoiceActivityDetection/inc/WAVFileSetter.h
 iostream
 -
-stdio.h
+
+/home/paulina/github/VoiceActivityDetection/inc/WAVFileSetterImp.h
+iostream
 -
-stdlib.h
--
+WAVFileSetter.h
+/home/paulina/github/VoiceActivityDetection/inc/WAVFileSetter.h
+../aquila/include/aquila/source/WaveFile.h
+/home/paulina/github/VoiceActivityDetection/aquila/include/aquila/source/WaveFile.h
 
 /home/paulina/github/VoiceActivityDetection/src/EnergyBasedDetector.cpp
 iostream
+-
+fstream
 -
 ../inc/EnergyBasedDetector.h
 /home/paulina/github/VoiceActivityDetection/inc/EnergyBasedDetector.h
@@ -109,6 +127,12 @@ iostream
 /home/paulina/github/VoiceActivityDetection/aquila/include/aquila/source/WaveFile.h
 ../aquila/include/aquila/source/FramesCollection.h
 /home/paulina/github/VoiceActivityDetection/aquila/include/aquila/source/FramesCollection.h
+../inc/WAVFileSetterImp.h
+/home/paulina/github/VoiceActivityDetection/inc/WAVFileSetterImp.h
+
+/home/paulina/github/VoiceActivityDetection/src/ResultPlotter.cpp
+../inc/ResultPlotter.h
+/home/paulina/github/VoiceActivityDetection/inc/ResultPlotter.h
 
 /home/paulina/github/VoiceActivityDetection/src/ThresholdFinder.cpp
 ../inc/ThresholdFinder.h
@@ -121,14 +145,26 @@ iostream
 /home/paulina/github/VoiceActivityDetection/src/VADImp.cpp
 ../inc/VADImp.h
 /home/paulina/github/VoiceActivityDetection/inc/VADImp.h
+../inc/EnergyBasedDetector.h
+/home/paulina/github/VoiceActivityDetection/inc/EnergyBasedDetector.h
+../inc/WAVFileSetterImp.h
+/home/paulina/github/VoiceActivityDetection/inc/WAVFileSetterImp.h
 
-/home/paulina/github/VoiceActivityDetection/src/WAVReader.cpp
-../inc/WAVReader.h
-/home/paulina/github/VoiceActivityDetection/inc/WAVReader.h
+/home/paulina/github/VoiceActivityDetection/src/WAVFileSetter.cpp
+../inc/WAVFileSetter.h
+/home/paulina/github/VoiceActivityDetection/inc/WAVFileSetter.h
 
-/home/paulina/github/VoiceActivityDetection/src/WAVReaderImp.cpp
-../inc/WAVReaderImp.h
-/home/paulina/github/VoiceActivityDetection/inc/WAVReaderImp.h
+/home/paulina/github/VoiceActivityDetection/src/WAVFileSetterImp.cpp
+iostream
+-
+fstream
+-
+../inc/WAVFileSetterImp.h
+/home/paulina/github/VoiceActivityDetection/inc/WAVFileSetterImp.h
+../inc/WAVFileSetter.h
+/home/paulina/github/VoiceActivityDetection/inc/WAVFileSetter.h
+../aquila/include/aquila/source/WaveFile.h
+/home/paulina/github/VoiceActivityDetection/aquila/include/aquila/source/WaveFile.h
 
 /home/paulina/github/VoiceActivityDetection/src/main.cpp
 iostream
@@ -145,6 +181,10 @@ cstddef
 /home/paulina/github/VoiceActivityDetection/aquila/include/aquila/tools/TextPlot.h
 ../aquila/include/aquila/source/FramesCollection.h
 /home/paulina/github/VoiceActivityDetection/aquila/include/aquila/source/FramesCollection.h
+../aquila/include/aquila/source/PlainTextFile.h
+/home/paulina/github/VoiceActivityDetection/aquila/include/aquila/source/PlainTextFile.h
 ../inc/EnergyBasedDetector.h
 /home/paulina/github/VoiceActivityDetection/inc/EnergyBasedDetector.h
+../inc/VADImp.h
+/home/paulina/github/VoiceActivityDetection/inc/VADImp.h
 

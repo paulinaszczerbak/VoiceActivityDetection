@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.2.2)  14 FEB 2017 16:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.2.2)  15 FEB 2017 15:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -677,11 +677,7 @@ Underfull \vbox (badness 8094) has occurred while \output is active []
 
 ]
 Rozdzia\PlPrIeC {\l } 3.
-
-Underfull \vbox (badness 2042) has occurred while \output is active []
-
- [9]
-[10]
+[9] [10]
 Rozdzia\PlPrIeC {\l } 4.
 [11
 
@@ -696,22 +692,27 @@ Rozdzia\PlPrIeC {\l } 5.
 
 ]
 Rozdzia\PlPrIeC {\l } 6.
-No file bachelor_thesis.bbl.
 [15] [16
+
+
+]
+Rozdzia\PlPrIeC {\l } 7.
+No file bachelor_thesis.bbl.
+[17] [18
 
 
 ] (./bachelor_thesis.lof)
 \tf@lof=\write5
 \openout5 = `bachelor_thesis.lof'.
 
- [17] [18
+ [19] [20
 
 
 ] (./bachelor_thesis.lot)
 \tf@lot=\write6
 \openout6 = `bachelor_thesis.lot'.
 
- [19]
+ [21]
 (./bachelor_thesis.aux) ) 
 Here is how much of TeX's memory you used:
  3168 strings out of 494918
@@ -735,10 +736,10 @@ onts/pk/ljfour/jknappen/ec/ecrm2074.600pk></usr/share/texlive/texmf-dist/fonts/
 type1/public/pl/plmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl
 /plr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plr8.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/public/pl/plsy10.pfb>
-Output written on bachelor_thesis.pdf (21 pages, 377029 bytes).
+Output written on bachelor_thesis.pdf (23 pages, 380471 bytes).
 PDF statistics:
- 464 PDF objects out of 1000 (max. 8388607)
- 100 compressed objects within 1 object stream
+ 477 PDF objects out of 1000 (max. 8388607)
+ 104 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

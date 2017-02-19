@@ -3,17 +3,20 @@
  *
  *  Created on: 21 lip 2016
  *      Author: paula
+ *
+ *      klasa do wybierania metody detekcji
  */
 
 #ifndef VADIMP_H_
 #define VADIMP_H_
-#include "WAVReaderImp.h"
 
 class VADImp {
+private:
+    //int methodNumber;
 public:
 	VADImp();
 	virtual ~VADImp();
-	void energyBasedMethod();
+    void detect(int methodNumber);
 };
 
 #endif /* VADIMP_H_ */

@@ -9,8 +9,10 @@
 \contentsline {section}{\numberline {3.2}Algorytm bazuj\IeC {\k a}cy na energii pojedynczej ramki}{10}
 \contentsline {section}{\numberline {3.3}Algorytm bazuj\IeC {\k a}cy na obwiedni sygna\IeC {\l }u}{10}
 \contentsline {section}{\numberline {3.4}Algorytm Sohn}{10}
-\contentsline {chapter}{\numberline {4}Wyniki dla pojedynczych s\IeC {\l }\IeC {\'o}w}{11}
-\contentsline {section}{\numberline {4.1}Spos\IeC {\'o}b oceny}{11}
-\contentsline {chapter}{\numberline {5}Wyniki dla ci\IeC {\k a}g\IeC {\'o}w s\IeC {\l }\IeC {\'o}w}{13}
-\contentsline {chapter}{\numberline {6}Podsumowanie}{15}
-\contentsline {chapter}{Bibliografia}{15}
+\contentsline {chapter}{\numberline {4}Aspekty implementacyjne}{11}
+\contentsline {chapter}{\numberline {5}Wyniki dla pojedynczych s\IeC {\l }\IeC {\'o}w}{13}
+\contentsline {section}{\numberline {5.1}Spos\IeC {\'o}b oceny}{13}
+\contentsline {section}{\numberline {5.2}Wyniki}{13}
+\contentsline {chapter}{\numberline {6}Wyniki dla ci\IeC {\k a}g\IeC {\'o}w s\IeC {\l }\IeC {\'o}w}{15}
+\contentsline {chapter}{\numberline {7}Podsumowanie}{17}
+\contentsline {chapter}{Bibliografia}{17}

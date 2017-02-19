@@ -7,7 +7,13 @@ CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o: ../aquila/i
 CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o: ../aquila/include/aquila/source/SignalSource.h
 CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o: ../aquila/include/aquila/source/WaveFile.h
 CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o: ../inc/EnergyBasedDetector.h
+CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o: ../inc/ThresholdFinder.h
+CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o: ../inc/WAVFileSetter.h
+CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o: ../inc/WAVFileSetterImp.h
 CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o: ../src/EnergyBasedDetector.cpp
+
+CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o: ../inc/ResultPlotter.h
+CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o: ../src/ResultPlotter.cpp
 
 CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o: ../inc/ThresholdFinder.h
 CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o: ../src/ThresholdFinder.cpp
@@ -15,22 +21,37 @@ CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o: ../src/Threshol
 CMakeFiles/VoiceActivityDetection.dir/src/VAD.cpp.o: ../inc/VAD.h
 CMakeFiles/VoiceActivityDetection.dir/src/VAD.cpp.o: ../src/VAD.cpp
 
+CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o: ../aquila/include/aquila/global.h
+CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o: ../aquila/include/aquila/source/SignalSource.h
+CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o: ../aquila/include/aquila/source/WaveFile.h
+CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o: ../inc/EnergyBasedDetector.h
+CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o: ../inc/ThresholdFinder.h
 CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o: ../inc/VADImp.h
-CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o: ../inc/WAVReaderImp.h
+CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o: ../inc/WAVFileSetter.h
+CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o: ../inc/WAVFileSetterImp.h
 CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o: ../src/VADImp.cpp
 
-CMakeFiles/VoiceActivityDetection.dir/src/WAVReader.cpp.o: ../inc/WAVReader.h
-CMakeFiles/VoiceActivityDetection.dir/src/WAVReader.cpp.o: ../src/WAVReader.cpp
+CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.o: ../inc/WAVFileSetter.h
+CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.o: ../src/WAVFileSetter.cpp
 
-CMakeFiles/VoiceActivityDetection.dir/src/WAVReaderImp.cpp.o: ../inc/WAVReaderImp.h
-CMakeFiles/VoiceActivityDetection.dir/src/WAVReaderImp.cpp.o: ../src/WAVReaderImp.cpp
+CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o: ../aquila/include/aquila/global.h
+CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o: ../aquila/include/aquila/source/SignalSource.h
+CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o: ../aquila/include/aquila/source/WaveFile.h
+CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o: ../inc/WAVFileSetter.h
+CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o: ../inc/WAVFileSetterImp.h
+CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o: ../src/WAVFileSetterImp.cpp
 
 CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../aquila/include/aquila/global.h
 CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../aquila/include/aquila/source/Frame.h
 CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../aquila/include/aquila/source/FramesCollection.h
+CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../aquila/include/aquila/source/PlainTextFile.h
 CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../aquila/include/aquila/source/SignalSource.h
 CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../aquila/include/aquila/source/WaveFile.h
 CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../aquila/include/aquila/tools/TextPlot.h
 CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../inc/EnergyBasedDetector.h
+CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../inc/ThresholdFinder.h
+CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../inc/VADImp.h
+CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../inc/WAVFileSetter.h
+CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../inc/WAVFileSetterImp.h
 CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../src/main.cpp
 

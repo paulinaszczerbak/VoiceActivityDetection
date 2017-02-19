@@ -5,11 +5,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/paulina/github/VoiceActivityDetection/src/EnergyBasedDetector.cpp" "/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o"
+  "/home/paulina/github/VoiceActivityDetection/src/ResultPlotter.cpp" "/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o"
   "/home/paulina/github/VoiceActivityDetection/src/ThresholdFinder.cpp" "/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o"
   "/home/paulina/github/VoiceActivityDetection/src/VAD.cpp" "/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/VAD.cpp.o"
   "/home/paulina/github/VoiceActivityDetection/src/VADImp.cpp" "/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o"
-  "/home/paulina/github/VoiceActivityDetection/src/WAVReader.cpp" "/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/WAVReader.cpp.o"
-  "/home/paulina/github/VoiceActivityDetection/src/WAVReaderImp.cpp" "/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/WAVReaderImp.cpp.o"
+  "/home/paulina/github/VoiceActivityDetection/src/WAVFileSetter.cpp" "/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.o"
+  "/home/paulina/github/VoiceActivityDetection/src/WAVFileSetterImp.cpp" "/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o"
   "/home/paulina/github/VoiceActivityDetection/src/main.cpp" "/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

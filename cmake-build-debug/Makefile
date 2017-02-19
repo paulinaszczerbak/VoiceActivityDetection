@@ -150,6 +150,33 @@ src/EnergyBasedDetector.cpp.s:
 	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.s
 .PHONY : src/EnergyBasedDetector.cpp.s
 
+src/ResultPlotter.o: src/ResultPlotter.cpp.o
+
+.PHONY : src/ResultPlotter.o
+
+# target to build an object file
+src/ResultPlotter.cpp.o:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o
+.PHONY : src/ResultPlotter.cpp.o
+
+src/ResultPlotter.i: src/ResultPlotter.cpp.i
+
+.PHONY : src/ResultPlotter.i
+
+# target to preprocess a source file
+src/ResultPlotter.cpp.i:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.i
+.PHONY : src/ResultPlotter.cpp.i
+
+src/ResultPlotter.s: src/ResultPlotter.cpp.s
+
+.PHONY : src/ResultPlotter.s
+
+# target to generate assembly for a file
+src/ResultPlotter.cpp.s:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.s
+.PHONY : src/ResultPlotter.cpp.s
+
 src/ThresholdFinder.o: src/ThresholdFinder.cpp.o
 
 .PHONY : src/ThresholdFinder.o
@@ -231,59 +258,59 @@ src/VADImp.cpp.s:
 	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.s
 .PHONY : src/VADImp.cpp.s
 
-src/WAVReader.o: src/WAVReader.cpp.o
+src/WAVFileSetter.o: src/WAVFileSetter.cpp.o
 
-.PHONY : src/WAVReader.o
-
-# target to build an object file
-src/WAVReader.cpp.o:
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/WAVReader.cpp.o
-.PHONY : src/WAVReader.cpp.o
-
-src/WAVReader.i: src/WAVReader.cpp.i
-
-.PHONY : src/WAVReader.i
-
-# target to preprocess a source file
-src/WAVReader.cpp.i:
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/WAVReader.cpp.i
-.PHONY : src/WAVReader.cpp.i
-
-src/WAVReader.s: src/WAVReader.cpp.s
-
-.PHONY : src/WAVReader.s
-
-# target to generate assembly for a file
-src/WAVReader.cpp.s:
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/WAVReader.cpp.s
-.PHONY : src/WAVReader.cpp.s
-
-src/WAVReaderImp.o: src/WAVReaderImp.cpp.o
-
-.PHONY : src/WAVReaderImp.o
+.PHONY : src/WAVFileSetter.o
 
 # target to build an object file
-src/WAVReaderImp.cpp.o:
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/WAVReaderImp.cpp.o
-.PHONY : src/WAVReaderImp.cpp.o
+src/WAVFileSetter.cpp.o:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.o
+.PHONY : src/WAVFileSetter.cpp.o
 
-src/WAVReaderImp.i: src/WAVReaderImp.cpp.i
+src/WAVFileSetter.i: src/WAVFileSetter.cpp.i
 
-.PHONY : src/WAVReaderImp.i
+.PHONY : src/WAVFileSetter.i
 
 # target to preprocess a source file
-src/WAVReaderImp.cpp.i:
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/WAVReaderImp.cpp.i
-.PHONY : src/WAVReaderImp.cpp.i
+src/WAVFileSetter.cpp.i:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.i
+.PHONY : src/WAVFileSetter.cpp.i
 
-src/WAVReaderImp.s: src/WAVReaderImp.cpp.s
+src/WAVFileSetter.s: src/WAVFileSetter.cpp.s
 
-.PHONY : src/WAVReaderImp.s
+.PHONY : src/WAVFileSetter.s
 
 # target to generate assembly for a file
-src/WAVReaderImp.cpp.s:
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/WAVReaderImp.cpp.s
-.PHONY : src/WAVReaderImp.cpp.s
+src/WAVFileSetter.cpp.s:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.s
+.PHONY : src/WAVFileSetter.cpp.s
+
+src/WAVFileSetterImp.o: src/WAVFileSetterImp.cpp.o
+
+.PHONY : src/WAVFileSetterImp.o
+
+# target to build an object file
+src/WAVFileSetterImp.cpp.o:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o
+.PHONY : src/WAVFileSetterImp.cpp.o
+
+src/WAVFileSetterImp.i: src/WAVFileSetterImp.cpp.i
+
+.PHONY : src/WAVFileSetterImp.i
+
+# target to preprocess a source file
+src/WAVFileSetterImp.cpp.i:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.i
+.PHONY : src/WAVFileSetterImp.cpp.i
+
+src/WAVFileSetterImp.s: src/WAVFileSetterImp.cpp.s
+
+.PHONY : src/WAVFileSetterImp.s
+
+# target to generate assembly for a file
+src/WAVFileSetterImp.cpp.s:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.s
+.PHONY : src/WAVFileSetterImp.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -324,6 +351,9 @@ help:
 	@echo "... src/EnergyBasedDetector.o"
 	@echo "... src/EnergyBasedDetector.i"
 	@echo "... src/EnergyBasedDetector.s"
+	@echo "... src/ResultPlotter.o"
+	@echo "... src/ResultPlotter.i"
+	@echo "... src/ResultPlotter.s"
 	@echo "... src/ThresholdFinder.o"
 	@echo "... src/ThresholdFinder.i"
 	@echo "... src/ThresholdFinder.s"
@@ -333,12 +363,12 @@ help:
 	@echo "... src/VADImp.o"
 	@echo "... src/VADImp.i"
 	@echo "... src/VADImp.s"
-	@echo "... src/WAVReader.o"
-	@echo "... src/WAVReader.i"
-	@echo "... src/WAVReader.s"
-	@echo "... src/WAVReaderImp.o"
-	@echo "... src/WAVReaderImp.i"
-	@echo "... src/WAVReaderImp.s"
+	@echo "... src/WAVFileSetter.o"
+	@echo "... src/WAVFileSetter.i"
+	@echo "... src/WAVFileSetter.s"
+	@echo "... src/WAVFileSetterImp.o"
+	@echo "... src/WAVFileSetterImp.i"
+	@echo "... src/WAVFileSetterImp.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

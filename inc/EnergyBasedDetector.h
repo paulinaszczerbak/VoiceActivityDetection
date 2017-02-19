@@ -6,14 +6,28 @@ algorytm VAD bazujacy na energii sygnalu
 #ifndef VOICEACTIVITYDETECTION_ENERGYBASEDDETECTOR_H
 #define VOICEACTIVITYDETECTION_ENERGYBASEDDETECTOR_H
 
+#include "../aquila/include/aquila/source/WaveFile.h"
 
-class EnergyBasedDetector {
+#include "ThresholdFinder.h"
+#include "WAVFileSetterImp.h"
+
+class EnergyBasedDetector : public WAVFileSetterImp, public ThresholdFinder{
 private:
+    //float singleFrameEnergy;
     float singleFrameEnergy;
+    int samplesPerFrame;
+    int commonSamples;
+    int framesAmount;
+    //lista lub tablica z wynikami detekcji
+    bool result[16000];
 public:
     EnergyBasedDetector();
-    void countSingleFrameEnergy(int frameNumber);
+    virtual ~EnergyBasedDetector();
+    float countSingleFrameEnergy(int frameNumber);
     float getSingleFrameEnergy();
+    void detect();
+    void setFramesAmount();
+    int getFramesAmount();
 };
 
 

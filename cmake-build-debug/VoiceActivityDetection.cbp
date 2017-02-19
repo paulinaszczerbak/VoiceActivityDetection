@@ -89,6 +89,9 @@
 		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/EnergyBasedDetector.h">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
+		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/ResultPlotter.h">
+			<Option target="VoiceActivityDetection"/>
+		</Unit>
 		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/ThresholdFinder.h">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
@@ -98,13 +101,16 @@
 		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/VADImp.h">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/WAVReader.h">
+		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/WAVFileSetter.h">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/WAVReaderImp.h">
+		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/WAVFileSetterImp.h">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
 		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/EnergyBasedDetector.cpp">
+			<Option target="VoiceActivityDetection"/>
+		</Unit>
+		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/ResultPlotter.cpp">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
 		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/ThresholdFinder.cpp">
@@ -116,10 +122,10 @@
 		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/VADImp.cpp">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/WAVReader.cpp">
+		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/WAVFileSetter.cpp">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/WAVReaderImp.cpp">
+		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/WAVFileSetterImp.cpp">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
 		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/main.cpp">

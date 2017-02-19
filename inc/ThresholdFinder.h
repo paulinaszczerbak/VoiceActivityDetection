@@ -8,7 +8,12 @@ Klasa do ustalania poczatkowego progu detekcji
 
 
 class ThresholdFinder {
-
+private:
+    float threshold;
+public:
+    ThresholdFinder();
+    float getThreshold();
+    void setThreshold(float threshold);
 };
 
 

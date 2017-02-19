@@ -1,0 +1,33 @@
+
+#set term postscript eps enhanced
+set title "Energy vs. Time for Sample Data"     #tytul wykresu
+set output "VAD.png"  #zapisywanie do pliku
+
+set multiplot
+
+set xlabel "Time"
+set ylabel "Energy"
+
+set size 1.0,0.5              # skalowanie względem rozmiaru ramki
+set origin 0.0,0.0          # położenie insetu
+#set xrange [0:20]
+#set yrange [0:10]
+plot "sigToPlot" with lines
+#plot sin(x)
+
+set size 1.0,0.5              # skalowanie względem rozmiaru ramki
+set origin 0.0,0.5          # położenie insetu
+# Lepiej jak inset nie ma title i opisów osi.
+#set title ""
+#set xlabel ""
+#set ylabel ""
+#set xrange [0:20]
+#set yrange [0:10]
+plot "resultToPlot" with lines
+#plot cos(x) 
+unset multiplot
+
+set output	#zamkniecie pliku
+pause -1 "Hit any key to continue"
+
+
