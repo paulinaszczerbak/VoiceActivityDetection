@@ -9,11 +9,20 @@ ThresholdFinder::ThresholdFinder() {
     this->threshold=THRESHOLD;
 }
 
+ThresholdFinder::~ThresholdFinder() {
+
+}
+
+
 //void ThresholdFinder::setThreshold(float threshold) {
 //    this->threshold=threshold;
 //}
 
 float ThresholdFinder::getThreshold() {
     return this->threshold;
+}
+
+void ThresholdFinder::countThreshold(Aquila::WaveFile wav) {
+
 }
 

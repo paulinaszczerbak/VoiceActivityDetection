@@ -1,6 +1,6 @@
 
 #set term postscript eps enhanced
-set terminal pngcairo size 2200,1000 enhanced font 'Verdana,10'        #odkomentowac jak zapis do pliku
+#set terminal pngcairo size 2200,1000 enhanced font 'Verdana,10'        #odkomentowac jak zapis do pliku
 #set title "Voice activity detection"     #tytul wykresu
 set output "VAD.png"  #zapisywanie do pliku
 

@@ -12,8 +12,8 @@
 EnergyBasedDetector::EnergyBasedDetector(){
     //this->singleFrameEnergy=0;
     this->singleFrameEnergy=0;
-    this->samplesPerFrame=10;
-    this->commonSamples=5;
+    this->samplesPerFrame=12;
+    this->commonSamples=this->samplesPerFrame/2;
 }
 
 
@@ -23,10 +23,7 @@ EnergyBasedDetector::~EnergyBasedDetector() {
 
 
 double EnergyBasedDetector::countSingleFrameEnergy(Aquila::WaveFile wav,size_t frameNumber) {
-    //pobieram nazwe pliku wav
-    //Aquila::WaveFile wav(WAVFileSetterImp::getFilename());
-    //float singleFrameEnergy(0);
-    //std::cout<<"nazwa pliku: "<<WAVFileSetterImp::getFileName()<<std::endl;
+
     Aquila::FramesCollection frames(wav, this->samplesPerFrame,this->commonSamples);
     //obliczam energie w jednej, konkretnej ramce
     for(size_t i=0; i<frames.getSamplesPerFrame();i++){
@@ -58,12 +55,12 @@ void EnergyBasedDetector::detect(Aquila::WaveFile wav) {
             if(this->countSingleFrameEnergy(wav,i)<threshold.getThreshold()) {
                 //file<<0<<std::endl<<0<<std::endl<<0<<std::endl<<0<<std::endl<<0<<std::endl;
                 file<<xValue<<" "<<0<<std::endl;
-                xValue+=5;
+                xValue+=this->samplesPerFrame/2;//5;
             }
             else {
                 //file << 10000 << std::endl << 10000 << std::endl << 10000 << std::endl << 10000 << std::endl << 10000<< std::endl;
                 file<<xValue<<" "<<10000<<std::endl;
-                xValue+=5;
+                xValue+=this->samplesPerFrame/2;//5;
             }
         }
         file.close();

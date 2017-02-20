@@ -7,12 +7,16 @@ Klasa do ustalania poczatkowego progu detekcji
 #define VOICEACTIVITYDETECTION_THRESHOLDFINDER_H
 
 
+#include <aquila/source/WaveFile.h>
+
 class ThresholdFinder {
 private:
     float threshold;
 public:
     ThresholdFinder();
+    virtual ~ThresholdFinder();
     float getThreshold();
+    void countThreshold(Aquila::WaveFile wav);
     //void setThreshold(float threshold);
 };
 
