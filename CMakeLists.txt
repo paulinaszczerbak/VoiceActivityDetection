@@ -8,16 +8,12 @@ set(SOURCE_FILES
         inc/VADImp.h
         inc/ThresholdFinder.h
         inc/EnergyBasedDetector.h
-        inc/WAVFileSetter.h
-        inc/WAVFileSetterImp.h
         inc/ResultPlotter.h
         src/main.cpp
         src/VAD.cpp
         src/VADImp.cpp
         src/ThresholdFinder.cpp
         src/EnergyBasedDetector.cpp
-        src/WAVFileSetter.cpp
-        src/WAVFileSetterImp.cpp
         src/ResultPlotter.cpp
         )
 

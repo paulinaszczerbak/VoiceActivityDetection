@@ -258,60 +258,6 @@ src/VADImp.cpp.s:
 	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.s
 .PHONY : src/VADImp.cpp.s
 
-src/WAVFileSetter.o: src/WAVFileSetter.cpp.o
-
-.PHONY : src/WAVFileSetter.o
-
-# target to build an object file
-src/WAVFileSetter.cpp.o:
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.o
-.PHONY : src/WAVFileSetter.cpp.o
-
-src/WAVFileSetter.i: src/WAVFileSetter.cpp.i
-
-.PHONY : src/WAVFileSetter.i
-
-# target to preprocess a source file
-src/WAVFileSetter.cpp.i:
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.i
-.PHONY : src/WAVFileSetter.cpp.i
-
-src/WAVFileSetter.s: src/WAVFileSetter.cpp.s
-
-.PHONY : src/WAVFileSetter.s
-
-# target to generate assembly for a file
-src/WAVFileSetter.cpp.s:
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.s
-.PHONY : src/WAVFileSetter.cpp.s
-
-src/WAVFileSetterImp.o: src/WAVFileSetterImp.cpp.o
-
-.PHONY : src/WAVFileSetterImp.o
-
-# target to build an object file
-src/WAVFileSetterImp.cpp.o:
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o
-.PHONY : src/WAVFileSetterImp.cpp.o
-
-src/WAVFileSetterImp.i: src/WAVFileSetterImp.cpp.i
-
-.PHONY : src/WAVFileSetterImp.i
-
-# target to preprocess a source file
-src/WAVFileSetterImp.cpp.i:
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.i
-.PHONY : src/WAVFileSetterImp.cpp.i
-
-src/WAVFileSetterImp.s: src/WAVFileSetterImp.cpp.s
-
-.PHONY : src/WAVFileSetterImp.s
-
-# target to generate assembly for a file
-src/WAVFileSetterImp.cpp.s:
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.s
-.PHONY : src/WAVFileSetterImp.cpp.s
-
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -363,12 +309,6 @@ help:
 	@echo "... src/VADImp.o"
 	@echo "... src/VADImp.i"
 	@echo "... src/VADImp.s"
-	@echo "... src/WAVFileSetter.o"
-	@echo "... src/WAVFileSetter.i"
-	@echo "... src/WAVFileSetter.s"
-	@echo "... src/WAVFileSetterImp.o"
-	@echo "... src/WAVFileSetterImp.i"
-	@echo "... src/WAVFileSetterImp.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

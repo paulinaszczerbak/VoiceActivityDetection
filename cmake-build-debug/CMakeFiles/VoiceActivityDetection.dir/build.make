@@ -177,57 +177,9 @@ CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o.provides: CM
 CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o.provides.build: CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o
 
 
-CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.o: CMakeFiles/VoiceActivityDetection.dir/flags.make
-CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.o: ../src/WAVFileSetter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.o -c /home/paulina/github/VoiceActivityDetection/src/WAVFileSetter.cpp
-
-CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/paulina/github/VoiceActivityDetection/src/WAVFileSetter.cpp > CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.i
-
-CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/paulina/github/VoiceActivityDetection/src/WAVFileSetter.cpp -o CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.s
-
-CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.o.requires:
-
-.PHONY : CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.o.requires
-
-CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.o.provides: CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.o.requires
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.o.provides.build
-.PHONY : CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.o.provides
-
-CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.o.provides.build: CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.o
-
-
-CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o: CMakeFiles/VoiceActivityDetection.dir/flags.make
-CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o: ../src/WAVFileSetterImp.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o -c /home/paulina/github/VoiceActivityDetection/src/WAVFileSetterImp.cpp
-
-CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/paulina/github/VoiceActivityDetection/src/WAVFileSetterImp.cpp > CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.i
-
-CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/paulina/github/VoiceActivityDetection/src/WAVFileSetterImp.cpp -o CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.s
-
-CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o.requires:
-
-.PHONY : CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o.requires
-
-CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o.provides: CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o.requires
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o.provides.build
-.PHONY : CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o.provides
-
-CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o.provides.build: CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o
-
-
 CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o: CMakeFiles/VoiceActivityDetection.dir/flags.make
 CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o: ../src/ResultPlotter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o -c /home/paulina/github/VoiceActivityDetection/src/ResultPlotter.cpp
 
 CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.i: cmake_force
@@ -256,8 +208,6 @@ VoiceActivityDetection_OBJECTS = \
 "CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o" \
 "CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o" \
 "CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o" \
-"CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.o" \
-"CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o" \
 "CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o"
 
 # External object files for target VoiceActivityDetection
@@ -268,13 +218,11 @@ VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/src/VAD.cpp.o
 VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o
 VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o
 VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o
-VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.o
-VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o
 VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o
 VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/build.make
 VoiceActivityDetection: ../aquila/lib/libAquila.a
 VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable VoiceActivityDetection"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable VoiceActivityDetection"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/VoiceActivityDetection.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -287,8 +235,6 @@ CMakeFiles/VoiceActivityDetection.dir/requires: CMakeFiles/VoiceActivityDetectio
 CMakeFiles/VoiceActivityDetection.dir/requires: CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o.requires
 CMakeFiles/VoiceActivityDetection.dir/requires: CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o.requires
 CMakeFiles/VoiceActivityDetection.dir/requires: CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o.requires
-CMakeFiles/VoiceActivityDetection.dir/requires: CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetter.cpp.o.requires
-CMakeFiles/VoiceActivityDetection.dir/requires: CMakeFiles/VoiceActivityDetection.dir/src/WAVFileSetterImp.cpp.o.requires
 CMakeFiles/VoiceActivityDetection.dir/requires: CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o.requires
 
 .PHONY : CMakeFiles/VoiceActivityDetection.dir/requires

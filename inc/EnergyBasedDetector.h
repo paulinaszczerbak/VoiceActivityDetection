@@ -9,23 +9,24 @@ algorytm VAD bazujacy na energii sygnalu
 #include "../aquila/include/aquila/source/WaveFile.h"
 
 #include "ThresholdFinder.h"
-#include "WAVFileSetterImp.h"
 
-class EnergyBasedDetector : public WAVFileSetterImp, public ThresholdFinder{
+
+//class EnergyBasedDetector : public WAVFileSetterImp, public ThresholdFinder{
+class EnergyBasedDetector : public ThresholdFinder{
 private:
     //float singleFrameEnergy;
-    float singleFrameEnergy;
-    int samplesPerFrame;
-    int commonSamples;
-    int framesAmount;
+    double singleFrameEnergy;
+    unsigned int samplesPerFrame;
+    unsigned int commonSamples;
+    size_t framesAmount;
 public:
     EnergyBasedDetector();
     virtual ~EnergyBasedDetector();
-    float countSingleFrameEnergy(int frameNumber);
-    float getSingleFrameEnergy();
-    void detect();
-    void setFramesAmount();
-    int getFramesAmount();
+    double countSingleFrameEnergy(Aquila::WaveFile wav, size_t frameNumber);
+    //double getSingleFrameEnergy();
+    void detect(Aquila::WaveFile wav);
+    void setFramesAmount(Aquila::WaveFile wav);
+    //int getFramesAmount();
 };
 
 

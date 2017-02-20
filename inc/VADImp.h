@@ -10,13 +10,17 @@
 #ifndef VADIMP_H_
 #define VADIMP_H_
 
+//#include "WAVFileSetterImp.h"
+
+#include <aquila/source/WaveFile.h>
+
 class VADImp {
 private:
     //int methodNumber;
 public:
 	VADImp();
 	virtual ~VADImp();
-    void detect(int methodNumber);
+    void detect(Aquila::WaveFile wav,int methodNumber);
 };
 
 #endif /* VADIMP_H_ */

@@ -9,7 +9,7 @@
 
 #include "../inc/VADImp.h"
 #include "../inc/EnergyBasedDetector.h"
-#include "../inc/WAVFileSetterImp.h"
+//#include "../inc/WAVFileSetterImp.h"
 
 VADImp::VADImp() {
     //this->methodNumber=methodNumber;
@@ -19,12 +19,12 @@ VADImp::~VADImp() {
 
 }
 
-void VADImp::detect(int methodNumber) {
-    WAVFileSetterImp filename;
-    Aquila::WaveFile wav(filename.getFileName());
+void VADImp::detect(Aquila::WaveFile wav,int methodNumber) {
+    //WAVFileSetterImp filename;
+    //Aquila::WaveFile wav(file.getFileName());
     if(methodNumber==1){
         EnergyBasedDetector detector;
-        detector.detect();
+        detector.detect(wav);
     }else if(methodNumber==2){
         //SohnDetector detector;
         //detector.detect();

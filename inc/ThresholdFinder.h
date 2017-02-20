@@ -13,7 +13,7 @@ private:
 public:
     ThresholdFinder();
     float getThreshold();
-    void setThreshold(float threshold);
+    //void setThreshold(float threshold);
 };
 
 

@@ -101,12 +101,6 @@
 		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/VADImp.h">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/WAVFileSetter.h">
-			<Option target="VoiceActivityDetection"/>
-		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/WAVFileSetterImp.h">
-			<Option target="VoiceActivityDetection"/>
-		</Unit>
 		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/EnergyBasedDetector.cpp">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
@@ -120,12 +114,6 @@
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
 		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/VADImp.cpp">
-			<Option target="VoiceActivityDetection"/>
-		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/WAVFileSetter.cpp">
-			<Option target="VoiceActivityDetection"/>
-		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/WAVFileSetterImp.cpp">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
 		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/main.cpp">
