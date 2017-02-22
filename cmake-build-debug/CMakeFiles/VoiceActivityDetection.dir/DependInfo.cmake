@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/paulina/github/VoiceActivityDetection/src/EnergyBasedDetector.cpp" "/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o"
   "/home/paulina/github/VoiceActivityDetection/src/ResultPlotter.cpp" "/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o"
+  "/home/paulina/github/VoiceActivityDetection/src/SingleFrameEnergyFinder.cpp" "/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.o"
   "/home/paulina/github/VoiceActivityDetection/src/ThresholdFinder.cpp" "/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o"
   "/home/paulina/github/VoiceActivityDetection/src/VAD.cpp" "/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/VAD.cpp.o"
   "/home/paulina/github/VoiceActivityDetection/src/VADImp.cpp" "/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o"

@@ -8,15 +8,27 @@ CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o: ../aquila/i
 CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o: ../aquila/include/aquila/source/SignalSource.h
 CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o: ../aquila/include/aquila/source/WaveFile.h
 CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o: ../inc/EnergyBasedDetector.h
+CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o: ../inc/SingleFrameEnergyFinder.h
 CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o: ../inc/ThresholdFinder.h
 CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o: ../src/EnergyBasedDetector.cpp
 
 CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o: ../inc/ResultPlotter.h
 CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o: ../src/ResultPlotter.cpp
 
+CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.o: ../aquila/include/aquila/global.h
+CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.o: ../aquila/include/aquila/source/Frame.h
+CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.o: ../aquila/include/aquila/source/FramesCollection.h
+CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.o: ../aquila/include/aquila/source/SignalSource.h
+CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.o: ../aquila/include/aquila/source/WaveFile.h
+CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.o: ../inc/SingleFrameEnergyFinder.h
+CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.o: ../src/SingleFrameEnergyFinder.cpp
+
 CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o: ../aquila/include/aquila/global.h
+CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o: ../aquila/include/aquila/source/Frame.h
+CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o: ../aquila/include/aquila/source/FramesCollection.h
 CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o: ../aquila/include/aquila/source/SignalSource.h
 CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o: ../aquila/include/aquila/source/WaveFile.h
+CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o: ../inc/SingleFrameEnergyFinder.h
 CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o: ../inc/ThresholdFinder.h
 CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o: ../src/ThresholdFinder.cpp
 
@@ -28,6 +40,7 @@ CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o: ../aquila/include/aquila
 CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o: ../aquila/include/aquila/source/WaveFile.h
 CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o: ../aquila/include/aquila/source/WaveFile.h
 CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o: ../inc/EnergyBasedDetector.h
+CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o: ../inc/SingleFrameEnergyFinder.h
 CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o: ../inc/ThresholdFinder.h
 CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o: ../inc/VADImp.h
 CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o: ../src/VADImp.cpp

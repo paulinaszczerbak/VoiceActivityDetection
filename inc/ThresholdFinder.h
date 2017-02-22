@@ -11,13 +11,20 @@ Klasa do ustalania poczatkowego progu detekcji
 
 class ThresholdFinder {
 private:
-    float threshold;
+    double threshold;
+    //unsigned int samplesPerFrame;
+    //unsigned int commonSamples;
+public:
+    //friend class SingleFrameEnergyFinder;
 public:
     ThresholdFinder();
     virtual ~ThresholdFinder();
-    float getThreshold();
-    void countThreshold(Aquila::WaveFile wav);
+    double getThreshold();
+    void InitialThreshold100ms(Aquila::WaveFile wav);
+
     //void setThreshold(float threshold);
+
+
 };
 
 

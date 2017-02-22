@@ -9,15 +9,27 @@ CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o
  /home/paulina/github/VoiceActivityDetection/aquila/include/aquila/source/SignalSource.h
  /home/paulina/github/VoiceActivityDetection/aquila/include/aquila/source/WaveFile.h
  /home/paulina/github/VoiceActivityDetection/inc/EnergyBasedDetector.h
+ /home/paulina/github/VoiceActivityDetection/inc/SingleFrameEnergyFinder.h
  /home/paulina/github/VoiceActivityDetection/inc/ThresholdFinder.h
  /home/paulina/github/VoiceActivityDetection/src/EnergyBasedDetector.cpp
 CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o
  /home/paulina/github/VoiceActivityDetection/inc/ResultPlotter.h
  /home/paulina/github/VoiceActivityDetection/src/ResultPlotter.cpp
-CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o
+CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.o
  ../aquila/include/aquila/global.h
+ ../aquila/include/aquila/source/Frame.h
+ ../aquila/include/aquila/source/FramesCollection.h
  ../aquila/include/aquila/source/SignalSource.h
  ../aquila/include/aquila/source/WaveFile.h
+ /home/paulina/github/VoiceActivityDetection/inc/SingleFrameEnergyFinder.h
+ /home/paulina/github/VoiceActivityDetection/src/SingleFrameEnergyFinder.cpp
+CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o
+ ../aquila/include/aquila/global.h
+ ../aquila/include/aquila/source/Frame.h
+ ../aquila/include/aquila/source/FramesCollection.h
+ ../aquila/include/aquila/source/SignalSource.h
+ ../aquila/include/aquila/source/WaveFile.h
+ /home/paulina/github/VoiceActivityDetection/inc/SingleFrameEnergyFinder.h
  /home/paulina/github/VoiceActivityDetection/inc/ThresholdFinder.h
  /home/paulina/github/VoiceActivityDetection/src/ThresholdFinder.cpp
 CMakeFiles/VoiceActivityDetection.dir/src/VAD.cpp.o
@@ -29,6 +41,7 @@ CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o
  ../aquila/include/aquila/source/WaveFile.h
  /home/paulina/github/VoiceActivityDetection/aquila/include/aquila/source/WaveFile.h
  /home/paulina/github/VoiceActivityDetection/inc/EnergyBasedDetector.h
+ /home/paulina/github/VoiceActivityDetection/inc/SingleFrameEnergyFinder.h
  /home/paulina/github/VoiceActivityDetection/inc/ThresholdFinder.h
  /home/paulina/github/VoiceActivityDetection/inc/VADImp.h
  /home/paulina/github/VoiceActivityDetection/src/VADImp.cpp

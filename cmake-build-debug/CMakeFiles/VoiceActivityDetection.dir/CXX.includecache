@@ -12,6 +12,30 @@ complex
 vector
 -
 
+../aquila/include/aquila/source/Frame.h
+../global.h
+../aquila/include/aquila/global.h
+SignalSource.h
+../aquila/include/aquila/source/SignalSource.h
+algorithm
+-
+cstddef
+-
+
+../aquila/include/aquila/source/FramesCollection.h
+../global.h
+../aquila/include/aquila/global.h
+Frame.h
+../aquila/include/aquila/source/Frame.h
+algorithm
+-
+cstddef
+-
+functional
+-
+vector
+-
+
 ../aquila/include/aquila/source/SignalSource.h
 ../global.h
 ../aquila/include/aquila/global.h
@@ -125,8 +149,14 @@ vector
 /home/paulina/github/VoiceActivityDetection/aquila/include/aquila/source/WaveFile.h
 ThresholdFinder.h
 /home/paulina/github/VoiceActivityDetection/inc/ThresholdFinder.h
+SingleFrameEnergyFinder.h
+/home/paulina/github/VoiceActivityDetection/inc/SingleFrameEnergyFinder.h
 
 /home/paulina/github/VoiceActivityDetection/inc/ResultPlotter.h
+
+/home/paulina/github/VoiceActivityDetection/inc/SingleFrameEnergyFinder.h
+aquila/source/WaveFile.h
+-
 
 /home/paulina/github/VoiceActivityDetection/inc/ThresholdFinder.h
 aquila/source/WaveFile.h
@@ -152,9 +182,21 @@ fstream
 ../inc/ResultPlotter.h
 /home/paulina/github/VoiceActivityDetection/inc/ResultPlotter.h
 
+/home/paulina/github/VoiceActivityDetection/src/SingleFrameEnergyFinder.cpp
+aquila/source/FramesCollection.h
+-
+../inc/SingleFrameEnergyFinder.h
+/home/paulina/github/VoiceActivityDetection/inc/SingleFrameEnergyFinder.h
+
 /home/paulina/github/VoiceActivityDetection/src/ThresholdFinder.cpp
+aquila/source/FramesCollection.h
+-
+iostream
+-
 ../inc/ThresholdFinder.h
 /home/paulina/github/VoiceActivityDetection/inc/ThresholdFinder.h
+../inc/SingleFrameEnergyFinder.h
+/home/paulina/github/VoiceActivityDetection/inc/SingleFrameEnergyFinder.h
 
 /home/paulina/github/VoiceActivityDetection/src/VAD.cpp
 ../inc/VAD.h
