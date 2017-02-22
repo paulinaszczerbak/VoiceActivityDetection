@@ -27,6 +27,7 @@ void VADImp::detect(Aquila::WaveFile wav,int methodNumber) {
         EnergyBasedDetector *detector=new EnergyBasedDetector;
         detector->detect(wav);
         //detector.detect(wav);
+
     }else if(methodNumber==2){
         //SohnDetector detector;
         //detector.detect();

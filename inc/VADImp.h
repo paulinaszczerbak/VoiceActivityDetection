@@ -13,8 +13,10 @@
 //#include "WAVFileSetterImp.h"
 
 #include <aquila/source/WaveFile.h>
+#include "VAD.h"
+//#include "EnergyBasedDetector.h"
 
-class VADImp {
+class VADImp : public VAD {
 private:
     //int methodNumber;
 public:

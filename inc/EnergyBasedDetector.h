@@ -10,16 +10,15 @@ algorytm VAD bazujacy na energii sygnalu
 
 #include "ThresholdFinder.h"
 #include "SingleFrameEnergyFinder.h"
+#include "VADImp.h"
 
 
 //class EnergyBasedDetector : public WAVFileSetterImp, public ThresholdFinder{
-class EnergyBasedDetector : public ThresholdFinder, SingleFrameEnergyFinder{
+class EnergyBasedDetector : public ThresholdFinder,
+                            public SingleFrameEnergyFinder,
+                            public VADImp{
 private:
-    //float singleFrameEnergy;
-    double singleFrameEnergy;
-    unsigned int samplesPerFrame;
-    unsigned int commonSamples;
-    size_t framesAmount;
+
 public:
     EnergyBasedDetector();
     virtual ~EnergyBasedDetector();

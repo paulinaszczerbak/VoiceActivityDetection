@@ -151,6 +151,8 @@ ThresholdFinder.h
 /home/paulina/github/VoiceActivityDetection/inc/ThresholdFinder.h
 SingleFrameEnergyFinder.h
 /home/paulina/github/VoiceActivityDetection/inc/SingleFrameEnergyFinder.h
+VADImp.h
+/home/paulina/github/VoiceActivityDetection/inc/VADImp.h
 
 /home/paulina/github/VoiceActivityDetection/inc/ResultPlotter.h
 
@@ -163,10 +165,14 @@ aquila/source/WaveFile.h
 -
 
 /home/paulina/github/VoiceActivityDetection/inc/VAD.h
+aquila/source/WaveFile.h
+-
 
 /home/paulina/github/VoiceActivityDetection/inc/VADImp.h
 aquila/source/WaveFile.h
 -
+VAD.h
+/home/paulina/github/VoiceActivityDetection/inc/VAD.h
 
 /home/paulina/github/VoiceActivityDetection/src/EnergyBasedDetector.cpp
 iostream
@@ -215,6 +221,8 @@ algorithm
 -
 cstddef
 -
+cstdlib
+-
 ../aquila/include/aquila/source/WaveFile.h
 /home/paulina/github/VoiceActivityDetection/aquila/include/aquila/source/WaveFile.h
 ../aquila/include/aquila/tools/TextPlot.h
@@ -225,4 +233,6 @@ cstddef
 /home/paulina/github/VoiceActivityDetection/aquila/include/aquila/source/PlainTextFile.h
 ../inc/VADImp.h
 /home/paulina/github/VoiceActivityDetection/inc/VADImp.h
+../inc/VAD.h
+/home/paulina/github/VoiceActivityDetection/inc/VAD.h
 

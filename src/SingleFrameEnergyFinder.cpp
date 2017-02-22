@@ -7,7 +7,7 @@
 
 SingleFrameEnergyFinder::SingleFrameEnergyFinder() {
     this->singleFrameEnergy=0;
-    this->samplesPerFrame=10;
+    this->samplesPerFrame=50;
     this->commonSamples=this->samplesPerFrame/2;
 }
 

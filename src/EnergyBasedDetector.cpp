@@ -10,10 +10,7 @@
 
 
 EnergyBasedDetector::EnergyBasedDetector(){
-    //this->singleFrameEnergy=0;
-    this->singleFrameEnergy=0;
-    this->samplesPerFrame=12;
-    this->commonSamples=this->samplesPerFrame/2;
+
 }
 
 
@@ -21,52 +18,25 @@ EnergyBasedDetector::~EnergyBasedDetector() {
 
 }
 
-
-//double EnergyBasedDetector::countSingleFrameEnergy(Aquila::WaveFile wav,size_t frameNumber) {
-//
-//    Aquila::FramesCollection frames(wav, this->samplesPerFrame,this->commonSamples);
-//    //obliczam energie w jednej, konkretnej ramce
-//    for(size_t i=0; i<frames.getSamplesPerFrame();i++){
-//        //iteruje po probkach w ramce
-//        this->singleFrameEnergy=this->singleFrameEnergy+(frames.frame(frameNumber).sample(i)*frames.frame(frameNumber).sample(i));
-//    }
-//    this->singleFrameEnergy=this->singleFrameEnergy/frames.getSamplesPerFrame();
-//    //std::cout<<"Energia ramki nr "<<frameNumber<<": "<<this->singleFrameEnergy<<std::endl;
-//
-//    return this->singleFrameEnergy;
-//}
-//
-//double EnergyBasedDetector::getSingleFrameEnergy() {
-//    return this->singleFrameEnergy;
-//}
-
 void EnergyBasedDetector::detect(Aquila::WaveFile wav) {
-    //próg detekcji, domyślnie 4000
-    ThresholdFinder *threshold=new ThresholdFinder();
-    threshold->InitialThreshold100ms(wav);
-    std::cout<<"próg detekcji"<<threshold->getThreshold()<<std::endl;
-    //ustawiam liczbe ramek w pliku
-    //setFramesAmount(wav);
-    SingleFrameEnergyFinder *singleFrame = new SingleFrameEnergyFinder();
-    std::cout<<"count"<<singleFrame->countSingleFrameEnergy(wav,14000)<<std::endl;
-    Aquila::FramesCollection *frames=new Aquila::FramesCollection(wav, this->samplesPerFrame,this->commonSamples);
-    size_t framesAmount=this->framesAmount=frames->count();
-    //system("rm resultToPlot");
+    //próg detekcji
+    initialThreshold100ms(wav);
+    std::cout<<"próg detekcji "<<getThreshold()<<std::endl;
+    Aquila::FramesCollection *frames=new Aquila::FramesCollection(wav, getSamplesPerFrame(), getCommonSamples());
+    size_t framesAmount=frames->count();
     system("touch resultToPlot");
     //otwieram plik do zapisu
     std::ofstream file("resultToPlot");
     int xValue(0);
     if(file){
         for (size_t i = 0; i <framesAmount ; i++) {
-            if(singleFrame->countSingleFrameEnergy(wav,i)<threshold->getThreshold()){//  this->countSingleFrameEnergy(wav,i)<threshold->getThreshold()) {
-                //file<<0<<std::endl<<0<<std::endl<<0<<std::endl<<0<<std::endl<<0<<std::endl;
+            if(countSingleFrameEnergy(wav,i)<=getThreshold()){
                 file<<xValue<<" "<<0<<std::endl;
-                xValue+=this->samplesPerFrame/2;//5;
+                xValue+=getSamplesPerFrame()/2;//5;
             }
             else {
-                //file << 10000 << std::endl << 10000 << std::endl << 10000 << std::endl << 10000 << std::endl << 10000<< std::endl;
                 file<<xValue<<" "<<10000<<std::endl;
-                xValue+=this->samplesPerFrame/2;//5;
+                xValue+=getSamplesPerFrame()/2;//5;
             }
         }
         file.close();
@@ -77,13 +47,3 @@ void EnergyBasedDetector::detect(Aquila::WaveFile wav) {
 
 }
 
-//void EnergyBasedDetector::setFramesAmount(Aquila::WaveFile wav) {
-//    //Aquila::WaveFile wav(WAVFileSetterImp::getFilename());
-//    Aquila::FramesCollection frames(wav, this->samplesPerFrame,this->commonSamples);
-//    this->framesAmount=frames.count();
-//
-//}
-//
-//int EnergyBasedDetector::getFramesAmount() {
-//    return this->framesAmount;
-//}

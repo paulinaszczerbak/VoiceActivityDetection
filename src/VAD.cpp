@@ -16,3 +16,7 @@ VAD::~VAD() {
 	// TODO Auto-generated destructor stub
 }
 
+void VAD::detect(Aquila::WaveFile wav, int methodNumber) {
+
+}
+
