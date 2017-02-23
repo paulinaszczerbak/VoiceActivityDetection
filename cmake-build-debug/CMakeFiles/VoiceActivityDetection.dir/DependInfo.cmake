@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/paulina/github/VoiceActivityDetection/SohnsDetector.cpp" "/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.o"
   "/home/paulina/github/VoiceActivityDetection/src/EnergyBasedDetector.cpp" "/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o"
   "/home/paulina/github/VoiceActivityDetection/src/ResultPlotter.cpp" "/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o"
   "/home/paulina/github/VoiceActivityDetection/src/SingleFrameEnergyFinder.cpp" "/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.o"

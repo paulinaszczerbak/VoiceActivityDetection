@@ -12,6 +12,7 @@ private:
 public:
     ResultPlotter();
     virtual ~ResultPlotter();
+    void plot(Aquila::WaveFile wav);
 };
 
 

@@ -19,10 +19,12 @@ EnergyBasedDetector::~EnergyBasedDetector() {
 }
 
 void EnergyBasedDetector::detect(Aquila::WaveFile wav) {
-    //ustawiam dlugosc ramki na 20ms - zdefiniowane w VADImp
+    //dlugosc ramki na 20ms - zdefiniowane w VADImp
+    //ustawiam liczbe probek w ramce
     unsigned int samplesInSingleFrameAmount(wav.getSampleFrequency()*getFrameLengthInSECs());
     setSamplesPerFrame(samplesInSingleFrameAmount);
-    //próg detekcji obliczany na podstawie pierwszych 100ms
+
+    //próg detekcji obliczany na podstawie pierwszych 100ms pliku
     initialThreshold100ms(wav);
 
     std::cout<<"próg detekcji "<<getThreshold()<<std::endl;

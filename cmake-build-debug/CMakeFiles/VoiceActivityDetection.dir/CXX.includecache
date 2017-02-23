@@ -36,6 +36,14 @@ functional
 vector
 -
 
+../aquila/include/aquila/source/PlainTextFile.h
+../global.h
+../aquila/include/aquila/global.h
+SignalSource.h
+../aquila/include/aquila/source/SignalSource.h
+string
+-
+
 ../aquila/include/aquila/source/SignalSource.h
 ../global.h
 ../aquila/include/aquila/global.h
@@ -60,6 +68,22 @@ cstdint
 string
 -
 vector
+-
+
+../aquila/include/aquila/transform/Fft.h
+../global.h
+../aquila/include/aquila/global.h
+cstddef
+-
+
+../aquila/include/aquila/transform/FftFactory.h
+../global.h
+../aquila/include/aquila/global.h
+Fft.h
+../aquila/include/aquila/transform/Fft.h
+cstddef
+-
+memory
 -
 
 /home/paulina/github/VoiceActivityDetection/aquila/include/aquila/global.h
@@ -185,6 +209,12 @@ fstream
 /home/paulina/github/VoiceActivityDetection/aquila/include/aquila/source/FramesCollection.h
 
 /home/paulina/github/VoiceActivityDetection/src/ResultPlotter.cpp
+cstdlib
+-
+aquila/source/PlainTextFile.h
+-
+aquila/source/WaveFile.h
+-
 ../inc/ResultPlotter.h
 /home/paulina/github/VoiceActivityDetection/inc/ResultPlotter.h
 
@@ -196,8 +226,6 @@ aquila/source/FramesCollection.h
 
 /home/paulina/github/VoiceActivityDetection/src/ThresholdFinder.cpp
 aquila/source/FramesCollection.h
--
-iostream
 -
 ../inc/ThresholdFinder.h
 /home/paulina/github/VoiceActivityDetection/inc/ThresholdFinder.h
@@ -221,8 +249,6 @@ algorithm
 -
 cstddef
 -
-cstdlib
--
 ../aquila/include/aquila/source/WaveFile.h
 /home/paulina/github/VoiceActivityDetection/aquila/include/aquila/source/WaveFile.h
 ../aquila/include/aquila/tools/TextPlot.h
@@ -231,8 +257,10 @@ cstdlib
 /home/paulina/github/VoiceActivityDetection/aquila/include/aquila/source/FramesCollection.h
 ../aquila/include/aquila/source/PlainTextFile.h
 /home/paulina/github/VoiceActivityDetection/aquila/include/aquila/source/PlainTextFile.h
+aquila/transform/FftFactory.h
+/home/paulina/github/VoiceActivityDetection/src/aquila/transform/FftFactory.h
 ../inc/VADImp.h
 /home/paulina/github/VoiceActivityDetection/inc/VADImp.h
-../inc/VAD.h
-/home/paulina/github/VoiceActivityDetection/inc/VAD.h
+../inc/ResultPlotter.h
+/home/paulina/github/VoiceActivityDetection/inc/ResultPlotter.h
 

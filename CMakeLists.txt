@@ -16,11 +16,13 @@ set(SOURCE_FILES
         src/ThresholdFinder.cpp
         src/EnergyBasedDetector.cpp
         src/ResultPlotter.cpp
-        src/SingleFrameEnergyFinder.cpp)
+        src/SingleFrameEnergyFinder.cpp SohnsDetector.cpp SohnsDetector.h)
 
 add_executable(VoiceActivityDetection ${SOURCE_FILES})
 
 include_directories(/home/paulina/github/VoiceActivityDetection/aquila/include)
 
-target_link_libraries(VoiceActivityDetection /home/paulina/github/VoiceActivityDetection/aquila/lib/libAquila.a)
+target_link_libraries(VoiceActivityDetection
+        /home/paulina/github/VoiceActivityDetection/aquila/lib/libAquila.a
+        /home/paulina/github/VoiceActivityDetection/zsiciarz-aquila-d5e3bde/lib/libOoura_fft.a)
 

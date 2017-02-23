@@ -123,6 +123,33 @@ VoiceActivityDetection/fast:
 	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/build
 .PHONY : VoiceActivityDetection/fast
 
+SohnsDetector.o: SohnsDetector.cpp.o
+
+.PHONY : SohnsDetector.o
+
+# target to build an object file
+SohnsDetector.cpp.o:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.o
+.PHONY : SohnsDetector.cpp.o
+
+SohnsDetector.i: SohnsDetector.cpp.i
+
+.PHONY : SohnsDetector.i
+
+# target to preprocess a source file
+SohnsDetector.cpp.i:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.i
+.PHONY : SohnsDetector.cpp.i
+
+SohnsDetector.s: SohnsDetector.cpp.s
+
+.PHONY : SohnsDetector.s
+
+# target to generate assembly for a file
+SohnsDetector.cpp.s:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.s
+.PHONY : SohnsDetector.cpp.s
+
 src/EnergyBasedDetector.o: src/EnergyBasedDetector.cpp.o
 
 .PHONY : src/EnergyBasedDetector.o
@@ -321,6 +348,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... VoiceActivityDetection"
+	@echo "... SohnsDetector.o"
+	@echo "... SohnsDetector.i"
+	@echo "... SohnsDetector.s"
 	@echo "... src/EnergyBasedDetector.o"
 	@echo "... src/EnergyBasedDetector.i"
 	@echo "... src/EnergyBasedDetector.s"
