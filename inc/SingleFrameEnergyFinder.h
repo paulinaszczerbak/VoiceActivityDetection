@@ -19,6 +19,7 @@ public:
     double countSingleFrameEnergy(Aquila::WaveFile wav,size_t frameNumber);
     unsigned int getSamplesPerFrame();
     unsigned int getCommonSamples();
+    void setSamplesPerFrame(unsigned int samplesAmount);
 
 };
 

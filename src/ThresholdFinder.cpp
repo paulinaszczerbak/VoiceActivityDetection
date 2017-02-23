@@ -3,7 +3,6 @@
 //
 
 #include <aquila/source/FramesCollection.h>
-#include <iostream>
 #include "../inc/ThresholdFinder.h"
 #include "../inc/SingleFrameEnergyFinder.h"
 
@@ -26,13 +25,10 @@ double ThresholdFinder::getThreshold() {
 //stwierdzono, ze przed kazda wypowiedzia czlowiek potrzebuje chwili na nabranie powietrza itp
 void ThresholdFinder::initialThreshold100ms(Aquila::WaveFile wav) {
     SingleFrameEnergyFinder *frame=new SingleFrameEnergyFinder;
-    //std::cout<<"frame "<<frame->countSingleFrameEnergy(wav,14000);
     double sumOfEnergy(0);
     //liczba ramek w przeciagu 100ms
     double framesAmount((wav.getSampleFrequency()/10)/frame->getSamplesPerFrame());
-    //std::cout<<"liczba ramek "<<framesAmount<<std::endl;
     for (size_t i = 0; i <framesAmount ; i++) {
-        //std::cout<<i<<std::endl;
         sumOfEnergy=sumOfEnergy+frame->countSingleFrameEnergy(wav,i);
     }
     this->threshold=(sumOfEnergy/framesAmount);

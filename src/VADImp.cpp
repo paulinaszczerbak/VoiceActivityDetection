@@ -11,8 +11,11 @@
 #include "../inc/EnergyBasedDetector.h"
 //#include "../inc/WAVFileSetterImp.h"
 
+#define FRAME_LENGTH 0.02
+
 VADImp::VADImp() {
     //this->methodNumber=methodNumber;
+    this->frameLength=FRAME_LENGTH;
 }
 
 VADImp::~VADImp() {
@@ -37,5 +40,9 @@ void VADImp::detect(Aquila::WaveFile wav,int methodNumber) {
     }
 
 
+}
+
+double VADImp::getFrameLengthInSECs() {
+    return this->frameLength;
 }
 

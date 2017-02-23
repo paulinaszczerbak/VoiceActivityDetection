@@ -19,10 +19,12 @@
 class VADImp : public VAD {
 private:
     //int methodNumber;
+    double frameLength;
 public:
 	VADImp();
 	virtual ~VADImp();
     void detect(Aquila::WaveFile wav,int methodNumber);
+    double getFrameLengthInSECs();
 };
 
 #endif /* VADIMP_H_ */

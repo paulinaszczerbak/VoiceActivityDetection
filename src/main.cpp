@@ -2,7 +2,6 @@
 #include <iostream>
 #include <algorithm>
 #include <cstddef>
-#include <cstdlib>
 
 #include "../aquila/include/aquila/source/WaveFile.h"
 #include "../aquila/include/aquila/tools/TextPlot.h"
@@ -11,13 +10,13 @@
 
 
 #include "../inc/VADImp.h"
-#include "../inc/VAD.h"
 
 int main()
 {
-
+    //Aquila::WaveFile wav("../../odonnell_you_go_girl.wav");
+    Aquila::WaveFile wav("../../harvey_super_cool.wav");
     //Aquila::WaveFile wav("../../ireland_ouch.wav");
-    Aquila::WaveFile wav("../kabanos.wav");
+    //Aquila::WaveFile wav("../kabanos.wav");
     std::cout << "Filename: "           << wav.getFilename();
     std::cout << "\nLength: "           << wav.getAudioLength()     << " ms";
     std::cout << "\nSample frequency: " << wav.getSampleFrequency() << " Hz";

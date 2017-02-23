@@ -22,11 +22,7 @@ private:
 public:
     EnergyBasedDetector();
     virtual ~EnergyBasedDetector();
-    //double countSingleFrameEnergy(Aquila::WaveFile wav, size_t frameNumber);
-    //double getSingleFrameEnergy();
     void detect(Aquila::WaveFile wav);
-    //void setFramesAmount(Aquila::WaveFile wav);
-    //size_t getFramesAmount();
 };
 
 

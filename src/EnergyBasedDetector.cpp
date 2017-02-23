@@ -19,11 +19,18 @@ EnergyBasedDetector::~EnergyBasedDetector() {
 }
 
 void EnergyBasedDetector::detect(Aquila::WaveFile wav) {
-    //próg detekcji
+    //ustawiam dlugosc ramki na 20ms - zdefiniowane w VADImp
+    unsigned int samplesInSingleFrameAmount(wav.getSampleFrequency()*getFrameLengthInSECs());
+    setSamplesPerFrame(samplesInSingleFrameAmount);
+    //próg detekcji obliczany na podstawie pierwszych 100ms
     initialThreshold100ms(wav);
+
     std::cout<<"próg detekcji "<<getThreshold()<<std::endl;
+
     Aquila::FramesCollection *frames=new Aquila::FramesCollection(wav, getSamplesPerFrame(), getCommonSamples());
+    std::cout<<"samples "<<getSamplesPerFrame()<<std::endl;
     size_t framesAmount=frames->count();
+
     system("touch resultToPlot");
     //otwieram plik do zapisu
     std::ofstream file("resultToPlot");
@@ -32,11 +39,11 @@ void EnergyBasedDetector::detect(Aquila::WaveFile wav) {
         for (size_t i = 0; i <framesAmount ; i++) {
             if(countSingleFrameEnergy(wav,i)<=getThreshold()){
                 file<<xValue<<" "<<0<<std::endl;
-                xValue+=getSamplesPerFrame()/2;//5;
+                xValue+=(getSamplesPerFrame()/2);
             }
             else {
                 file<<xValue<<" "<<10000<<std::endl;
-                xValue+=getSamplesPerFrame()/2;//5;
+                xValue+=(getSamplesPerFrame()/2);
             }
         }
         file.close();

@@ -5,9 +5,10 @@
 #include <aquila/source/FramesCollection.h>
 #include "../inc/SingleFrameEnergyFinder.h"
 
+
 SingleFrameEnergyFinder::SingleFrameEnergyFinder() {
     this->singleFrameEnergy=0;
-    this->samplesPerFrame=50;
+    this->samplesPerFrame=100;
     this->commonSamples=this->samplesPerFrame/2;
 }
 
@@ -23,7 +24,6 @@ double SingleFrameEnergyFinder::countSingleFrameEnergy(Aquila::WaveFile wav, siz
         this->singleFrameEnergy=this->singleFrameEnergy+(frames->frame(frameNumber).sample(i)*frames->frame(frameNumber).sample(i));
     }
     this->singleFrameEnergy=this->singleFrameEnergy/frames->getSamplesPerFrame();
-    //std::cout<<"Energia ramki nr "<<frameNumber<<": "<<this->singleFrameEnergy<<std::endl;
 
     return this->singleFrameEnergy;
 }
@@ -35,4 +35,11 @@ unsigned int SingleFrameEnergyFinder::getSamplesPerFrame() {
 unsigned int SingleFrameEnergyFinder::getCommonSamples() {
     return this->commonSamples;
 }
+
+void SingleFrameEnergyFinder::setSamplesPerFrame(unsigned int samplesAmount) {
+    this->samplesPerFrame=samplesAmount;
+    //przy okazji aktualizuje commonSamples
+    this->commonSamples=samplesPerFrame/2;
+}
+
 
