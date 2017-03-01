@@ -123,33 +123,6 @@ VoiceActivityDetection/fast:
 	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/build
 .PHONY : VoiceActivityDetection/fast
 
-SohnsDetector.o: SohnsDetector.cpp.o
-
-.PHONY : SohnsDetector.o
-
-# target to build an object file
-SohnsDetector.cpp.o:
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.o
-.PHONY : SohnsDetector.cpp.o
-
-SohnsDetector.i: SohnsDetector.cpp.i
-
-.PHONY : SohnsDetector.i
-
-# target to preprocess a source file
-SohnsDetector.cpp.i:
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.i
-.PHONY : SohnsDetector.cpp.i
-
-SohnsDetector.s: SohnsDetector.cpp.s
-
-.PHONY : SohnsDetector.s
-
-# target to generate assembly for a file
-SohnsDetector.cpp.s:
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.s
-.PHONY : SohnsDetector.cpp.s
-
 src/EnergyBasedDetector.o: src/EnergyBasedDetector.cpp.o
 
 .PHONY : src/EnergyBasedDetector.o
@@ -230,6 +203,33 @@ src/SingleFrameEnergyFinder.s: src/SingleFrameEnergyFinder.cpp.s
 src/SingleFrameEnergyFinder.cpp.s:
 	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.s
 .PHONY : src/SingleFrameEnergyFinder.cpp.s
+
+src/SohnsDetector.o: src/SohnsDetector.cpp.o
+
+.PHONY : src/SohnsDetector.o
+
+# target to build an object file
+src/SohnsDetector.cpp.o:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.o
+.PHONY : src/SohnsDetector.cpp.o
+
+src/SohnsDetector.i: src/SohnsDetector.cpp.i
+
+.PHONY : src/SohnsDetector.i
+
+# target to preprocess a source file
+src/SohnsDetector.cpp.i:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.i
+.PHONY : src/SohnsDetector.cpp.i
+
+src/SohnsDetector.s: src/SohnsDetector.cpp.s
+
+.PHONY : src/SohnsDetector.s
+
+# target to generate assembly for a file
+src/SohnsDetector.cpp.s:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.s
+.PHONY : src/SohnsDetector.cpp.s
 
 src/ThresholdFinder.o: src/ThresholdFinder.cpp.o
 
@@ -348,9 +348,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... VoiceActivityDetection"
-	@echo "... SohnsDetector.o"
-	@echo "... SohnsDetector.i"
-	@echo "... SohnsDetector.s"
 	@echo "... src/EnergyBasedDetector.o"
 	@echo "... src/EnergyBasedDetector.i"
 	@echo "... src/EnergyBasedDetector.s"
@@ -360,6 +357,9 @@ help:
 	@echo "... src/SingleFrameEnergyFinder.o"
 	@echo "... src/SingleFrameEnergyFinder.i"
 	@echo "... src/SingleFrameEnergyFinder.s"
+	@echo "... src/SohnsDetector.o"
+	@echo "... src/SohnsDetector.i"
+	@echo "... src/SohnsDetector.s"
 	@echo "... src/ThresholdFinder.o"
 	@echo "... src/ThresholdFinder.i"
 	@echo "... src/ThresholdFinder.s"

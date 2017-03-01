@@ -225,28 +225,28 @@ CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.o.provides
 CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.o.provides.build: CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.o
 
 
-CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.o: CMakeFiles/VoiceActivityDetection.dir/flags.make
-CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.o: ../SohnsDetector.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.o -c /home/paulina/github/VoiceActivityDetection/SohnsDetector.cpp
+CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.o: CMakeFiles/VoiceActivityDetection.dir/flags.make
+CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.o: ../src/SohnsDetector.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/paulina/github/VoiceActivityDetection/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.o -c /home/paulina/github/VoiceActivityDetection/src/SohnsDetector.cpp
 
-CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/paulina/github/VoiceActivityDetection/SohnsDetector.cpp > CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.i
+CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/paulina/github/VoiceActivityDetection/src/SohnsDetector.cpp > CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.i
 
-CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/paulina/github/VoiceActivityDetection/SohnsDetector.cpp -o CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.s
+CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/paulina/github/VoiceActivityDetection/src/SohnsDetector.cpp -o CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.s
 
-CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.o.requires:
+CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.o.requires:
 
-.PHONY : CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.o.requires
+.PHONY : CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.o.requires
 
-CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.o.provides: CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.o.requires
-	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.o.provides.build
-.PHONY : CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.o.provides
+CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.o.provides: CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.o.requires
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.o.provides.build
+.PHONY : CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.o.provides
 
-CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.o.provides.build: CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.o
+CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.o.provides.build: CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.o
 
 
 # Object files for target VoiceActivityDetection
@@ -258,7 +258,7 @@ VoiceActivityDetection_OBJECTS = \
 "CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o" \
 "CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o" \
 "CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.o" \
-"CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.o"
+"CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.o"
 
 # External object files for target VoiceActivityDetection
 VoiceActivityDetection_EXTERNAL_OBJECTS =
@@ -270,7 +270,7 @@ VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinde
 VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o
 VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o
 VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.o
-VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.o
+VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.o
 VoiceActivityDetection: CMakeFiles/VoiceActivityDetection.dir/build.make
 VoiceActivityDetection: ../aquila/lib/libAquila.a
 VoiceActivityDetection: ../zsiciarz-aquila-d5e3bde/lib/libOoura_fft.a
@@ -290,7 +290,7 @@ CMakeFiles/VoiceActivityDetection.dir/requires: CMakeFiles/VoiceActivityDetectio
 CMakeFiles/VoiceActivityDetection.dir/requires: CMakeFiles/VoiceActivityDetection.dir/src/EnergyBasedDetector.cpp.o.requires
 CMakeFiles/VoiceActivityDetection.dir/requires: CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o.requires
 CMakeFiles/VoiceActivityDetection.dir/requires: CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.o.requires
-CMakeFiles/VoiceActivityDetection.dir/requires: CMakeFiles/VoiceActivityDetection.dir/SohnsDetector.cpp.o.requires
+CMakeFiles/VoiceActivityDetection.dir/requires: CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.o.requires
 
 .PHONY : CMakeFiles/VoiceActivityDetection.dir/requires
 

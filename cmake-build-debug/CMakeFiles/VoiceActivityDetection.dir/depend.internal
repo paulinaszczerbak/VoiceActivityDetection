@@ -29,6 +29,9 @@ CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.o
  ../aquila/include/aquila/source/WaveFile.h
  /home/paulina/github/VoiceActivityDetection/inc/SingleFrameEnergyFinder.h
  /home/paulina/github/VoiceActivityDetection/src/SingleFrameEnergyFinder.cpp
+CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.o
+ /home/paulina/github/VoiceActivityDetection/inc/SohnsDetector.h
+ /home/paulina/github/VoiceActivityDetection/src/SohnsDetector.cpp
 CMakeFiles/VoiceActivityDetection.dir/src/ThresholdFinder.cpp.o
  ../aquila/include/aquila/global.h
  ../aquila/include/aquila/source/Frame.h

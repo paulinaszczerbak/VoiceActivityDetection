@@ -25,7 +25,7 @@ void EnergyBasedDetector::detect(Aquila::WaveFile wav) {
     setSamplesPerFrame(samplesInSingleFrameAmount);
 
     //próg detekcji obliczany na podstawie pierwszych 100ms pliku
-    initialThreshold100ms(wav);
+    //calculateThreshold100ms(wav);
 
     std::cout<<"próg detekcji "<<getThreshold()<<std::endl;
 
@@ -39,6 +39,10 @@ void EnergyBasedDetector::detect(Aquila::WaveFile wav) {
     int xValue(0);
     if(file){
         for (size_t i = 0; i <framesAmount ; i++) {
+            //estymowany prog detekcji
+            std::cout<<"wchodzi do estymowania progu"<<std::endl;
+            calculateThresholdMinMax(wav,i);
+            std::cout<<"wychodzi"<<std::endl;
             if(countSingleFrameEnergy(wav,i)<=getThreshold()){
                 file<<xValue<<" "<<0<<std::endl;
                 xValue+=(getSamplesPerFrame()/2);

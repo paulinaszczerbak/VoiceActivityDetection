@@ -10,13 +10,15 @@ set(SOURCE_FILES
         inc/EnergyBasedDetector.h
         inc/ResultPlotter.h
         inc/SingleFrameEnergyFinder.h
+        inc/SohnsDetector.h
         src/main.cpp
         src/VAD.cpp
         src/VADImp.cpp
         src/ThresholdFinder.cpp
         src/EnergyBasedDetector.cpp
         src/ResultPlotter.cpp
-        src/SingleFrameEnergyFinder.cpp SohnsDetector.cpp SohnsDetector.h)
+        src/SingleFrameEnergyFinder.cpp
+        src/SohnsDetector.cpp )
 
 add_executable(VoiceActivityDetection ${SOURCE_FILES})
 

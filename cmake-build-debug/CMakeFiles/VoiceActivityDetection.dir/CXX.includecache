@@ -184,9 +184,13 @@ VADImp.h
 aquila/source/WaveFile.h
 -
 
+/home/paulina/github/VoiceActivityDetection/inc/SohnsDetector.h
+
 /home/paulina/github/VoiceActivityDetection/inc/ThresholdFinder.h
 aquila/source/WaveFile.h
 -
+SingleFrameEnergyFinder.h
+/home/paulina/github/VoiceActivityDetection/inc/SingleFrameEnergyFinder.h
 
 /home/paulina/github/VoiceActivityDetection/inc/VAD.h
 aquila/source/WaveFile.h
@@ -224,8 +228,14 @@ aquila/source/FramesCollection.h
 ../inc/SingleFrameEnergyFinder.h
 /home/paulina/github/VoiceActivityDetection/inc/SingleFrameEnergyFinder.h
 
+/home/paulina/github/VoiceActivityDetection/src/SohnsDetector.cpp
+../inc/SohnsDetector.h
+/home/paulina/github/VoiceActivityDetection/inc/SohnsDetector.h
+
 /home/paulina/github/VoiceActivityDetection/src/ThresholdFinder.cpp
 aquila/source/FramesCollection.h
+-
+iostream
 -
 ../inc/ThresholdFinder.h
 /home/paulina/github/VoiceActivityDetection/inc/ThresholdFinder.h

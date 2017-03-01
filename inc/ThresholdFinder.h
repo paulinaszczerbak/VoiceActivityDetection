@@ -8,15 +8,22 @@ Klasa do ustalania poczatkowego progu detekcji
 
 
 #include <aquila/source/WaveFile.h>
+#include "SingleFrameEnergyFinder.h"
 
 class ThresholdFinder {
 private:
     double threshold;
+    double Emin;
+    double Emax;
+    double scalingFactor;
+    SingleFrameEnergyFinder frameEn;
+    double initialValue;
 public:
     ThresholdFinder();
     virtual ~ThresholdFinder();
     double getThreshold();
-    void initialThreshold100ms(Aquila::WaveFile wav);
+    void calculateThreshold100ms(Aquila::WaveFile wav);
+    void calculateThresholdMinMax(Aquila::WaveFile wav, size_t currentFrameNumber);
 
 };
 

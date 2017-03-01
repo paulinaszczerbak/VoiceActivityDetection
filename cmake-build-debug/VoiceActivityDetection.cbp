@@ -86,12 +86,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/SohnsDetector.cpp">
-			<Option target="VoiceActivityDetection"/>
-		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/SohnsDetector.h">
-			<Option target="VoiceActivityDetection"/>
-		</Unit>
 		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/EnergyBasedDetector.h">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
@@ -99,6 +93,9 @@
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
 		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/SingleFrameEnergyFinder.h">
+			<Option target="VoiceActivityDetection"/>
+		</Unit>
+		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/SohnsDetector.h">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
 		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/ThresholdFinder.h">
@@ -117,6 +114,9 @@
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
 		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/SingleFrameEnergyFinder.cpp">
+			<Option target="VoiceActivityDetection"/>
+		</Unit>
+		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/SohnsDetector.cpp">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
 		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/ThresholdFinder.cpp">
