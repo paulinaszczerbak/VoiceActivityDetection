@@ -18,7 +18,7 @@ set(SOURCE_FILES
         src/EnergyBasedDetector.cpp
         src/ResultPlotter.cpp
         src/SingleFrameEnergyFinder.cpp
-        src/SohnsDetector.cpp )
+        src/SohnsDetector.cpp src/SFFDetector.cpp inc/SFFDetector.h)
 
 add_executable(VoiceActivityDetection ${SOURCE_FILES})
 

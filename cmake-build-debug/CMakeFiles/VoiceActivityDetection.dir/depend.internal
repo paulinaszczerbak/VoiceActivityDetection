@@ -21,6 +21,13 @@ CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o
  ../aquila/include/aquila/source/WaveFile.h
  /home/paulina/github/VoiceActivityDetection/inc/ResultPlotter.h
  /home/paulina/github/VoiceActivityDetection/src/ResultPlotter.cpp
+CMakeFiles/VoiceActivityDetection.dir/src/SFFDetector.cpp.o
+ ../aquila/include/aquila/global.h
+ ../aquila/include/aquila/source/SignalSource.h
+ ../aquila/include/aquila/source/WaveFile.h
+ ../aquila/include/aquila/source/WaveFileHandler.h
+ /home/paulina/github/VoiceActivityDetection/inc/SFFDetector.h
+ /home/paulina/github/VoiceActivityDetection/src/SFFDetector.cpp
 CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.o
  ../aquila/include/aquila/global.h
  ../aquila/include/aquila/source/Frame.h
@@ -60,6 +67,7 @@ CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o
  /home/paulina/github/VoiceActivityDetection/src/VADImp.cpp
 CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o
  ../aquila/include/aquila/source/WaveFile.h
+ ../aquila/include/aquila/source/WaveFileHandler.h
  ../aquila/include/aquila/transform/Fft.h
  ../aquila/include/aquila/transform/FftFactory.h
  /home/paulina/github/VoiceActivityDetection/aquila/include/aquila/global.h
@@ -70,6 +78,7 @@ CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o
  /home/paulina/github/VoiceActivityDetection/aquila/include/aquila/source/WaveFile.h
  /home/paulina/github/VoiceActivityDetection/aquila/include/aquila/tools/TextPlot.h
  /home/paulina/github/VoiceActivityDetection/inc/ResultPlotter.h
+ /home/paulina/github/VoiceActivityDetection/inc/SFFDetector.h
  /home/paulina/github/VoiceActivityDetection/inc/VAD.h
  /home/paulina/github/VoiceActivityDetection/inc/VADImp.h
  /home/paulina/github/VoiceActivityDetection/src/main.cpp

@@ -14,10 +14,11 @@ algorytm VAD bazujacy na energii sygnalu
 
 
 //class EnergyBasedDetector : public WAVFileSetterImp, public ThresholdFinder{
-class EnergyBasedDetector : public ThresholdFinder,
+class EnergyBasedDetector :
                             public SingleFrameEnergyFinder,
                             public VADImp{
 private:
+    ThresholdFinder *threshold;
 
 public:
     EnergyBasedDetector();

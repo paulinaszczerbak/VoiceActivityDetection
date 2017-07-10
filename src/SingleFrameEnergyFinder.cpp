@@ -39,7 +39,7 @@ unsigned int SingleFrameEnergyFinder::getCommonSamples() {
 void SingleFrameEnergyFinder::setSamplesPerFrame(unsigned int samplesAmount) {
     this->samplesPerFrame=samplesAmount;
     //przy okazji aktualizuje commonSamples
-    this->commonSamples=samplesPerFrame/2;
+    this->commonSamples=this->samplesPerFrame/2;
 }
 
 

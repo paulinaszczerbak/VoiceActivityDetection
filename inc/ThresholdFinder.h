@@ -18,12 +18,13 @@ private:
     double scalingFactor;
     SingleFrameEnergyFinder frameEn;
     double initialValue;
+    double delta;
 public:
     ThresholdFinder();
     virtual ~ThresholdFinder();
     double getThreshold();
     void calculateThreshold100ms(Aquila::WaveFile wav);
-    void calculateThresholdMinMax(Aquila::WaveFile wav, size_t currentFrameNumber);
+    void calculateThresholdEminEmax(Aquila::WaveFile wav, size_t currentFrameNumber);
 
 };
 

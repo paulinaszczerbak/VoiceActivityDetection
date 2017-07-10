@@ -177,6 +177,33 @@ src/ResultPlotter.cpp.s:
 	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.s
 .PHONY : src/ResultPlotter.cpp.s
 
+src/SFFDetector.o: src/SFFDetector.cpp.o
+
+.PHONY : src/SFFDetector.o
+
+# target to build an object file
+src/SFFDetector.cpp.o:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/SFFDetector.cpp.o
+.PHONY : src/SFFDetector.cpp.o
+
+src/SFFDetector.i: src/SFFDetector.cpp.i
+
+.PHONY : src/SFFDetector.i
+
+# target to preprocess a source file
+src/SFFDetector.cpp.i:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/SFFDetector.cpp.i
+.PHONY : src/SFFDetector.cpp.i
+
+src/SFFDetector.s: src/SFFDetector.cpp.s
+
+.PHONY : src/SFFDetector.s
+
+# target to generate assembly for a file
+src/SFFDetector.cpp.s:
+	$(MAKE) -f CMakeFiles/VoiceActivityDetection.dir/build.make CMakeFiles/VoiceActivityDetection.dir/src/SFFDetector.cpp.s
+.PHONY : src/SFFDetector.cpp.s
+
 src/SingleFrameEnergyFinder.o: src/SingleFrameEnergyFinder.cpp.o
 
 .PHONY : src/SingleFrameEnergyFinder.o
@@ -354,6 +381,9 @@ help:
 	@echo "... src/ResultPlotter.o"
 	@echo "... src/ResultPlotter.i"
 	@echo "... src/ResultPlotter.s"
+	@echo "... src/SFFDetector.o"
+	@echo "... src/SFFDetector.i"
+	@echo "... src/SFFDetector.s"
 	@echo "... src/SingleFrameEnergyFinder.o"
 	@echo "... src/SingleFrameEnergyFinder.i"
 	@echo "... src/SingleFrameEnergyFinder.s"

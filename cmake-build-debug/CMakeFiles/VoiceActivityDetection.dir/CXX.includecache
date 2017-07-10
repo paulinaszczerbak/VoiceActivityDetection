@@ -70,6 +70,18 @@ string
 vector
 -
 
+../aquila/include/aquila/source/WaveFileHandler.h
+../global.h
+../aquila/include/aquila/global.h
+SignalSource.h
+../aquila/include/aquila/source/SignalSource.h
+WaveFile.h
+../aquila/include/aquila/source/WaveFile.h
+cstddef
+-
+string
+-
+
 ../aquila/include/aquila/transform/Fft.h
 ../global.h
 ../aquila/include/aquila/global.h
@@ -180,6 +192,12 @@ VADImp.h
 
 /home/paulina/github/VoiceActivityDetection/inc/ResultPlotter.h
 
+/home/paulina/github/VoiceActivityDetection/inc/SFFDetector.h
+aquila/source/WaveFile.h
+-
+aquila/source/WaveFileHandler.h
+-
+
 /home/paulina/github/VoiceActivityDetection/inc/SingleFrameEnergyFinder.h
 aquila/source/WaveFile.h
 -
@@ -221,6 +239,14 @@ aquila/source/WaveFile.h
 -
 ../inc/ResultPlotter.h
 /home/paulina/github/VoiceActivityDetection/inc/ResultPlotter.h
+
+/home/paulina/github/VoiceActivityDetection/src/SFFDetector.cpp
+iostream
+-
+algorithm
+-
+../inc/SFFDetector.h
+/home/paulina/github/VoiceActivityDetection/inc/SFFDetector.h
 
 /home/paulina/github/VoiceActivityDetection/src/SingleFrameEnergyFinder.cpp
 aquila/source/FramesCollection.h
@@ -273,4 +299,6 @@ aquila/transform/FftFactory.h
 /home/paulina/github/VoiceActivityDetection/inc/VADImp.h
 ../inc/ResultPlotter.h
 /home/paulina/github/VoiceActivityDetection/inc/ResultPlotter.h
+../inc/SFFDetector.h
+/home/paulina/github/VoiceActivityDetection/inc/SFFDetector.h
 

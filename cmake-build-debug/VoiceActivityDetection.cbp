@@ -92,6 +92,9 @@
 		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/ResultPlotter.h">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
+		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/SFFDetector.h">
+			<Option target="VoiceActivityDetection"/>
+		</Unit>
 		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/SingleFrameEnergyFinder.h">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
@@ -111,6 +114,9 @@
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
 		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/ResultPlotter.cpp">
+			<Option target="VoiceActivityDetection"/>
+		</Unit>
+		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/SFFDetector.cpp">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
 		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/SingleFrameEnergyFinder.cpp">

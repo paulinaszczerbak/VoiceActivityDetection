@@ -21,6 +21,13 @@ CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o: ../aquila/include
 CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o: ../inc/ResultPlotter.h
 CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o: ../src/ResultPlotter.cpp
 
+CMakeFiles/VoiceActivityDetection.dir/src/SFFDetector.cpp.o: ../aquila/include/aquila/global.h
+CMakeFiles/VoiceActivityDetection.dir/src/SFFDetector.cpp.o: ../aquila/include/aquila/source/SignalSource.h
+CMakeFiles/VoiceActivityDetection.dir/src/SFFDetector.cpp.o: ../aquila/include/aquila/source/WaveFile.h
+CMakeFiles/VoiceActivityDetection.dir/src/SFFDetector.cpp.o: ../aquila/include/aquila/source/WaveFileHandler.h
+CMakeFiles/VoiceActivityDetection.dir/src/SFFDetector.cpp.o: ../inc/SFFDetector.h
+CMakeFiles/VoiceActivityDetection.dir/src/SFFDetector.cpp.o: ../src/SFFDetector.cpp
+
 CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.o: ../aquila/include/aquila/global.h
 CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.o: ../aquila/include/aquila/source/Frame.h
 CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.o: ../aquila/include/aquila/source/FramesCollection.h
@@ -59,6 +66,7 @@ CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o: ../inc/VADImp.h
 CMakeFiles/VoiceActivityDetection.dir/src/VADImp.cpp.o: ../src/VADImp.cpp
 
 CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../aquila/include/aquila/source/WaveFile.h
+CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../aquila/include/aquila/source/WaveFileHandler.h
 CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../aquila/include/aquila/transform/Fft.h
 CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../aquila/include/aquila/transform/FftFactory.h
 CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../aquila/include/aquila/global.h
@@ -69,6 +77,7 @@ CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../aquila/include/aquila/s
 CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../aquila/include/aquila/source/WaveFile.h
 CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../aquila/include/aquila/tools/TextPlot.h
 CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../inc/ResultPlotter.h
+CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../inc/SFFDetector.h
 CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../inc/VAD.h
 CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../inc/VADImp.h
 CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o: ../src/main.cpp

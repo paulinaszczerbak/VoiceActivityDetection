@@ -16,7 +16,7 @@ class VAD {
 public:
 	VAD();
 	virtual ~VAD();
-	virtual void detect(Aquila::WaveFile wav,int methodNumber);
+	virtual void detect(Aquila::WaveFile wav,int methodNumber)=0;
 };
 
 #endif /* VAD_H_ */

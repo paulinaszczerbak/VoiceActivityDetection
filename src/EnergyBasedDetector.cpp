@@ -10,29 +10,30 @@
 
 
 EnergyBasedDetector::EnergyBasedDetector(){
-
+    this->threshold=new ThresholdFinder();
 }
 
 
 EnergyBasedDetector::~EnergyBasedDetector() {
-
 }
 
 void EnergyBasedDetector::detect(Aquila::WaveFile wav) {
-    //dlugosc ramki na 20ms - zdefiniowane w VADImp
-    //ustawiam liczbe probek w ramce
+//    //dlugosc ramki na 20ms - zdefiniowane w VADImp
+//    //ustawiam liczbe probek w ramce
     unsigned int samplesInSingleFrameAmount(wav.getSampleFrequency()*getFrameLengthInSECs());
     setSamplesPerFrame(samplesInSingleFrameAmount);
 
     //próg detekcji obliczany na podstawie pierwszych 100ms pliku
-    //calculateThreshold100ms(wav);
+    threshold->calculateThreshold100ms(wav);
 
-    std::cout<<"próg detekcji "<<getThreshold()<<std::endl;
+    //std::cout<<"próg detekcji "<<getThreshold()<<std::endl;
 
     Aquila::FramesCollection *frames=new Aquila::FramesCollection(wav, getSamplesPerFrame(), getCommonSamples());
-    std::cout<<"samples "<<getSamplesPerFrame()<<std::endl;
+    //std::cout<<"samples "<<getSamplesPerFrame()<<std::endl;
     size_t framesAmount=frames->count();
 
+    //zapis do pliku 0000111000 - wynik detekcji
+    //todo: zmienić na plik zawierajacy punkty, w ktorych jest ZMIANA
     system("touch resultToPlot");
     //otwieram plik do zapisu
     std::ofstream file("resultToPlot");
@@ -40,22 +41,58 @@ void EnergyBasedDetector::detect(Aquila::WaveFile wav) {
     if(file){
         for (size_t i = 0; i <framesAmount ; i++) {
             //estymowany prog detekcji
-            std::cout<<"wchodzi do estymowania progu"<<std::endl;
-            calculateThresholdMinMax(wav,i);
-            std::cout<<"wychodzi"<<std::endl;
-            if(countSingleFrameEnergy(wav,i)<=getThreshold()){
+            //std::cout<<"wchodzi do estymowania progu"<<std::endl;
+            //calculateThresholdEminEmax(wav,i);
+            //std::cout<<"próg detekcji "<<getThreshold()<<std::endl;
+            //std::cout<<"wychodzi"<<std::endl;
+            if(countSingleFrameEnergy(wav,i)<=threshold->getThreshold()){
                 file<<xValue<<" "<<0<<std::endl;
-                xValue+=(getSamplesPerFrame()/2);
+                xValue+=getCommonSamples();
+                //xValue+=(getSamplesPerFrame()/2);
             }
             else {
                 file<<xValue<<" "<<10000<<std::endl;
-                xValue+=(getSamplesPerFrame()/2);
+                xValue+=getCommonSamples();
+                //xValue+=(getSamplesPerFrame()/2);
             }
         }
         file.close();
     } else{
         std::cout<<"BLAD: nie mozna otworzyc pliku"<<std::endl;
     }
+
+    //************************TUTAJ BEZ RAMEK - NA PROBKACH
+    //próg detekcji obliczany na podstawie pierwszych 100ms pliku
+//    unsigned int samplesInSingleFrameAmount(wav.getSampleFrequency()*getFrameLengthInSECs());
+//    setSamplesPerFrame(samplesInSingleFrameAmount);
+//    calculateThreshold100ms(wav);
+//
+//    //std::cout<<"próg detekcji "<<getThreshold()<<std::endl;
+//    system("touch resultToPlot");
+//    //otwieram plik do zapisu
+//    std::ofstream file("resultToPlot");
+//    int xValue(0);
+//    if(file){
+//        for (size_t i = 0; i <wav.getSampleFrequency()*wav.getAudioLength()/1000 ; i++) {
+//            //estymowany prog detekcji
+//            //std::cout<<"wchodzi do estymowania progu"<<std::endl;
+//            //calculateThresholdEminEmax(wav,i);
+//            std::cout<<"próg detekcji "<<getThreshold()<<std::endl;
+//            //std::cout<<"wychodzi"<<std::endl;
+//            if((wav.sample(i)*wav.sample(i))<=getThreshold()){
+//                file<<0<<std::endl;
+//                //xValue+=(getSamplesPerFrame()/2);
+//            }
+//            else {
+//                file<<10000<<std::endl;
+//
+//                //xValue+=(getSamplesPerFrame()/2);
+//            }
+//        }
+//        file.close();
+//    } else{
+//        std::cout<<"BLAD: nie mozna otworzyc pliku"<<std::endl;
+//    }
 
 
 }

@@ -7,6 +7,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o"
   "CMakeFiles/VoiceActivityDetection.dir/src/SingleFrameEnergyFinder.cpp.o"
   "CMakeFiles/VoiceActivityDetection.dir/src/SohnsDetector.cpp.o"
+  "CMakeFiles/VoiceActivityDetection.dir/src/SFFDetector.cpp.o"
   "VoiceActivityDetection.pdb"
   "VoiceActivityDetection"
 )
