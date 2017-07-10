@@ -35,8 +35,8 @@ private:
         ~Signal();
     };
     //sygnal WAV poddany detekcji
-    Signal* signal;
-    //Envelope* envelope;
+    Signal* _signal;
+    Envelope* _envelope;
 
 public:
     //SFFDetector(std::string filename):signal(new Signal(filename)){}
@@ -44,7 +44,7 @@ public:
     SFFDetector(std::string filename);
     void printSamples();
     void addGaussNoise(double noiseMult);
-    void densityForPositiveValues(short sPosNb=801, double max);
+    void densityForPositiveValues(double* VAETab,short sPosNb=801, double max, double* VAEDensity);
 };
 
 

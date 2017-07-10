@@ -4,10 +4,11 @@
 
 #include <iostream>
 #include <algorithm>
+#include <cstring>
 #include "../inc/SFFDetector.h"
 
 SFFDetector::SFFDetector(std::string filename) {
-    signal = new Signal(filename);
+    _signal = new Signal(filename);
 
 //    _signalOriginal = new Aquila::WaveFile(filename);
 //    _samplesCount=_signalOriginal->getSamplesCount();
@@ -49,10 +50,10 @@ SFFDetector::Signal::Signal(std::string filename) {
 }
 
 void SFFDetector::printSamples() {
-    std::cout<<signal->samplesOriginal[5]<<std::endl;
+    std::cout<<_signal->samplesOriginal[5]<<std::endl;
     addGaussNoise(5);
-    std::cout<<signal->samplesOriginal[5]<<std::endl;
-    std::cout<<signal->samplesNoised[5]<<std::endl;
+    std::cout<<_signal->samplesOriginal[5]<<std::endl;
+    std::cout<<_signal->samplesNoised[5]<<std::endl;
 }
 
 /// funkcja dodajaca szum do sygnalu
@@ -67,7 +68,7 @@ void SFFDetector::addGaussNoise(double noiseMult) {
 
     timer = clock();
     srand(timer);
-    for (long i = 0; i <signal->samplesCount ; i++) {
+    for (long i = 0; i <_signal->samplesCount ; i++) {
         random1=0;
         for (int j = 0; j < 16 ; j++) {
             random2 = rand();
@@ -76,13 +77,29 @@ void SFFDetector::addGaussNoise(double noiseMult) {
         //dodatkowe dzielenie w przypadku kompilatora 64-bitowego
         random1 /= 65536;
         random1 /= 8;
-        signal->samplesNoised[i] = signal->samplesOriginal[i] + noiseMult * random1;
+        _signal->samplesNoised[i] = _signal->samplesOriginal[i] + noiseMult * random1;
     }
 }
+
 ///funkcja do obliczania gestosci dla pozytywnych wartosci
+/// oblicza wspolczynnik normowania
 /// \param sPosNb
 /// \param max
-void SFFDetector::densityForPositiveValues(short sPosNb, double max) {
+void SFFDetector::densityForPositiveValues(double* VAETab, short sPosNb, double max, double* VAEDensity) {
+    double normFactor;
+    short temp;
 
+    normFactor = (sPosNb-1)/max;
+    memset(VAEDensity, 0, sPosNb*sizeof(double));
+
+    for (int i = 0; i <_signal->samplesCount ; ++i) {
+        temp = (long) floor(normFactor*VAETab[i]+0.5);
+        if (temp <= sPosNb){
+            VAEDensity[temp]++;
+        }
+    }
+    for (int j = 0; j < sPosNb ; ++j) {
+        VAEDensity[j] /= _signal->samplesCount;
+    }
 }
 
