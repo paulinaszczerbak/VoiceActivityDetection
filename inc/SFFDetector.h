@@ -17,11 +17,6 @@ private:
 //    Aquila::SampleType*_samplesOriginal; //original
 //    Aquila::SampleType* _samplesAfterFiltering; //
 //    Aquila::SampleType* _samplesSpectrum;
-    struct Envelope{
-        double* singleFrequencyEnvelope;
-        double* density;
-        double* delt;
-    };
 
     struct Signal{
         //tutaj potrzebne 3 tablice - oryginalny sygnal, po filtracji i jakis jeszcze
@@ -31,20 +26,32 @@ private:
         Aquila::SampleType* samplesOriginal;
         Aquila::SampleType* samplesNoised;
         Aquila::SampleType* samplesDifferentationed;
+        Aquila::FrequencyType samplingFrequency;
         Signal(std::string filename);
         ~Signal();
+    };
+
+    struct Envelope{
+        double* singleFrequencyEnvelope;
+        double* density;
+        double* delt;
+        double singlePoleModule;
+        double* filterFactor;
+        double firstThreshold;
+        Envelope();
     };
     //sygnal WAV poddany detekcji
     Signal* _signal;
     Envelope* _envelope;
-
+    const double PI = 3.14;
 public:
     //SFFDetector(std::string filename):signal(new Signal(filename)){}
     //~SFFDetector(){delete signal;}
     SFFDetector(std::string filename);
     void printSamples();
     void addGaussNoise(double noiseMult);
-    void densityForPositiveValues(double* VAETab,short sPosNb=801, double max, double* VAEDensity);
+    void densityForPositiveValues(double* VAETab, double max, double* VAEDensity,short sPosNb=801);
+    void singleFrequencyEnvelope(double frequency);
 };
 
 

@@ -36,6 +36,7 @@ SFFDetector::Signal::Signal(std::string filename) {
     samplesOriginal = new Aquila::SampleType[samplesCount];
     samplesNoised = new Aquila::SampleType[samplesCount];
     samplesDifferentationed = new Aquila::SampleType[samplesCount];
+    samplingFrequency = signalOriginal->getSampleFrequency();
 
     std::copy(signalOriginal->toArray(),
               signalOriginal->toArray()+samplesCount,
@@ -48,6 +49,13 @@ SFFDetector::Signal::Signal(std::string filename) {
               signalOriginal->toArray()+samplesCount,
               samplesDifferentationed);
 }
+
+SFFDetector::Envelope::Envelope() {
+    this->singlePoleModule=0.97;
+    this->firstThreshold=0.15;
+    
+}
+
 
 void SFFDetector::printSamples() {
     std::cout<<_signal->samplesOriginal[5]<<std::endl;
@@ -85,7 +93,7 @@ void SFFDetector::addGaussNoise(double noiseMult) {
 /// oblicza wspolczynnik normowania
 /// \param sPosNb
 /// \param max
-void SFFDetector::densityForPositiveValues(double* VAETab, short sPosNb, double max, double* VAEDensity) {
+void SFFDetector::densityForPositiveValues(double* VAETab,double max, double* VAEDensity, short sPosNb ) {
     double normFactor;
     short temp;
 
@@ -101,5 +109,17 @@ void SFFDetector::densityForPositiveValues(double* VAETab, short sPosNb, double 
     for (int j = 0; j < sPosNb ; ++j) {
         VAEDensity[j] /= _signal->samplesCount;
     }
+}
+
+/// funckcja do obliczania czestotliwosci obwiedni
+/// \param frequency - czestotliwosc
+void SFFDetector::singleFrequencyEnvelope(double frequency) {
+    double filterFactor1, filterFactor2;
+    double om, max, threshold1, threshold2, temp, distance;
+    double mod;
+    long length;
+
+    om = 2*PI*frequency/_signal->samplingFrequency;
+
 }
 
