@@ -8,136 +8,134 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/paulina/github/VoiceActivityDetection/cmake-build-debug"/>
+				<Option working_dir="/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/paulina/github/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/paulina/github/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/paulina/github/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/paulina/github/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/home/paulina/github/VoiceActivityDetection/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/paulina/github/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/paulina/github/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/paulina/github/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/paulina/github/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/paulina/github/VoiceActivityDetection/cmake-build-debug"/>
+				<Option working_dir="/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/paulina/github/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/paulina/github/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/paulina/github/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/paulina/github/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="VoiceActivityDetection">
-				<Option output="/home/paulina/github/VoiceActivityDetection/cmake-build-debug/VoiceActivityDetection" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/paulina/github/VoiceActivityDetection/cmake-build-debug"/>
+				<Option output="/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug/VoiceActivityDetection" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/paulina/github/VoiceActivityDetection/aquila/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.1.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
 					<Add directory="/usr/include"/>
-					<Add directory="/usr/include/c++/5"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
-					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/paulina/github/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 VoiceActivityDetection"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/paulina/github/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/paulina/github/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/paulina/github/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 VoiceActivityDetection"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="VoiceActivityDetection/fast">
-				<Option output="/home/paulina/github/VoiceActivityDetection/cmake-build-debug/VoiceActivityDetection" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/paulina/github/VoiceActivityDetection/cmake-build-debug"/>
+				<Option output="/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug/VoiceActivityDetection" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/paulina/github/VoiceActivityDetection/aquila/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.1.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
 					<Add directory="/usr/include"/>
-					<Add directory="/usr/include/c++/5"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
-					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/paulina/github/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 VoiceActivityDetection/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/paulina/github/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/paulina/github/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/paulina/github/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 VoiceActivityDetection/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/pszcz/Documents/VoiceActivityDetection/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/EnergyBasedDetector.h">
+		<Unit filename="/Users/pszcz/Documents/VoiceActivityDetection/inc/EnergyBasedDetector.h">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/ResultPlotter.h">
+		<Unit filename="/Users/pszcz/Documents/VoiceActivityDetection/inc/ResultPlotter.h">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/SFFDetector.h">
+		<Unit filename="/Users/pszcz/Documents/VoiceActivityDetection/inc/SFFDetector.h">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/SingleFrameEnergyFinder.h">
+		<Unit filename="/Users/pszcz/Documents/VoiceActivityDetection/inc/SingleFrameEnergyFinder.h">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/SohnsDetector.h">
+		<Unit filename="/Users/pszcz/Documents/VoiceActivityDetection/inc/SohnsDetector.h">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/ThresholdFinder.h">
+		<Unit filename="/Users/pszcz/Documents/VoiceActivityDetection/inc/ThresholdFinder.h">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/VAD.h">
+		<Unit filename="/Users/pszcz/Documents/VoiceActivityDetection/inc/VAD.h">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/inc/VADImp.h">
+		<Unit filename="/Users/pszcz/Documents/VoiceActivityDetection/inc/VADImp.h">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/EnergyBasedDetector.cpp">
+		<Unit filename="/Users/pszcz/Documents/VoiceActivityDetection/src/EnergyBasedDetector.cpp">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/ResultPlotter.cpp">
+		<Unit filename="/Users/pszcz/Documents/VoiceActivityDetection/src/ResultPlotter.cpp">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/SFFDetector.cpp">
+		<Unit filename="/Users/pszcz/Documents/VoiceActivityDetection/src/SFFDetector.cpp">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/SingleFrameEnergyFinder.cpp">
+		<Unit filename="/Users/pszcz/Documents/VoiceActivityDetection/src/SingleFrameEnergyFinder.cpp">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/SohnsDetector.cpp">
+		<Unit filename="/Users/pszcz/Documents/VoiceActivityDetection/src/SohnsDetector.cpp">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/ThresholdFinder.cpp">
+		<Unit filename="/Users/pszcz/Documents/VoiceActivityDetection/src/ThresholdFinder.cpp">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/VAD.cpp">
+		<Unit filename="/Users/pszcz/Documents/VoiceActivityDetection/src/VAD.cpp">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/VADImp.cpp">
+		<Unit filename="/Users/pszcz/Documents/VoiceActivityDetection/src/VADImp.cpp">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/src/main.cpp">
+		<Unit filename="/Users/pszcz/Documents/VoiceActivityDetection/src/main.cpp">
 			<Option target="VoiceActivityDetection"/>
 		</Unit>
-		<Unit filename="/home/paulina/github/VoiceActivityDetection/CMakeLists.txt">
+		<Unit filename="/Users/pszcz/Documents/VoiceActivityDetection/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

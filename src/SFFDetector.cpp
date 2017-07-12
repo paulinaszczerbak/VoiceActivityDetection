@@ -114,12 +114,23 @@ void SFFDetector::densityForPositiveValues(double* VAETab,double max, double* VA
 /// funckcja do obliczania czestotliwosci obwiedni
 /// \param frequency - czestotliwosc
 void SFFDetector::singleFrequencyEnvelope(double frequency) {
-    double filterFactor1, filterFactor2;
-    double om, max, threshold1, threshold2, temp, distance;
-    double mod;
-    long length;
+    double filterFactor1(0), filterFactor2(0);
+    double normalizedFrequency(0), max(0), threshold1(0),
+            threshold2(0), temp(0), distance(0), module(0);
+    long length(0);
 
-    om = 2*PI*frequency/_signal->samplingFrequency;
+    length=_signal->samplesCount;
+
+    //wzor na omegak z artykulu
+    normalizedFrequency = 2*PI*frequency/_signal->samplingFrequency;
+    module = _envelope->singlePoleModule;
+
+    //wspolczynniki filtru kwadraturowego
+    filterFactor1 = module * cos(normalizedFrequency);
+    filterFactor2 = module * sin(normalizedFrequency);
+
+    //ustawiam pierwszy element na 0, bo kazdy nastepny jest obliczany na podstawie poprzedniego
+
 
 }
 
