@@ -12,13 +12,9 @@
 class SFFDetector {
 
 private:
-//    Aquila::WaveFile* _signalOriginal;
-//    int _samplesCount;
-//    Aquila::SampleType*_samplesOriginal; //original
-//    Aquila::SampleType* _samplesAfterFiltering; //
-//    Aquila::SampleType* _samplesSpectrum;
-
     struct Signal{
+        Signal(std::string filename);
+        virtual ~Signal();
         //tutaj potrzebne 3 tablice - oryginalny sygnal, po filtracji i jakis jeszcze
         //wskazniki na tablice z sygnalem oryginalnym i po przerobkach
         Aquila::WaveFile* signalOriginal;
@@ -28,41 +24,55 @@ private:
         Aquila::SampleType* samplesNoised;
         Aquila::SampleType* samplesDifferential;
         Aquila::FrequencyType samplingFrequency;
-        Signal(std::string filename);
-        virtual ~Signal();
+
     };
 
     struct Envelope{
+        Envelope(int samplesCount);
+        virtual ~Envelope();
         double* singleFrequencyEnvelope;
         int samplesCount;
         double* density;
         double* delt;
         double singlePoleModule;
         double* filterFactor;
-        double firstThreshold;
+        const double initialThreshold = 0.15;
         double* factorXr;
         double* factorXi;
         double* factorMi;
         double* factorSigma;
         //co to ? co to ? co to ?
         bool differBef;
-        Envelope(int samplesCount);
-        virtual ~Envelope();
+        bool smoothing;
+
     };
     //sygnal WAV poddany detekcji
     Signal* _signal;
     //obwiednia sygnału
     Envelope* _envelope;
-    double maxValue();
     const double PI = 3.14;
+    //co to ?????
+    static const int sPosNb = 801;
+    //wskaznik do struktury zawierajacej numery indeksow probek
+    //rozpoczynajacych aktywnosc mowcy
+    double* _speachBeginnings;
+    //wskaznik do struktury zawierajacej numery indeksow probek
+    //kończących aktywnosc mowcy
+    double* _speachEndings;
+    void addGaussNoise(double noiseMult);
+    void densityForPositiveValues(double* VAETab, double max /*, double* VAEDensity,short sPosNb=801*/);
+    void singleFrequencyEnvelope(double frequency);
+    void singleFrequencyFilteringEnvelope();
+    double findMaxValue(double* array);
+    double findMaxAbsValue(double* array);
+    double singleFrequencyFilteringBeta();
+
 public:
     //SFFDetector(std::string filename):signal(new Signal(filename)){}
     //~SFFDetector(){delete signal;}
     SFFDetector(std::string filename);
     void printSamples();
-    void addGaussNoise(double noiseMult);
-    void densityForPositiveValues(double* VAETab, double max, double* VAEDensity,short sPosNb=801);
-    void singleFrequencyEnvelope(double frequency);
+    void detect();
 };
 
 
