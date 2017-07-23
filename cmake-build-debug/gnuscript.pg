@@ -14,10 +14,10 @@ set xlabel "Samples [n]"
 set ylabel "Amplitude"
 set border 0
 
-set size 1.0,1.0              # skalowanie względem rozmiaru ramki
-set origin 0.0,0.0          # położenie insetu
-plot "sigToPlot" with lines lt rgb "black" lw 1
-set grid
+#set size 1.0,1.0              # skalowanie względem rozmiaru ramki
+#set origin 0.0,0.0          # położenie insetu
+#plot "sigToPlot" with lines lt rgb "black" lw 1
+#set grid
 
 set size 1.0,1.0              # skalowanie względem rozmiaru ramki
 set origin 0.0,0.0          # położenie insetu
@@ -25,7 +25,7 @@ set origin 0.0,0.0          # położenie insetu
 #set title ""
 #set xlabel ""
 #set ylabel ""
-plot "resultToPlot" with lines lt rgb "red" lw 1
+plot "result2ToPlot" with lines lt rgb "red" lw 1
 
 unset multiplot
 

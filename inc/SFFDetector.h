@@ -23,26 +23,37 @@ private:
         //wskazniki na tablice z sygnalem oryginalnym i po przerobkach
         Aquila::WaveFile* signalOriginal;
         int samplesCount;
+        int frameLength;
         Aquila::SampleType* samplesOriginal;
         Aquila::SampleType* samplesNoised;
-        Aquila::SampleType* samplesDifferentationed;
+        Aquila::SampleType* samplesDifferential;
         Aquila::FrequencyType samplingFrequency;
         Signal(std::string filename);
-        ~Signal();
+        virtual ~Signal();
     };
 
     struct Envelope{
         double* singleFrequencyEnvelope;
+        int samplesCount;
         double* density;
         double* delt;
         double singlePoleModule;
         double* filterFactor;
         double firstThreshold;
-        Envelope();
+        double* factorXr;
+        double* factorXi;
+        double* factorMi;
+        double* factorSigma;
+        //co to ? co to ? co to ?
+        bool differBef;
+        Envelope(int samplesCount);
+        virtual ~Envelope();
     };
     //sygnal WAV poddany detekcji
     Signal* _signal;
+    //obwiednia sygnału
     Envelope* _envelope;
+    double maxValue();
     const double PI = 3.14;
 public:
     //SFFDetector(std::string filename):signal(new Signal(filename)){}
