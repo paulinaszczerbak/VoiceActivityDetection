@@ -12,11 +12,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="57bec885-160c-48bc-8f2b-074a7bb28bf7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/SFFDetector.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/SFFDetector.cpp.o" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VoiceActivityDetection.dir/src/main.cpp.o" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/VoiceActivityDetection" afterPath="$PROJECT_DIR$/cmake-build-debug/VoiceActivityDetection" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/result2ToPlot" afterPath="$PROJECT_DIR$/cmake-build-debug/result2ToPlot" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/SFFDetector.h" afterPath="$PROJECT_DIR$/inc/SFFDetector.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SFFDetector.cpp" afterPath="$PROJECT_DIR$/src/SFFDetector.cpp" />
     </list>
@@ -52,8 +47,8 @@
           <file leaf-file-name="SFFDetector.cpp" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/SFFDetector.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="186">
-                  <caret line="271" column="4" lean-forward="false" selection-start-line="271" selection-start-column="4" selection-end-line="271" selection-end-column="4" />
+                <state relative-caret-position="406">
+                  <caret line="100" column="35" lean-forward="false" selection-start-line="100" selection-start-column="35" selection-end-line="100" selection-end-column="35" />
                   <folding>
                     <element signature="e#42#61#0" expanded="true" />
                   </folding>
@@ -130,8 +125,8 @@
           <file leaf-file-name="SFFDetector.h" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/inc/SFFDetector.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="276">
-                  <caret line="45" column="14" lean-forward="false" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="14" />
+                <state relative-caret-position="424">
+                  <caret line="50" column="35" lean-forward="false" selection-start-line="50" selection-start-column="35" selection-end-line="50" selection-end-column="35" />
                   <folding />
                 </state>
               </provider>
@@ -637,6 +632,7 @@
       <workItem from="1500809200914" duration="7420000" />
       <workItem from="1500818635899" duration="3736000" />
       <workItem from="1500827035207" duration="5337000" />
+      <workItem from="1501012771346" duration="4124000" />
     </task>
     <task id="LOCAL-00001" summary="setting filename changed, class WAVFileSetter deleted">
       <created>1487604630810</created>
@@ -684,7 +680,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="259112000" />
+    <option name="totallyTimeSpent" value="263236000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -936,16 +932,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/SFFDetector.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="45" column="14" lean-forward="false" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="14" />
+        <state relative-caret-position="424">
+          <caret line="50" column="35" lean-forward="false" selection-start-line="50" selection-start-column="35" selection-end-line="50" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SFFDetector.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="271" column="4" lean-forward="false" selection-start-line="271" selection-start-column="4" selection-end-line="271" selection-end-column="4" />
+        <state relative-caret-position="406">
+          <caret line="100" column="35" lean-forward="false" selection-start-line="100" selection-start-column="35" selection-end-line="100" selection-end-column="35" />
           <folding>
             <element signature="e#42#61#0" expanded="true" />
           </folding>

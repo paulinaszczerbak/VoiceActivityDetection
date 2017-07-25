@@ -37,6 +37,8 @@ private:
         double singlePoleModule;
         double* filterFactor;
         const double initialThreshold = 0.15;
+        //??
+        const double detectionSilenceThreshold = 0.12;
         double* factorXr;
         double* factorXi;
         double* factorMi;
@@ -44,6 +46,9 @@ private:
         //co to ? co to ? co to ?
         bool differBef;
         bool smoothing;
+        //???
+        double densityForLeftPart;
+        double densityForRightPart;
 
     };
     //sygnal WAV poddany detekcji

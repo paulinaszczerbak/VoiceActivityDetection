@@ -98,6 +98,7 @@ void SFFDetector::printSamples() {
 
     singleFrequencyEnvelope(4000);
 
+    singleFrequencyFilteringBeta();
     system("touch result2ToPlot");
     //otwieram plik do zapisu
     std::ofstream file("result2ToPlot");
@@ -388,16 +389,51 @@ void SFFDetector::singleFrequencyFilteringEnvelope() {
 }
 
 double SFFDetector::singleFrequencyFilteringBeta() {
-    double max(0), threshold1(0), threshold2(0), temp(0), distance(0),
-            mean(0), std(0), spMean(0), beta(0);
+    double max(0), distance(0), beta(0), maxI(0), density(0);
 
     /* rozklad */
     max = findMaxValue(_envelope->delt);
     densityForPositiveValues(_envelope->delt, max);
 
-    /* prog - cisza */
+    /* wygladzenie */
+    //smooth(_envelope->density, 801, 20);
 
-    return 0;
+    /*maximum  lewe */
+    for (int i = 200; i < 600 ; i++) {
+        if (_envelope->density[i] > density){
+            density = _envelope->density[i];
+            maxI = i;
+        }
+    }
+    _envelope->densityForLeftPart = maxI;
+
+    /* maximum prawe */
+    density = 0;
+    maxI = 0;
+    for (int i = 601; i < 800 ; i++) {
+        if (_envelope->density[i] > density){
+            density = _envelope->density[i];
+            maxI = i;
+        }
+    }
+    _envelope->densityForRightPart = maxI;
+
+
+    /* minimum w przedziale */
+    density = 10;
+    maxI = 0;
+    for (int i = _envelope->densityForLeftPart; i < _envelope->densityForRightPart ; i++) {
+        if (_envelope->density[i] < density){
+            density = _envelope->density[i];
+            maxI = i;
+        }
+    }
+
+    /* wyliczenie beta dla obwiedni */
+    distance = max/800;
+    beta = maxI*distance;
+
+    return beta;
 }
 
 
