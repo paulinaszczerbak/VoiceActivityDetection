@@ -23,6 +23,8 @@ CMakeFiles/VoiceActivityDetection.dir/src/ResultPlotter.cpp.o
  /home/paulina/github/VoiceActivityDetection/src/ResultPlotter.cpp
 CMakeFiles/VoiceActivityDetection.dir/src/SFFDetector.cpp.o
  ../aquila/include/aquila/global.h
+ ../aquila/include/aquila/source/Frame.h
+ ../aquila/include/aquila/source/FramesCollection.h
  ../aquila/include/aquila/source/SignalSource.h
  ../aquila/include/aquila/source/WaveFile.h
  ../aquila/include/aquila/source/WaveFileHandler.h

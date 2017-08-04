@@ -8,6 +8,7 @@
 
 #include <aquila/source/WaveFile.h>
 #include <aquila/source/WaveFileHandler.h>
+#include <vector>
 
 class SFFDetector {
 
@@ -15,11 +16,9 @@ private:
     struct Signal{
         Signal(std::string filename);
         virtual ~Signal();
-        //tutaj potrzebne 3 tablice - oryginalny sygnal, po filtracji i jakis jeszcze
-        //wskazniki na tablice z sygnalem oryginalnym i po przerobkach
         Aquila::WaveFile* signalOriginal;
+        //const Aquila::SignalSource signalOriginal;
         int samplesCount;
-        int frameLength;
         Aquila::SampleType* samplesOriginal;
         Aquila::SampleType* samplesNoised;
         Aquila::SampleType* samplesDifferential;
@@ -46,10 +45,13 @@ private:
         //co to ? co to ? co to ?
         bool differBef;
         bool smoothing;
-        //???
         double densityForLeftPart;
         double densityForRightPart;
-
+        double beta;
+        const double betaMult = 1.0;
+        double theta;
+        //??
+        const double percent = 0.8;
     };
     //sygnal WAV poddany detekcji
     Signal* _signal;
@@ -60,10 +62,10 @@ private:
     static const int sPosNb = 801;
     //wskaznik do struktury zawierajacej numery indeksow probek
     //rozpoczynajacych aktywnosc mowcy
-    double* _speachBeginnings;
+    std::vector<int> _speachBeginnings;
     //wskaznik do struktury zawierajacej numery indeksow probek
     //kończących aktywnosc mowcy
-    double* _speachEndings;
+    std::vector<int> _speachEndings;
     void addGaussNoise(double noiseMult);
     void densityForPositiveValues(double* VAETab, double max /*, double* VAEDensity,short sPosNb=801*/);
     void singleFrequencyEnvelope(double frequency);
@@ -71,6 +73,11 @@ private:
     double findMaxValue(double* array);
     double findMaxAbsValue(double* array);
     double singleFrequencyFilteringBeta();
+    double singleFrequencyFilteringTheta();
+    double calculateRo(Signal* signal);
+    void smooth(double* signal);
+    double countEnergy(Aquila::FramesCollection* frames, Aquila::SampleType frameIndex);
+    void singleFrequencyFilteringDetect();
 
 public:
     //SFFDetector(std::string filename):signal(new Signal(filename)){}

@@ -42,7 +42,7 @@ int main()
 //    result->plot(wav);
 
     SFFDetector *detector = new SFFDetector("../../mbi02w1.wav");
-    detector->printSamples();
+    detector->detect();
 
 
     return 0;

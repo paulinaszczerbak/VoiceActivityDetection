@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <cstring>
 #include <fstream>
+#include <aquila/source/FramesCollection.h>
 
 #include "../inc/SFFDetector.h"
 
@@ -112,6 +113,8 @@ void SFFDetector::printSamples() {
     } else{
         std::cout<<"BLAD: nie mozna otworzyc pliku"<<std::endl;
     }
+
+
 
     //findMaxValue(_envelope->singleFrequencyEnvelope);
 }
@@ -246,6 +249,7 @@ double SFFDetector::findMaxAbsValue(double *array) {
     return findMaxValue(absArray);
 }
 
+//SFF_Combo_c6()
 void SFFDetector::detect() {
     double ro(0);
 
@@ -265,20 +269,17 @@ void SFFDetector::detect() {
         }
     }
 
-    //todo:
-    /* liczenie obwiedni */
-
     singleFrequencyFilteringEnvelope();
     if (_envelope->smoothing)
-  //      makeSmooth(_envelope->delt, _envelope.smoothingRank);
+        smooth(_envelope->delt/*, _envelope.smoothingRank*/);
 
     /* prog detekcji na delta i detekcja */
-//    _envelope.beta = singleFrequencyFilteringBeta();
-//    _envelope.beta *= _envelope.betaMult;
-//    _envelope.theta = singleFrequencyFilteringTheta();
-//
-//    ro = singleFrequencyFilteringRoCalc();
-//    singleFrequencyFilteringDetect();
+    _envelope->beta = singleFrequencyFilteringBeta();
+    _envelope->beta *= _envelope->betaMult;
+    _envelope->theta = singleFrequencyFilteringTheta();
+
+    //ro = calculateRo(_signal);
+    singleFrequencyFilteringDetect();
 
     system("touch result2ToPlot");
     //otwieram plik do zapisu
@@ -287,7 +288,7 @@ void SFFDetector::detect() {
     int arraySize = sizeof(_envelope->singleFrequencyEnvelope)/sizeof(_envelope->singleFrequencyEnvelope[0]);
     if(file){
         for (size_t i = 0; i < _signal->samplesCount ; i++) {
-            file << _envelope->singleFrequencyEnvelope[i] << std::endl;
+            file << _signal->samplesDifferential[i] << std::endl;
         }
         file.close();
     } else{
@@ -396,7 +397,7 @@ double SFFDetector::singleFrequencyFilteringBeta() {
     densityForPositiveValues(_envelope->delt, max);
 
     /* wygladzenie */
-    //smooth(_envelope->density, 801, 20);
+    smooth(_envelope->density);
 
     /*maximum  lewe */
     for (int i = 200; i < 600 ; i++) {
@@ -422,7 +423,7 @@ double SFFDetector::singleFrequencyFilteringBeta() {
     /* minimum w przedziale */
     density = 10;
     maxI = 0;
-    for (int i = _envelope->densityForLeftPart; i < _envelope->densityForRightPart ; i++) {
+    for (int i = (int)_envelope->densityForLeftPart; i < _envelope->densityForRightPart ; i++) {
         if (_envelope->density[i] < density){
             density = _envelope->density[i];
             maxI = i;
@@ -434,6 +435,152 @@ double SFFDetector::singleFrequencyFilteringBeta() {
     beta = maxI*distance;
 
     return beta;
+}
+
+void SFFDetector::smooth(double *signal) {
+    for (int i = 1; i < sizeof(signal)-1; i++) {
+        signal[i] = signal[i-1]*0.25 + signal[i]*0.5 + signal[i+1]*0.25;
+    }
+    signal[0] = signal[1];
+    signal[sizeof(signal)]=signal[sizeof(signal)-1];
+}
+
+double SFFDetector::singleFrequencyFilteringTheta() {
+    double max(0), threshold1(0), threshold2(0), distance(0),
+            mean(0), theta(0);
+
+    /* rozklad */
+    max = findMaxValue(_envelope->delt);
+    densityForPositiveValues(_envelope->delt, max);
+
+    /* prog - cisza */
+    threshold1 = _envelope->detectionSilenceThreshold;
+    double sum(0);
+    double counter(0);
+    for (int i = 0; i < 801 ; i++) {
+        sum += _envelope->density[i];
+        if (sum > threshold1)
+            counter = i;
+            break;
+    }
+    distance = max/800;
+    threshold2 = counter * distance + distance/2;
+
+    /* srednia dla "ciszy" */
+    sum =0;
+    counter = 0;
+    for (int j = 0; j < _signal->samplesCount ; j++) {
+        if (_envelope->delt[j]<threshold2){
+            sum += _envelope->delt[j];
+            counter++;
+        }
+    }
+    if (counter > 0)
+        mean = sum/counter;
+    else
+        mean = 0.1 * distance;
+
+    /* odchylenie standardowe dla "ciszy" */
+    sum = 0;
+    counter = 0;
+    for (int k = 0; k < _signal->samplesCount ; k++) {
+        sum += pow(_envelope->delt[k] - mean, 2);
+        counter++;
+    }
+
+    double factor(0);
+    if (counter > 0)
+        factor = sum/counter;
+    else
+        factor = 0.1 * distance;
+    factor = sqrt(factor);
+    theta = mean + 3*factor;
+
+    return theta;
+}
+
+double SFFDetector::calculateRo(SFFDetector::Signal *signal){
+    double max(0), min(0), ro(0), energy(0);
+    //Aquila::SampleType frameLength(0), frameStep(0);
+    double lPosNb(0);
+
+    //liczba probek w ramce
+    unsigned int frameLength = _signal->samplingFrequency * 0.3;
+    unsigned int frameStep = _signal->samplingFrequency * 0.01;
+    unsigned int samplesPerOverlap = frameLength-frameStep;
+    //czemu to dziala??
+    Aquila::SignalSource source = *signal->signalOriginal;
+    //ramki
+    Aquila::FramesCollection *frames = new Aquila::FramesCollection(source, frameLength, samplesPerOverlap);
+    //lPosNb = (_signal->samplesCount - frameLength)/frameStep;
+
+    min = 1.0E38;
+    for (size_t i = 0; i < frames->count() ; i++) {
+        energy = countEnergy(frames, i);
+        //std::cout<<energy<<std::endl;
+        if (energy < min)
+            min = energy;
+        else if (energy > max)
+            max = energy;
+//        else
+//            std::cout<<"error occured in calculateRo()"<<std::endl;
+    }
+    ro = 10*log10(max/min);
+    return ro;
+}
+
+//oblicza energie dla pojedynczej ramki
+double SFFDetector::countEnergy(Aquila::FramesCollection* frames, Aquila::SampleType frameIndex) {
+    double energy(0);
+    //iteruje po probkach w ramce
+    for (size_t i = 0; i < frames->getSamplesPerFrame() ; i++) {
+        energy += frames->frame(frameIndex).sample(i)*frames->frame(frameIndex).sample(i);
+    }
+    return energy;
+}
+
+void SFFDetector::singleFrequencyFilteringDetect() {
+    double beta(0), theta(0);
+    bool silence = true;
+
+    beta = _envelope->beta;
+    theta = _envelope->theta;
+
+    unsigned int frameLength = _signal->samplingFrequency * 0.3;
+    unsigned int frameStep = _signal->samplingFrequency * 0.01;
+    unsigned int samplesPerOverlap = frameLength-frameStep;
+    Aquila::SignalSource source = *_signal->signalOriginal;
+    //ramki
+    Aquila::FramesCollection *frames = new Aquila::FramesCollection(source, frameLength, samplesPerOverlap);
+
+    int counter(0);
+    double percentage(0);
+    //============= 1. ramka =================
+    //sprawdzam, czy w tej ramce jest mowa,
+    // jak tak, to poczatek ramki zapisuje jako poczatek mowy
+    for (int j = 0; j < frameLength ; j++) {
+        for (size_t i = 0; i <frames->getSamplesPerFrame() ; i++) {
+            if (_envelope->delt[i] > theta && _envelope->delt[i] > beta)
+                counter++;
+        }
+        percentage = 1.0 * counter / frames->getSamplesPerFrame();
+        if (percentage>_envelope->percent){
+            if (silence){
+                //wrzucam nr probki z calego sygnalu na liste
+                this->_speachBeginnings.push_back(j*samplesPerOverlap);
+                silence = false;
+            }
+        } else{
+            if (!silence){
+                this->_speachEndings.push_back(j*samplesPerOverlap+frames->getSamplesPerFrame());
+                silence = false;
+            }
+        }
+    }
+    std::cout<< sizeof(this->_speachEndings)<<std::endl;
+    //=========== nastepne ramki ============
+
+
 }
 
 
