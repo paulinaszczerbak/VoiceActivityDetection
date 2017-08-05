@@ -72,8 +72,8 @@ private:
     void singleFrequencyFilteringEnvelope();
     double findMaxValue(double* array);
     double findMaxAbsValue(double* array);
-    double singleFrequencyFilteringBeta();
-    double singleFrequencyFilteringTheta();
+    double countBeta();
+    double countTheta();
     double calculateRo(Signal* signal);
     void smooth(double* signal);
     double countEnergy(Aquila::FramesCollection* frames, Aquila::SampleType frameIndex);

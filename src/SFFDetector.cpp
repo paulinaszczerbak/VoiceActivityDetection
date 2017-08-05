@@ -99,7 +99,6 @@ void SFFDetector::printSamples() {
 
     singleFrequencyEnvelope(4000);
 
-    singleFrequencyFilteringBeta();
     system("touch result2ToPlot");
     //otwieram plik do zapisu
     std::ofstream file("result2ToPlot");
@@ -274,11 +273,11 @@ void SFFDetector::detect() {
         smooth(_envelope->delt/*, _envelope.smoothingRank*/);
 
     /* prog detekcji na delta i detekcja */
-    _envelope->beta = singleFrequencyFilteringBeta();
+    _envelope->beta = countBeta();
     _envelope->beta *= _envelope->betaMult;
-    _envelope->theta = singleFrequencyFilteringTheta();
+    _envelope->theta = countTheta();
 
-    //ro = calculateRo(_signal);
+    ro = calculateRo(_signal);
     singleFrequencyFilteringDetect();
 
     system("touch result2ToPlot");
@@ -297,8 +296,11 @@ void SFFDetector::detect() {
 
 }
 
+//!!!!!!!!!!!!!!!!!!  tutaj zmiana squareOfEnvelope na long sprawila, ze teraz beta=0, a theta=3.95
+//wczessniej  bylo theta=nan i beta miala jakas wartosc
 void SFFDetector::singleFrequencyFilteringEnvelope() {
-    double frequency, squareOfEnvelope, mean, diff;
+    double frequency,  mean, diff;
+    long squareOfEnvelope;
 
     /* problem z liczeniem wariancji */
     int counter(0);
@@ -389,7 +391,8 @@ void SFFDetector::singleFrequencyFilteringEnvelope() {
     }
 }
 
-double SFFDetector::singleFrequencyFilteringBeta() {
+
+double SFFDetector::countBeta() {
     double max(0), distance(0), beta(0), maxI(0), density(0);
 
     /* rozklad */
@@ -445,7 +448,7 @@ void SFFDetector::smooth(double *signal) {
     signal[sizeof(signal)]=signal[sizeof(signal)-1];
 }
 
-double SFFDetector::singleFrequencyFilteringTheta() {
+double SFFDetector::countTheta() {
     double max(0), threshold1(0), threshold2(0), distance(0),
             mean(0), theta(0);
 
@@ -459,9 +462,10 @@ double SFFDetector::singleFrequencyFilteringTheta() {
     double counter(0);
     for (int i = 0; i < 801 ; i++) {
         sum += _envelope->density[i];
-        if (sum > threshold1)
+        if (sum > threshold1) {
             counter = i;
             break;
+        }
     }
     distance = max/800;
     threshold2 = counter * distance + distance/2;
@@ -541,7 +545,7 @@ double SFFDetector::countEnergy(Aquila::FramesCollection* frames, Aquila::Sample
 
 void SFFDetector::singleFrequencyFilteringDetect() {
     double beta(0), theta(0);
-    bool silence = true;
+    bool isSilence = true;
 
     beta = _envelope->beta;
     theta = _envelope->theta;
@@ -555,7 +559,9 @@ void SFFDetector::singleFrequencyFilteringDetect() {
 
     int counter(0);
     double percentage(0);
-    //============= 1. ramka =================
+    std::cout<<"beta "<<beta<<std::endl;
+    std::cout<<"theta "<<theta<<std::endl;
+
     //sprawdzam, czy w tej ramce jest mowa,
     // jak tak, to poczatek ramki zapisuje jako poczatek mowy
     for (int j = 0; j < frameLength ; j++) {
@@ -564,21 +570,25 @@ void SFFDetector::singleFrequencyFilteringDetect() {
                 counter++;
         }
         percentage = 1.0 * counter / frames->getSamplesPerFrame();
+
         if (percentage>_envelope->percent){
-            if (silence){
+
+            if (isSilence){
                 //wrzucam nr probki z calego sygnalu na liste
                 this->_speachBeginnings.push_back(j*samplesPerOverlap);
-                silence = false;
+                isSilence = false;
             }
         } else{
-            if (!silence){
+            if (!isSilence){
                 this->_speachEndings.push_back(j*samplesPerOverlap+frames->getSamplesPerFrame());
-                silence = false;
+                isSilence = false;
             }
         }
     }
-    std::cout<< sizeof(this->_speachEndings)<<std::endl;
-    //=========== nastepne ramki ============
+
+    //for (int k = 0; k <this->_speachEndings.size() ; k++) {
+    std::cout<< this->_speachBeginnings.size()<<std::endl;
+    //}
 
 
 }
