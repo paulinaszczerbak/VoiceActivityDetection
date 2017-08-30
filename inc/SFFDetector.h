@@ -10,18 +10,20 @@
 #include <aquila/source/WaveFileHandler.h>
 #include <vector>
 
+using namespace std;
+
 class SFFDetector {
 
 private:
     struct Signal{
-        Signal(std::string filename);
+        Signal(string filename);
         virtual ~Signal();
         Aquila::WaveFile* signalOriginal;
         //const Aquila::SignalSource signalOriginal;
         int samplesCount;
-        Aquila::SampleType* samplesOriginal;
-        Aquila::SampleType* samplesNoised;
-        Aquila::SampleType* samplesDifferential;
+        vector<Aquila::SampleType> samplesOriginal;
+        vector<Aquila::SampleType> samplesNoised;
+        vector<Aquila::SampleType> samplesDifferential;
         Aquila::FrequencyType samplingFrequency;
 
     };
@@ -29,19 +31,21 @@ private:
     struct Envelope{
         Envelope(int samplesCount);
         virtual ~Envelope();
-        double* singleFrequencyEnvelope;
+        vector<double> singleFrequencyEnvelope;
         int samplesCount;
-        double* density;
-        double* delt;
+        //double* density;
+        vector<double> density;
+        //double* delt;
+        vector<double> delt;
         double singlePoleModule;
         double* filterFactor;
         const double initialThreshold = 0.15;
         //??
         const double detectionSilenceThreshold = 0.12;
-        double* factorXr;
-        double* factorXi;
-        double* factorMi;
-        double* factorSigma;
+        vector<double> factorXr;
+        vector<double> factorXi;
+        vector<double> factorMi;
+        vector<double> factorSigma;
         //co to ? co to ? co to ?
         bool differBef;
         bool smoothing;
@@ -62,12 +66,12 @@ private:
     static const int sPosNb = 801;
     //wskaznik do struktury zawierajacej numery indeksow probek
     //rozpoczynajacych aktywnosc mowcy
-    std::vector<int> _speachBeginnings;
+    vector<int> _speachBeginnings;
     //wskaznik do struktury zawierajacej numery indeksow probek
     //kończących aktywnosc mowcy
-    std::vector<int> _speachEndings;
+    vector<int> _speachEndings;
     void addGaussNoise(double noiseMult);
-    void densityForPositiveValues(double* VAETab, double max /*, double* VAEDensity,short sPosNb=801*/);
+    vector<double> densityForPositiveValues(std::vector<double> VAETab, double max /*, double* VAEDensity,short sPosNb=801*/);
     void singleFrequencyEnvelope(double frequency);
     void singleFrequencyFilteringEnvelope();
     double findMaxValue(double* array);
@@ -75,14 +79,14 @@ private:
     double countBeta();
     double countTheta();
     double calculateRo(Signal* signal);
-    void smooth(double* signal);
+    vector<double> smooth(std::vector<double> signal);
     double countEnergy(Aquila::FramesCollection* frames, Aquila::SampleType frameIndex);
     void singleFrequencyFilteringDetect();
 
 public:
     //SFFDetector(std::string filename):signal(new Signal(filename)){}
-    //~SFFDetector(){delete signal;}
     SFFDetector(std::string filename);
+    ~SFFDetector(){delete _signal, _envelope;}
     void printSamples();
     void detect();
 };
