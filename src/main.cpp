@@ -15,15 +15,13 @@
 
 int main()
 {
-
-
     //Aquila::WaveFile wav("../../odonnell_you_go_girl.wav");
     //Aquila::WaveFile wav("../../harvey_super_cool.wav");
     //Aquila::WaveFile wav("../../miller_larry.wav");
     //Aquila::WaveFile wav("../../carlin_pc.wav");
     //Aquila::WaveFile wav("../../ireland_ouch.wav");
-    Aquila::WaveFile wav("../../mbi02w1.wav");
-    //Aquila::WaveFile wav("../kabanos.wav");
+    //Aquila::WaveFile wav("../../mbi02w1.wav");
+    Aquila::WaveFile wav("../kabanos.wav");
     std::cout << "Filename: "           << wav.getFilename();
     std::cout << "\nLength: "           << wav.getAudioLength()     << " ms";
     std::cout << "\nSample frequency: " << wav.getSampleFrequency() << " Hz";
