@@ -37,7 +37,7 @@ private:
         vector<double> density;
         //double* delt;
         vector<double> delt;
-        double singlePoleModule;
+        const double singlePoleModule = 0.97;
         double* filterFactor;
         const double initialThreshold = 0.15;
         //??
@@ -70,10 +70,10 @@ private:
     //wskaznik do struktury zawierajacej numery indeksow probek
     //kończących aktywnosc mowcy
     vector<int> _speachEndings;
-    void addGaussNoise(double noiseMult);
+    vector<double> addGaussNoise(double noiseMult);
     vector<double> densityForPositiveValues(std::vector<double> VAETab, double max /*, double* VAEDensity,short sPosNb=801*/);
-    void singleFrequencyEnvelope(double frequency);
-    void singleFrequencyFilteringEnvelope();
+    vector<double> singleFrequencyEnvelope(double frequency);
+    vector<double> singleFrequencyFilteringEnvelope();
     double findMaxValue(double* array);
     double findMaxAbsValue(double* array);
     double countBeta();

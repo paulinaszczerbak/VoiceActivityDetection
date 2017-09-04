@@ -20,33 +20,16 @@ SFFDetector::SFFDetector(string filename) {
 SFFDetector::Signal::Signal(string filename) {
     signalOriginal = new Aquila::WaveFile(filename);
     samplesCount = signalOriginal->getSamplesCount();
-    //samplesOriginal = new Aquila::SampleType[samplesCount];
-    //samplesOriginal = (Aquila::SampleType *) malloc(samplesCount * sizeof(Aquila::SampleType));
-    //samplesNoised = new Aquila::SampleType[samplesCount];
-    //samplesDifferential = new Aquila::SampleType[samplesCount];
     samplingFrequency = signalOriginal->getSampleFrequency();
 
     samplesOriginal.reserve(samplesCount);
     samplesOriginal.assign(signalOriginal->begin(),signalOriginal->end());
-//    copy(signalOriginal->toArray(),
-//              signalOriginal->toArray()+samplesCount,
-//              samplesOriginal);
-
 
     samplesNoised.reserve(samplesCount);
     samplesDifferential.reserve(samplesCount);
 
     fill(samplesNoised.begin(), samplesNoised.end(), 0);
     fill(samplesDifferential.begin(), samplesDifferential.end(), 0);
-    //czy moze lepiej mamset?
-    //:memset(samplesNoised, 0, samplesCount*sizeof(Aquila::SampleType));
-//    copy(signalOriginal->toArray(),
-//              signalOriginal->toArray()+samplesCount,
-//              samplesNoised);
-    //memset(samplesDifferential, 0, samplesCount*sizeof(Aquila::SampleType));
-//    copy(signalOriginal->toArray(),
-//              signalOriginal->toArray()+samplesCount,
-//              samplesDifferential);
 }
 
 SFFDetector::Signal::~Signal() {
@@ -58,28 +41,8 @@ SFFDetector::Signal::~Signal() {
 
 SFFDetector::Envelope::Envelope(int samplesCount) {
     this->samplesCount=samplesCount;
-  //  this->singleFrequencyEnvelope = (double *) malloc(samplesCount * sizeof(double));
-    this->singlePoleModule=0.97;
-//    this->firstThreshold=0.15;
     this->differBef = true;
     this->smoothing = true;
-    
-
-   // factorXi = (double *) malloc(samplesCount * sizeof(double));
-   // factorXr = (double *) malloc(samplesCount * sizeof(double));
-   // density = (double *) malloc(sPosNb * sizeof(double));
-   // factorMi = (double *) malloc(samplesCount * sizeof(double));
-   // factorSigma = (double *) malloc(samplesCount * sizeof(double));
-    //delt = (double *) malloc(samplesCount * sizeof(double));
-
-
-  //  memset(singleFrequencyEnvelope, 0, samplesCount );
-  //  memset(factorXi,0, samplesCount );
-  //  memset(factorXr,0, samplesCount );
-   // memset(density, 0, sPosNb*sizeof(double));
-  //  memset(factorMi, 0, samplesCount*sizeof(double));
-  //  memset(factorSigma, 0, samplesCount*sizeof(double));
-   // memset(delt, 0, samplesCount*sizeof(double));
 
     singleFrequencyEnvelope.reserve(samplesCount);
     factorXr.reserve(samplesCount);
@@ -143,16 +106,17 @@ void SFFDetector::printSamples() {
 /// funkcja dodajaca szum do sygnalu
 /// \param signal
 /// \param noiseMult - mnoznik szumu
-void SFFDetector::addGaussNoise(double noiseMult) {
+vector<double> SFFDetector::addGaussNoise(double noiseMult) {
     //zmienne lokalne do wygenerowania szumu
     clock_t  timer;
     //RAND_MAX - maksymalna wartosc zwrocona przez rand()
     long centr = RAND_MAX/2;
     long random1(0), random2(0);
+    vector<double> samplesNoised;
 
     timer = clock();
     srand(timer);
-    for (long i = 0; i <_signal->samplesCount ; i++) {
+    for (long i = 0; i <_signal->samplesOriginal.size() ; i++) {
         random1=0;
         for (int j = 0; j < 16 ; j++) {
             random2 = rand();
@@ -161,8 +125,10 @@ void SFFDetector::addGaussNoise(double noiseMult) {
         //dodatkowe dzielenie w przypadku kompilatora 64-bitowego
         random1 /= 65536;
         random1 /= 8;
-        _signal->samplesNoised[i] = _signal->samplesOriginal[i] + noiseMult * random1;
+        //_signal->samplesNoised[i] = _signal->samplesOriginal[i] + noiseMult * random1;
+        samplesNoised.push_back(_signal->samplesOriginal[i] + noiseMult * random1);
     }
+    return samplesNoised;
 }
 
 ///funkcja do obliczania gestosci dla pozytywnych wartosci
@@ -188,7 +154,7 @@ vector<double> SFFDetector::densityForPositiveValues(vector<double> VAETab, doub
         }
     }
     for (int j = 0; j < sPosNb ; j++) {
-        result[j] /= _signal->samplesCount;
+        result[j] /= sPosNb;
     }
 
     return result;
@@ -196,11 +162,13 @@ vector<double> SFFDetector::densityForPositiveValues(vector<double> VAETab, doub
 
 /// funckcja do obliczania czestotliwosci obwiedni
 /// \param frequency - czestotliwosc
-void SFFDetector::singleFrequencyEnvelope(double frequency) {
+vector<double> SFFDetector::singleFrequencyEnvelope(double frequency) {
 
     double filterFactorCos(0), filterFactorSin(0);
     double normalizedFrequency(0), max(0), threshold1(0),
             threshold2(0), sum(0), distance(0), module(0);
+
+    vector<double> singleFrequencyEnvelope;
 
     //wzor na omegak z artykulu
     normalizedFrequency = 2*PI*frequency/_signal->samplingFrequency;
@@ -214,25 +182,32 @@ void SFFDetector::singleFrequencyEnvelope(double frequency) {
     for (int i = 1; i < _signal->samplesCount ; i++) {
         _envelope->factorXr[i] = _signal->samplesDifferential[i] + filterFactorCos * _envelope->factorXr[i-1] - filterFactorSin * _envelope->factorXi[i-1];
         _envelope->factorXi[i] = filterFactorCos * _envelope->factorXi[i-1] + filterFactorSin * _envelope->factorXr[i-1];
+        //cout<<_envelope->factorXi[i]<<endl;
     }
 
     /* obwednia - wzor z artykulu*/
-    if (_envelope->singleFrequencyEnvelope.size() == 0){
-        for (int j = 0; j < _signal->samplesCount ; j++) {
-            _envelope->singleFrequencyEnvelope.push_back(_envelope->factorXr[j]*_envelope->factorXr[j] - _envelope->factorXi[j] * _envelope->factorXi[j]);
+//    if (_envelope->singleFrequencyEnvelope.size() == 0){
+//        for (int j = 0; j < _signal->samplesCount ; j++) {
+//            _envelope->singleFrequencyEnvelope.push_back(_envelope->factorXr[j]*_envelope->factorXr[j] - _envelope->factorXi[j] * _envelope->factorXi[j]);
+//            //cout<<_envelope->singleFrequencyEnvelope[j]<<endl;
+//        }
+//    } else{
+//        for (int j = 0; j < _envelope->singleFrequencyEnvelope.size() ; j++) {
+//            _envelope->singleFrequencyEnvelope[j] = _envelope->factorXr[j]*_envelope->factorXr[j] - _envelope->factorXi[j] * _envelope->factorXi[j];
+//            //cout<<_envelope->singleFrequencyEnvelope[j]<<endl;
+//        }
+//    }
+
+    for (int j = 0; j < _signal->samplesCount ; j++) {
+            singleFrequencyEnvelope.push_back(_envelope->factorXr[j]*_envelope->factorXr[j] - _envelope->factorXi[j] * _envelope->factorXi[j]);
             //cout<<_envelope->singleFrequencyEnvelope[j]<<endl;
         }
-    } else{
-        for (int j = 0; j < _envelope->singleFrequencyEnvelope.size() ; j++) {
-            _envelope->singleFrequencyEnvelope[j] = _envelope->factorXr[j]*_envelope->factorXr[j] - _envelope->factorXi[j] * _envelope->factorXi[j];
-            //cout<<_envelope->singleFrequencyEnvelope[j]<<endl;
-        }
-    }
+
 
     /* dystrybuanta */
-    max = *max_element(_envelope->singleFrequencyEnvelope.begin(), _envelope->singleFrequencyEnvelope.end());
+    max = *max_element(singleFrequencyEnvelope.begin(), singleFrequencyEnvelope.end());
     //cout<<"max: "<<max<<endl;
-    _envelope->density = densityForPositiveValues(_envelope->singleFrequencyEnvelope, max);
+    _envelope->density = densityForPositiveValues(singleFrequencyEnvelope, max);
     //cout<<density[100]<<endl;
     /* prog - cisza */
     threshold1 = _envelope->initialThreshold;
@@ -249,9 +224,9 @@ void SFFDetector::singleFrequencyEnvelope(double frequency) {
     /* srednia dla "ciszy" */
     sum = 0;
     int counter(0);
-    for (int k = 0; k < _envelope->singleFrequencyEnvelope.size() ; k++) {
-        if(_envelope->singleFrequencyEnvelope[k] < threshold2){
-            sum += _envelope->singleFrequencyEnvelope[k];
+    for (int k = 0; k < singleFrequencyEnvelope.size() ; k++) {
+        if(singleFrequencyEnvelope[k] < threshold2){
+            sum += singleFrequencyEnvelope[k];
             counter++;
         }
     }
@@ -262,9 +237,10 @@ void SFFDetector::singleFrequencyEnvelope(double frequency) {
 
     /* skalownaie obwiedni */
     sum *= 32768;
-    for (int i = 0; i < _envelope->singleFrequencyEnvelope.size() ; i++)
-        _envelope->singleFrequencyEnvelope[i] = _envelope->singleFrequencyEnvelope[i]/sum;
+    for (int i = 0; i < singleFrequencyEnvelope.size() ; i++)
+        singleFrequencyEnvelope[i] = singleFrequencyEnvelope[i]/sum;
 
+    return singleFrequencyEnvelope;
 }
 
 double SFFDetector::findMaxValue(double *array) {
@@ -285,7 +261,7 @@ void SFFDetector::detect() {
     double ro(0);
 
     /* dodanie szumu */
-    addGaussNoise(0.0001);
+    _signal->samplesNoised = addGaussNoise(0.0001);
 
     /* rozniczkowanie sygnalu - na zaszumionym sygnale */
     if(_envelope->differBef){
@@ -300,7 +276,9 @@ void SFFDetector::detect() {
         }
     }
     cout<<"5"<<endl;
-    singleFrequencyFilteringEnvelope();
+
+    /************** liczenie obwiedni *************/
+    _envelope->delt = singleFrequencyFilteringEnvelope();
 
     cout<<"4"<<endl;
 
@@ -309,49 +287,50 @@ void SFFDetector::detect() {
 
     cout<<"3"<<endl;
 
-    /* prog detekcji na delta i detekcja */
+    /********* prog detekcji na delta i detekcja *********/
     _envelope->beta = countBeta();
     _envelope->beta *= _envelope->betaMult;
     _envelope->theta = countTheta();
 
     cout<<"2"<<endl;
-    cout<<"beta"<<_envelope->beta<<endl;
-    cout<<"theta"<<_envelope->theta<<endl;
-//    ro = calculateRo(_signal);
-//    singleFrequencyFilteringDetect();
-//
-//    cout<<"1"<<endl;
-//
-//    system("touch result2ToPlot");
-//    //otwieram plik do zapisu
-//    std::ofstream file("result2ToPlot");
-//    int xValue(0);
-//    int arraySize = sizeof(_envelope->singleFrequencyEnvelope)/sizeof(_envelope->singleFrequencyEnvelope[0]);
-//    if(file){
-//        for (size_t i = 0; i < _signal->samplesCount ; i++) {
-//            file << _signal->samplesDifferential[i] << endl;
-//        }
-//        file.close();
-//    } else{
-//        cout<<"BLAD: nie mozna otworzyc pliku"<<endl;
-//    }
+    cout<<"beta "<<_envelope->beta<<endl;
+    cout<<"theta "<<_envelope->theta<<endl;
+
+    singleFrequencyFilteringDetect();
+
+    system("touch result2ToPlot");
+    //otwieram plik do zapisu
+    ofstream file("result2ToPlot");
+    if(file){
+        for (size_t i = 0; i<_speachBeginnings.size() ; i++) {
+            file << _speachBeginnings[i] << endl;
+        }
+        file.close();
+    } else{
+        cout<<"BLAD: nie mozna otworzyc pliku"<<endl;
+    }
 
 }
 
 //!!!!!!!!!!!!!!!!!!  tutaj zmiana squareOfEnvelope na long sprawila, ze teraz beta=0, a theta=3.95
 //wczessniej  bylo theta=nan i beta miala jakas wartosc
-void SFFDetector::singleFrequencyFilteringEnvelope() {
+vector<double> SFFDetector::singleFrequencyFilteringEnvelope() {
     double frequency,  mean, diff;
+    vector<double> delt;
+    vector<double> singleFrequencyEnvelope1;
+    vector<double> singleFrequencyEnvelope2;
+    vector<double> singleFrequencyEnvelope3;
+
 
     /* problem z liczeniem wariancji */
     int counter(0);
     for (int i = 0; i < 186 ; i+=4) {
         frequency = 300 + i*20;
-        singleFrequencyEnvelope(frequency);
+        singleFrequencyEnvelope1 = singleFrequencyEnvelope(frequency);
         counter++;
         for (int j = 0; j < _signal->samplesCount ; j++) {
             //kwadrat obwiedni
-            double squareOfEnvelope = _envelope->singleFrequencyEnvelope[j];
+            double squareOfEnvelope = singleFrequencyEnvelope1[j];
             squareOfEnvelope *= squareOfEnvelope;
 
             //estymata sredniaj z kwadratu
@@ -384,11 +363,11 @@ void SFFDetector::singleFrequencyFilteringEnvelope() {
 
     for (int i = 2; i < 186 ; i+=4) {
         frequency = 300 + i*20;
-        singleFrequencyEnvelope(frequency);
+        singleFrequencyEnvelope2 = singleFrequencyEnvelope(frequency);
         counter++;
         for (int j = 0; j < _signal->samplesCount ; j++) {
             //kwadrat obwiedni
-            double squareOfEnvelope = _envelope->singleFrequencyEnvelope[j];
+            double squareOfEnvelope = singleFrequencyEnvelope2[j];
             squareOfEnvelope *= squareOfEnvelope;
 
             //estymata sredniaj z kwadratu
@@ -430,81 +409,50 @@ void SFFDetector::singleFrequencyFilteringEnvelope() {
     for (int k = 0; k < _signal->samplesCount ; k++) {
         double squareOfEnvelope = fabs(_envelope->factorSigma[k] * _envelope->factorSigma[k]
                                 - _envelope->factorMi[k] * _envelope->factorMi[k]);
-        _envelope->delt.push_back(pow(squareOfEnvelope, 1.0/64));
+       // _envelope->delt.push_back(pow(squareOfEnvelope, 1.0/64));
+        delt.push_back(pow(squareOfEnvelope, 1.0/64));
+
         //_envelope->delt.push_back(1);
         //_envelope->delt[k] = pow(squareOfEnvelope, (1.0/64));
         //cout<<_envelope->delt[k]<<endl;
     }
+    return delt;
 }
 
 
 double SFFDetector::countBeta() {
-    double max(0), distance(0), beta(0), maxI(0), density(0);
+    double max(0), dist(0), beta(0), maxI(0), density(0);
     vector<double> densityTab;
 
     /* rozklad */
     max = *max_element(_envelope->delt.begin(), _envelope->delt.end());
-    cout<<"max delt:"<<max<<endl;
     densityTab = densityForPositiveValues(_envelope->delt, max);
 
-//    for (int j = 0; j <_envelope->delt.size() ; j++) {
-//        cout<<_envelope->delt[j]<<endl;
-//    }
-
-    cout<<"beta1!"<<endl;
     /* wygladzenie */
     densityTab = smooth(densityTab);
     cout<<"density smoothed!"<<endl;
 
     /*maximum  lewe */
-    for (int i = 0; i < densityTab.size()/2 ; i++) {
-        //cout<<densityTab[i]<<endl;
-        if (densityTab[i] > density){
-            density = densityTab[i];
-            maxI = i;
-            //cout<<i<<endl;
-        }
-    }
-    cout<<"maxI: "<<maxI<<endl;
-    _envelope->densityForLeftPart = maxI;
-    cout<<"left: "<<_envelope->densityForLeftPart<<endl;
+    vector<double>::iterator maxLeft = max_element(densityTab.begin()+300, densityTab.begin()+400);
+    long maxLeftIndex = std::distance(densityTab.begin(), maxLeft);
 
     /* maximum prawe */
-    density = 0;
-    maxI = 0;
-    for (int i = (int)(densityTab.size() /2)+1; i < densityTab.size() ; i++) {
-        cout<<densityTab[i]<<endl;
-        if (densityTab[i] > density){
-            density = densityTab[i];
-            maxI = i;
-        }
-    }
-    _envelope->densityForRightPart = maxI;
-    cout<<"right: "<<_envelope->densityForRightPart<<endl;
+    vector<double>::iterator maxRight = max_element(densityTab.begin()+451,densityTab.begin()+800);
+    long maxRightIndex = std::distance(densityTab.begin(), maxRight);
 
     /* minimum w przedziale */
-    density = 10;
-    maxI = 0;
-    for (int i = (int)_envelope->densityForLeftPart; i < _envelope->densityForRightPart ; i++) {
-        //cout<<"density: "<<_envelope->density[i]<<endl;
-        //cout<<"i"<<i<<endl;
-        if (densityTab[i] < density){
-            density = densityTab[i];
-            maxI = i;
-        }
-    }
+    vector<double>::iterator minLocal = min_element(maxLeft,maxRight);
+    long minLocalIndex = std::distance(densityTab.begin(), minLocal);
 
     /* wyliczenie beta dla obwiedni */
-    distance = max/800;
-    beta = maxI*distance;
-    cout<<"maxI"<<maxI<<endl;
+    dist = max/800;
+    beta = minLocalIndex*dist;
     return beta;
 }
 
 vector<double> SFFDetector::smooth(vector<double> signal) {
-    vector<double> smoothedSignal(signal.size());
+    vector<double> smoothedSignal;
     cout<<"dupa?"<<endl;
-    cout<<"signal size: "<<signal.size()<<endl;
     for (int i = 1; i < signal.size()-1; i++) {
         //smoothedSignal[i] = signal[i-1]*0.25 + signal[i]*0.5 + signal[i+1]*0.25;
         smoothedSignal.push_back(signal[i-1]*0.25 + signal[i]*0.5 + signal[i+1]*0.25);
@@ -523,29 +471,30 @@ double SFFDetector::countTheta() {
     double max(0), threshold1(0), threshold2(0), distance(0),
             mean(0), theta(0);
 
+    vector<double> density;
     /* rozklad */
-    //max = findMaxValue(_envelope->delt);
-    max = *std::max_element(std::begin(_envelope->delt), std::end(_envelope->delt));
-    _envelope->density = densityForPositiveValues(_envelope->delt, max);
+    max = *max_element(_envelope->delt.begin(), _envelope->delt.end());
+    density = densityForPositiveValues(_envelope->delt, max);
 
     /* prog - cisza */
     threshold1 = _envelope->detectionSilenceThreshold;
     double sum(0);
     double counter(0);
     for (int i = 0; i < 801 ; i++) {
-        sum += _envelope->density[i];
+        sum += density[i];
         if (sum > threshold1) {
             counter = i;
             break;
         }
     }
+
     distance = max/800;
     threshold2 = counter * distance + distance/2;
 
     /* srednia dla "ciszy" */
     sum =0;
     counter = 0;
-    for (int j = 0; j < _signal->samplesCount ; j++) {
+    for (int j = 0; j < _envelope->delt.size() ; j++) {
         if (_envelope->delt[j]<threshold2){
             sum += _envelope->delt[j];
             counter++;
@@ -637,28 +586,29 @@ void SFFDetector::singleFrequencyFilteringDetect() {
     // jak tak, to poczatek ramki zapisuje jako poczatek mowy
     for (int j = 0; j < frameLength ; j++) {
         for (size_t i = 0; i <frames->getSamplesPerFrame() ; i++) {
+            cout<<"delt"<<_envelope->delt[i]<<endl;
             if (_envelope->delt[i] > theta && _envelope->delt[i] > beta)
                 counter++;
         }
         percentage = 1.0 * counter / frames->getSamplesPerFrame();
 
-        if (percentage>_envelope->percent){
+        if (percentage > _envelope->percent){
 
             if (isSilence){
                 //wrzucam nr probki z calego sygnalu na liste
-                this->_speachBeginnings.push_back(j*samplesPerOverlap);
+                _speachBeginnings.push_back(j*samplesPerOverlap);
                 isSilence = false;
             }
         } else{
             if (!isSilence){
                 this->_speachEndings.push_back(j*samplesPerOverlap+frames->getSamplesPerFrame());
-                isSilence = false;
+                isSilence = true;
             }
         }
     }
 
     //for (int k = 0; k <this->_speachEndings.size() ; k++) {
-    std::cout<< this->_speachBeginnings.size()<<std::endl;
+    cout<<"speach beginnings: "<<_speachBeginnings.size()<<endl;
     //}
 
 
