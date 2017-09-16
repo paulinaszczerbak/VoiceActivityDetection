@@ -378,7 +378,7 @@ vector<double> SFFDetector::singleFrequencyFilteringEnvelope() {
             _envelope->factorSigma[j] += diff;
         }
     }
-    std::cout<<"dupa4"<<std::endl;
+    cout<<"dupa4"<<endl;
 
 //    for (int i = 3; i < 186 ; i+=4) {
 //        frequency = 300 + i*20;
@@ -397,7 +397,7 @@ vector<double> SFFDetector::singleFrequencyFilteringEnvelope() {
 //            _envelope->factorSigma[j] += diff;
 //        }
 //    }
-    std::cout<<"dupa3"<<std::endl;
+    cout<<"dupa3"<<endl;
     /* normowanie */
     for (int k = 0; k < _signal->samplesCount ; k++) {
         _envelope->factorMi[k] /= counter;
@@ -539,7 +539,7 @@ double SFFDetector::calculateRo(SFFDetector::Signal *signal){
     Aquila::FramesCollection *frames = new Aquila::FramesCollection(source, frameLength, samplesPerOverlap);
     //lPosNb = (_signal->samplesCount - frameLength)/frameStep;
 
-    min = 1.0E38;
+    //min = 1.0E38;
     for (size_t i = 0; i < frames->count() ; i++) {
         energy = countEnergy(frames, i);
         //std::cout<<energy<<std::endl;
@@ -586,12 +586,12 @@ void SFFDetector::singleFrequencyFilteringDetect() {
     // jak tak, to poczatek ramki zapisuje jako poczatek mowy
     for (int j = 0; j < frameLength ; j++) {
         for (size_t i = 0; i <frames->getSamplesPerFrame() ; i++) {
-            cout<<"delt"<<_envelope->delt[i]<<endl;
+            cout<<"delt "<<_envelope->delt[i]<<endl;
             if (_envelope->delt[i] > theta && _envelope->delt[i] > beta)
                 counter++;
         }
         percentage = 1.0 * counter / frames->getSamplesPerFrame();
-
+        //cout<<"percentage"<<percentage<<endl;
         if (percentage > _envelope->percent){
 
             if (isSilence){
@@ -601,14 +601,18 @@ void SFFDetector::singleFrequencyFilteringDetect() {
             }
         } else{
             if (!isSilence){
-                this->_speachEndings.push_back(j*samplesPerOverlap+frames->getSamplesPerFrame());
+                _speachEndings.push_back(j*samplesPerOverlap+frames->getSamplesPerFrame());
                 isSilence = true;
             }
         }
     }
 
+    if (!isSilence){
+        _speachEndings.push_back(_envelope->delt.size());
+    }
+
     //for (int k = 0; k <this->_speachEndings.size() ; k++) {
-    cout<<"speach beginnings: "<<_speachBeginnings.size()<<endl;
+    //cout<<"speach beginnings: "<<_speachBeginnings.size()<<endl;
     //}
 
 
