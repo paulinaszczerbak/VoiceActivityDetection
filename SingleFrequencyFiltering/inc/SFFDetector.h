@@ -1,22 +1,19 @@
 //
-// Created by paulina on 07.07.17.
+// Created by paulina on 16.09.17.
 //
 
 #ifndef VOICEACTIVITYDETECTION_SFFDETECTOR_H
 #define VOICEACTIVITYDETECTION_SFFDETECTOR_H
-
-
 #include <aquila/source/WaveFile.h>
 #include <aquila/source/WaveFileHandler.h>
 #include <vector>
 #include <aquila/source/FramesCollection.h>
-#include "../SingleFrequencyFiltering/inc/Envelope.h"
-#include "../SingleFrequencyFiltering/inc/Signal.h"
+#include "Signal.h"
+#include "Envelope.h"
 
 using namespace std;
 
 class SFFDetector {
-
 private:
     //sygnal WAV poddany detekcji
     Signal* _signal;
@@ -31,7 +28,7 @@ private:
     //wskaznik do struktury zawierajacej numery indeksow probek
     //kończących aktywnosc mowcy
     vector<int> _speachEndings;
-    vector<double> addGaussNoise(double noiseMult);
+    vector<Aquila::SampleType> addGaussNoise(vector<Aquila::SampleType> signalToNoised, double noiseMult);
     vector<double> densityForPositiveValues(std::vector<double> VAETab, double max /*, double* VAEDensity,short sPosNb=801*/);
     vector<double> singleFrequencyEnvelope(double frequency);
     vector<double> singleFrequencyFilteringEnvelope();
@@ -43,13 +40,14 @@ private:
     vector<double> smooth(std::vector<double> signal);
     double countEnergy(Aquila::FramesCollection* frames, Aquila::SampleType frameIndex);
     void singleFrequencyFilteringDetect();
+    vector<Aquila::SampleType> diffSamples(vector<Aquila::SampleType> signalToDiff);
 
 public:
     //SFFDetector(std::string filename):signal(new Signal(filename)){}
-    SFFDetector(std::string filename);
+    SFFDetector(string filename);
     ~SFFDetector(){delete _signal, _envelope;}
-    void printSamples();
     void detect();
+
 };
 
 

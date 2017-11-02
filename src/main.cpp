@@ -11,7 +11,8 @@
 #include "aquila/transform/FftFactory.h"
 #include "../inc/VADImp.h"
 #include "../inc/ResultPlotter.h"
-#include "../inc/SFFDetector.h"
+//#include "../inc/SFFDetector.h"
+#include "../SingleFrequencyFiltering/inc/SFFDetector.h"
 
 int main()
 {
@@ -20,8 +21,8 @@ int main()
     //Aquila::WaveFile wav("../../miller_larry.wav");
     //Aquila::WaveFile wav("../../carlin_pc.wav");
     //Aquila::WaveFile wav("../../ireland_ouch.wav");
-    //Aquila::WaveFile wav("../../mbi02w1.wav");
-    Aquila::WaveFile wav("../kabanos.wav");
+    Aquila::WaveFile wav("../../mbi02w1.wav");
+    //Aquila::WaveFile wav("../kabanos.wav");
     std::cout << "Filename: "           << wav.getFilename();
     std::cout << "\nLength: "           << wav.getAudioLength()     << " ms";
     std::cout << "\nSample frequency: " << wav.getSampleFrequency() << " Hz";
