@@ -106,7 +106,7 @@ Rozdział 5. zawiera  wyniki detekcji dla całych ciągów słów oraz porównan
  
 
 \chapter{Wybrane metody detekcji aktywności mówcy}
- \section{Detekcja aktywności mówcy}
+ \section{Czym jest detekcja aktywności mówcy oraz gdzie się ją wykorzystuje}
  + schemat jak w ksiazce RM, w ktorym miejscu jest vad w systemie ARM
  
  Detekcja aktywności mówcy (Voice Activity Detection - VAD) jest powszechnie stosowana w systemach automatycznego rozpoznawania mowy. Podczas rejestrowania wypowiedzi do późniejszego przetwarzania jej przez system ARM, zostaje zarejestrowana cała wypowiedź mówcy, włącznie z częścią, która nie zawiera mowy. Jeżeli we fragmencie jest zawarty sygnał mowy, mówimy, że mówca jest aktywny. Aktywnością mówcy nazywa się emitowny przez niego dźwięk.  Zawartość semantyczna wypowiedzi jest zawarta w głównej mierze we fragmentach, kiedy mówca jest aktywny. Analizowanie całego  zarejestrowanego sygnału mowy, bez wykorzystania systemu VAD, jest oczywiście możliwe, aczkolwiek niepotrzebnie zwiększa czas obliczeń oraz istnieje prawdopodobieństwo, że fragment, gdy mówca nie jest aktywny, zostanie błędnie zaklasyfikowany jako jakiś konkretny fonem - zatem w dużej mierze może popsuć jakość rozpoznania. Detekcja aktywności mówcy w ogólnym przypadku zakłada, że sygnał może występować w dwóch stanach: tylko szum (brak sygnału mowy), szum + sygnał mowy. Korzystając z zagadnienia hipotez ze statystyki, możemy pierwszy stan oznaczyć jako hipotezę $H_{0}$, a drugi jako $H_{1}$, dzięki czemu możemy przedstawić to w następujący sposób:
@@ -129,8 +129,59 @@ Rozdział 5. zawiera  wyniki detekcji dla całych ciągów słów oraz porównan
 
  \section{Algorytm bazujący na energii pojedynczej ramki}
  \section{Algorytm bazujący na obwiedni sygnału}
- \section{Algorytm Sohn}
-Donec cursus nulla vitae pede. Etiam quam pede, aliquet ut, pellentesque sed, sagittis non, est. Quisque egestas malesuada risus. Maecenas ultricies libero a quam. Nullam feugiat arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. In interdum, risus ut gravida sollicitudin, leo sapien commodo dui, non consectetuer nisl nunc ac massa. Mauris a orci in eros venenatis euismod. Curabitur orci. Quisque pharetra, dui sed dignissim hendrerit, nibh ante malesuada eros, sed tincidunt magna lorem a tellus. Aliquam erat volutpat. Aenean pulvinar, metus et mattis dictum, massa lacus semper purus, quis vehicula augue mi et leo. Ut eu ipsum. Sed dictum dapibus nisi. Cras mattis. Nulla sed augue ac sem tempus condimentum. 
+ \section{Algorytm SFF (Single Frequency Filtering)}
+ tłumaczenie artykułu:
+ 
+ Podstawowe informacje w podejściu Single Frequency Filtering
+ 
+ Sygnał mowy ma zależności zarówno z czasem, jak i z częstotliwością. Skutkuje to tym, że SNR (Signal to Noise Ratio) jest funkcją w dziedzinie czasu oraz w dziedzinie częstotliwości. Dla idealnego szumu o danej całkowitej mocy, moc jest podzielona równo dla każdej częstotliwości, podczas gdy dla sygnału moc jest rozdzielona nierównomiernie dla częstotliwości. Zatem, $S^2(f)/N^2(f)$ jest wyższe dla niektórych częstotliwości i niższe dla innych, gdzie S(f) i N(f) są amplitudami sygnału i szumu jako funkcja w dziedzinie częstotliwości. To daje dużo wyższe wartości dla średniej wartości  $S^2(f)/N^2(f)$ powyżej zakresu częstotliwości w porównaniu ze stosunkiem całkowitej mocy sygnału do całkowitej mocy szumu powyżej całkowitego zakresu częstotliwości. 
+ 
+ Przyjmijmy wzory (1), (2), (3) z artykułu, gdzie (fi - fi+1)
+ jest (i+1)-tą przerwą spośród L nienachodzących na siebie pasm częstotliwościowych oraz i=0,1,...,L-1. Obowiązuje następująca nierówność:
+ 
+ alfa >= beta >= gamma (4)
+ 
+ S(f) i N(f) są obliczane dla zdegradowanego wyrażenia mowy i dla szumu używając 512-punktowej DFT dla segmentów zokienkowanych oknem Hanna o rozmiarze 20msec dla KAŻDEGO PRZESUNIĘCIA PRÓBKI używając L=16. W Tabeli I (artykuł) przedstawiono średnie wartości alfa, beta, gamma obliczone dla całego wyrażenia. Oczywiste jest, że średine alfa >= średnie beta >= średnie gamma dla różnych typów szumu. W przypadku dla szumu białego wartości sr alfa, sr beta, sr gamma są niższe niż wartości dla niestacjonarnych szumów(np volvo i karabin maszynowy). W przypadku dla szumów niestacjonarnych dolna granica jest niska dla niektórych częstotliwości, co sprawia, że mianownik N(f) jest mały. Z małymi wartościami w mianowniku, współczynniki alfa, beta gamma są relatywnie wyższe, jak zaobserwowano w Tabeli I w srednich wartosciach alfa, beat, gamma dla szumu volvo i karabinu maszynowego. Warto również zauważyć, że dla szumów rozłożonych nierównomiernie, taich jak karabin maszynowy, f16 i volvo, wartości sr alfa i sr beta są dużo wyższe niż dla większości szumów rozłożonych równomiernie, taich jak szum biały, różowy i buccaneer2, podczas gdy odpowiadające im wartości sr gamma są niskie we wszystkich przypadkach. Ma to związek z obszarami zawierającymi wysoki S(f)/N(f) (SNR) w dziedzinie czasu i dziedzinie częstotliwości dla szumów rozłożonych nierównomiernie.
+ 
+ Moc sygnału i szumu jako funkcja w dziedzinie częstotliwości może zostać obliczona wykorzystując  blokowe przetwarzanie jak w DFT lub poprzez filtrowanie przez SFF, jak opisano w następnej skcji. Tabela II pokazuje, że nierówność (4) obowiązuje również w podejściu SFF. Oczekuje się, że zarówno podeście oparte o DFT, jak i SFF dadzą podobne rezultaty. Podejście SFF zostało tutaj wykorzystane, ponieważ dzięki niemu mozna uniknąć niektórych skutków spowodowanych blokowym przetwarzaniem. Również obliczenia dla SFF są szybsze w porównaniu z obliczeniami w DFT w każdej chwili próbkowania.
+ 
+ 
+ Proponowany algorytm VAD 
+ 
+ A. Obwiednia sygnału mowy w każdej częstotliwości
+ 
+ Sygnał mowy w zdyskretyzowanej dziedzinie czasu s(n) jest różnicowany i zróżnicowany sygnał jest rozumiany jako x(n) = s(n) -s(n-1). Częstotliwość próbkowania to fs. Sygnał x(n) jest przemnażany przez zespolona sinusoidę o danej znormalizowanej częstotliwości śr omega k. Wynikowa operacja w dziedzinie czasu jest dana jako: 
+ 
+ $xk(n) = x(n)e^(j śromegak n)$, gdzie 
+ 
+ $śr omega k = (2pi*śr_fk)/fs.$
+ 
+ Kiedy pomnożymy x(n) przez $e^(j*śr_omega_k*n)$, wynikowe widmo xk(n) będzie przesuniętym widmem x(n). Czyli,
+ 
+$ Xk(omega) = X(omega - śr_omega_k)$,
+ gdzie Xk(omega) i X(omega) to odpowiednio widma xk(n) i x(n).
+ 
+ Sygnał xk(n) jest przepuszczany przez jednobiegunowy filtr, którego transmitancja jest dana jako:
+ 
+ $H(z) = 1/(1+rz^(-1)).$
+ 
+ Jednobiegunowy filtr ma biegun na osi liczb rzeczywistych w odległości r od początku układu współrzędnych. Lokalizacja pierwiastka jest w z = -r na płaszczyśnie liczb zespolonych , co odpowiada połowie częstotliwości próbkowania, np fs/2. Wyjście filtra yk(n) jest dane jako:
+ 
+ yk(n) = -r *yk(n-1)+xk(n)
+ 
+ Obwiednia sygnału yk(n) jest dana jako:
+ 
+ $ek(n) = sqrt(ykr^2(n) + yki^2(n))$ (10) , 
+ 
+   gdzie ykr(n) i yki(n) są odpowiednio częścią rzeczywista i urojoną yk(n).
+ 
+ Kiedy filtrowanie xk(n) będzie zrobione dla fs/2, powyższa obwiednia ek(n) będzie odpowiadać obwiedni sygnału xk(n) przefiltrowanego w pożądanej częstotliwości 
+ 
+ $fk = fs/2 - śr_fk.$
+ 
+ 
+ Powyższa metoda estymowania obwiedni składowej dla częstotliwości fk jest określana jako podejście single frequency filtering (SFF). 
+ 
 
 \chapter{Implementacja programu}
 
