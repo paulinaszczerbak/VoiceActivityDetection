@@ -180,7 +180,9 @@ $ Xk(omega) = X(omega - śr_omega_k)$,
  $fk = fs/2 - śr_fk.$
  
  
- Powyższa metoda estymowania obwiedni składowej dla częstotliwości fk jest określana jako podejście single frequency filtering (SFF). 
+ Powyższa metoda estymowania obwiedni składowej dla częstotliwości fk jest określana jako podejście single frequency filtering (SFF). Wybór filtru z biegunem w z=-r do estymacji obwiedni przefiltrownego sygnału wydaje się być bardziej odpowiedni, jako że obwiednie są obliczane w możliwie najwyższych częstotliwościach (fs/2). Ponadto, wybór filtru w stałej częstotliwości dla jakiejkolwiek pożądaniej częstotliwości fk zapobiega efektu przeskalowania w związku z różnymi wzmocnieniami filtrów w różnych częstotliwościach. Jeżeli biegun jest wybrany na kole jednostkowym, np z=r=-1, może to skutkować niestabilnością wyjścia filtru. Stabilność filtru jest zapewniona dzięki pchnięciu bieguna nieco bardziej wewnątrz koła jednostkowego. Z tego powodu r zostało dobrane jako 0.99.
+ 
+ W tym badaniu obwiednia została obliczona dla każdych 20Hz w przedziale od 300Hz do 3000Hz jako funkcja w dziedzinie czasu. Wybrany został przedział częstotliwości 300-4000Hz, ponieważ pokrywa przydatne widmowe pasma mowy. Zatem mamy obwiednie dla 185 częstotliwości jako funkcja w dziedzinie czasu. Zasadniczo obwiednia może zostać obliczona dla każdej pożądanej częstotliwości.
  
 
 \chapter{Implementacja programu}
