@@ -184,6 +184,34 @@ $ Xk(omega) = X(omega - śr_omega_k)$,
  
  W tym badaniu obwiednia została obliczona dla każdych 20Hz w przedziale od 300Hz do 3000Hz jako funkcja w dziedzinie czasu. Wybrany został przedział częstotliwości 300-4000Hz, ponieważ pokrywa przydatne widmowe pasma mowy. Zatem mamy obwiednie dla 185 częstotliwości jako funkcja w dziedzinie czasu. Zasadniczo obwiednia może zostać obliczona dla każdej pożądanej częstotliwości.
  
+ 
+ B. Składowe ważone obwiedni sygnału mowy
+ 
+ Kiedy sygnał mowy ma bardzo duży zakres dynamiczny w dziedzinie częstotliwości, sygnał może mieć wysoką wartość mocy w niektórych częstotliwościach w każdej chwili czasowej. W tych częstotliwościach SNR będzie miał większą wartość, jako, że moc szumu będzie prawdopodobnie mniejsza w związku z większym rozkładem jednostajnym mocy. Nawet dla szumów z nierównomiernym rozkładem mocy, niższe korelacje próbek szumu skutkują w niższym dynamicznym zakresie w rozpiętości mocy szumu przez częstotliwość, w porównaniu z sygnałem mowy. Zauważmy, że widmowy zakres dynamiczny daje przejaw korelacji próbek w dziedzinie czasu. 
+ 
+ Moc szumu tworzy funkcję podłogi dla obwiedni dla każdej częstotliwości i poziom podłogi zależy od rozkładu mocy szumu wobec częstotliwości. Podłoga jest bardziej jednorodna wobec czasu, jeżeli szum jest niemalże stacjonarny.Nawet jeżeli szum jest niestacjonarny, jest względnie stacjonarny ponad większymi przerwami w czasie niż sygnał mowy. W takich przypadkach, poziom podłogi może zostać obliczony ponad długimi przerwami w dziedzinie czasu dla każdej częstotliwości, jeżeli jest to potrzebne.
+ 
+ Żeby zrekompensować efekt szumu, wartość wagi dla każdej częstotliwości jest obliczana używając wartości funkcji podłogi. Dla każdego wyrażenia, średnia (uk - mi k) z wartości mniejszych niż 20 \% wartości obwiedni dla każdej częstotliwości fk jest wykorzystywana do obliczenia znormalizowaną wagę wartości wk dla każdej częstotliwości. Wybór akurat 20\% wartości jest oparty o założenie, że w jest przynajmniej 20\% ciszy w każdym wyrażeniu mowy. Znormalizowana waga wartości w każdej częstotiwości jest dana jako:
+ 
+ wk = (1/uk)/SUM(l=1,N,1/ut),
+ 
+ gdzie N to liczba kanałów.
+ 
+ Obwiednia ek(n) dla każdej częstotliwości fk jest przemnażana przez wartość wagi wk w celu zrekompensowania poziomu szumu w tej częstotiwości. Wynikowa obwiednia jest określana jako obwiednia z ważonymi komponentami. Zauważmy, że przez to ważenie, obwiednia dla każdej częstotliwości jest dzielona przez estymatę podłogi szumi (uk). Rys. 1 pokazuje obwiednie i odpowiadające ważone obwiednie dla różnych częstotliwości w sygnale mowy  zaszumionym szumem różowym z 10dB SNR w porównaniu z obwiedniami dla sygnału niezaszumionego. Można zaobserwować, że cechy mowy są lepiej wyeksponowane w ważonych obwiedniach (rys 1(d)), ponieważ wagi redukują efekt szumu. Do porównania, obwiednie zostały przeskalowane do tej samej wartości. 
+
+ Mała ilośc białego szumu (100dB SNR) została dodana do wszystkich sygnałów, żeby mieć pewność, że wartość funkcji podłogi nie jest zerem. Dla obliczeń wk, wartości w dodanych obszarach ciszy nie będą rozważane. 
+ 
+ W każdej chwili czasu średnia (u(n) = mi(n)) kwadratu ważonych obwiedni obliczonych  wobec częstotliwości odpowiada w przybliżeniu energii sygnału w danej chwili (rys 2(c)) Oczekuje się, że u(n) (mi(n)) będzie wyższe dla mowy, niż dla szumu w obszarach, gdzie występuje sygnał mowy, ponieważ wartosci szumu są o obniżonej wadze (deweighted). W każdej chwili czasu, standardowa odchyłka (sigma(n)) kwadratu ważonych obwiedni obliczonych poprzez(?) częstotliwość rownież będzie względnie wyższa dla mowy niż dla szumu w obszarach mowy - związane jest to ze strukturą formantu (rys 2(d)).Dlatego sigma(n) + u(n) jest na ogół wyższe w obszarach mowy i niższe w regionach pozbawionych mowy. Ponieważ oczekuje się, że rozpiętość szumu ( po kompensacji) będzie niższa, zaobserwowano, że wartości (sigma(n) - u(n)) są zwykle niższe w obszarach pozbawionych mowy, w porównaniu do obszarów zawierających mowę (rys. 2(e)). Pomnożenie (sigma(n) + u(n)) przez (sigma(n)+ u(n)) daje $(sigma^2(n) - u^2(n))$, co podkreśla kontrast pomiędzy obszarami zawierającymi mowę i tymi, które mowy nie zawierają. Rys 2 i 3 przedstawia cechy u(n), sigma(n) oraz (sigma(n)-u(n)) dla wyrażenia zepsutego szumem różowym o odpowiednio SNR=-10dB i SNR=5dB.   
+ 
+ W związku z dużą rozpiętością tonalną (dynamic range) wartości $(sigma^2(n) - u^2(n))$, ciężko jest zaobserwować obszary mowy z małymi wartościami  $(sigma^2(n) - u^2(n))$. Aby podkreślić kontrast pomiędzy obszarami mowy i obszarami niezawierającymi mowy, rozpiętość dynamiczna jest redukowana poprzez obliczenie
+ 
+ $theta(n) = (abs(sigma^2(n)-u^2(n)))^(1/M)$, gdzie M zostało wybrane jako 64
+ 
+ Wartość M nie jest krytyczna. Każda wartość M z przedziału 32-256 wydaje się być dobra, aby zapewnić dobry kontrast pomiędzy obszarami zawierającymi mowę, a tymi, któ©e mowy nie zawierają na wykresie theta(n). W obliczeniach theta(n) brana jest po uwagę tylko wartość bezwzględna wartości chwilowej $(sigma^2(n) - u^2(n))$. Jeżeli znak $(sigma^2(n) - u^2(n))$. jest przypisany(?) do theta(n), wartości będą wahać się w okolicach zera w obszarach pozbawionych mowy 
+ dla większości typów szumów (zobacz rys 2(f) dla szumu różowego), ale krótki czas (20-40msec) tymczasowych średnich wartości będzie mały i wahający się, sprawiając, że cecha (floor) szumu będzie nierówna. To powoduje trudności w ustaleniu progu detekcji dla obszarów pozbawionych mowy. Wartości theta(n) będą miały wysoką średnią (temporal mean) w obszarach pozbawionych mowy z małą średnią wariancją (rys 2(g)). Pomoże to w ustaleniu odpowiedniego progu do odizolowania obszarów pozbawionych mowy od tych, które mowę zawierają. Zakres theta(n) ze znakiem (rys. 2(f)) jest inny niż wartości theta(n) (rys. 2(g)). Mały tymczasowy obszar wartości theta(n) w obszarach niezawierających  mowy i jego średnia wartość pomagają w dobraniu pasującego progu. Wartości theta(n) w obszarach niezawierających mowy są podyktowane poziomem szumu. Wartości theta(n) w obszarach niezawierających mowy są wyższe dla sygnału zaszumionego szumem różowym -10dB SNR (rys 2(g)) niż dla 5dB SNR (rys 3(g)). Zauważmy, że rozważając wartości  theta(n) bez znaku, tracimy trochę zalet w rozróżnialności obszarów niezawierających mowy, które maja zarówno dodatnie, jak i ujemne wartości - natomiast obszary zawierające mowę mają w większości dodatnie wartości. Wartości theta(n) z M=64 są wykorzystywane do dalszego przetwarzania do podejmowania decyzji. Warto zauważyć zmiany w przeskalowaniu na rys 2(f) i 2(g) oraz 3(f) i 3(g), aby zrozumieć istotę uzywania wartości bezwzględnej, np theta(n) bez znaku.
+ 
+ C. Logika podejmowania decyzji 
+ 
 
 \chapter{Implementacja programu}
 
