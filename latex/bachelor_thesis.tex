@@ -191,7 +191,7 @@ $ Xk(omega) = X(omega - śr_omega_k)$,
  
  Moc szumu tworzy funkcję podłogi dla obwiedni dla każdej częstotliwości i poziom podłogi zależy od rozkładu mocy szumu wobec częstotliwości. Podłoga jest bardziej jednorodna wobec czasu, jeżeli szum jest niemalże stacjonarny.Nawet jeżeli szum jest niestacjonarny, jest względnie stacjonarny ponad większymi przerwami w czasie niż sygnał mowy. W takich przypadkach, poziom podłogi może zostać obliczony ponad długimi przerwami w dziedzinie czasu dla każdej częstotliwości, jeżeli jest to potrzebne.
  
- Żeby zrekompensować efekt szumu, wartość wagi dla każdej częstotliwości jest obliczana używając wartości funkcji podłogi. Dla każdego wyrażenia, średnia (uk - mi k) z wartości mniejszych niż 20 \% wartości obwiedni dla każdej częstotliwości fk jest wykorzystywana do obliczenia znormalizowaną wagę wartości wk dla każdej częstotliwości. Wybór akurat 20\% wartości jest oparty o założenie, że w jest przynajmniej 20\% ciszy w każdym wyrażeniu mowy. Znormalizowana waga wartości w każdej częstotiwości jest dana jako:
+ Żeby zrekompensować efekt szumu, wartość wagi dla każdej częstotliwości jest obliczana używając wartości funkcji podłogi. Dla każdego wyrażenia, średnia (uk - mi k) z wartości mniejszych niż 20 \% (chodzi tutaj o 20\% probek ze wszystkich próbek w tablicy o najmniejszych wartościach) wartości obwiedni dla każdej częstotliwości fk jest wykorzystywana do obliczenia znormalizowaną wagę wartości wk dla każdej częstotliwości. Wybór akurat 20\% wartości jest oparty o założenie, że w jest przynajmniej 20\% ciszy w każdym wyrażeniu mowy. Znormalizowana waga wartości w każdej częstotiwości jest dana jako:
  
  wk = (1/uk)/SUM(l=1,N,1/ut),
  
@@ -205,12 +205,48 @@ $ Xk(omega) = X(omega - śr_omega_k)$,
  
  W związku z dużą rozpiętością tonalną (dynamic range) wartości $(sigma^2(n) - u^2(n))$, ciężko jest zaobserwować obszary mowy z małymi wartościami  $(sigma^2(n) - u^2(n))$. Aby podkreślić kontrast pomiędzy obszarami mowy i obszarami niezawierającymi mowy, rozpiętość dynamiczna jest redukowana poprzez obliczenie
  
- $theta(n) = (abs(sigma^2(n)-u^2(n)))^(1/M)$, gdzie M zostało wybrane jako 64
+ $delta(n) = (abs(sigma^2(n)-u^2(n)))^(1/M)$, gdzie M zostało wybrane jako 64
  
- Wartość M nie jest krytyczna. Każda wartość M z przedziału 32-256 wydaje się być dobra, aby zapewnić dobry kontrast pomiędzy obszarami zawierającymi mowę, a tymi, któ©e mowy nie zawierają na wykresie theta(n). W obliczeniach theta(n) brana jest po uwagę tylko wartość bezwzględna wartości chwilowej $(sigma^2(n) - u^2(n))$. Jeżeli znak $(sigma^2(n) - u^2(n))$. jest przypisany(?) do theta(n), wartości będą wahać się w okolicach zera w obszarach pozbawionych mowy 
- dla większości typów szumów (zobacz rys 2(f) dla szumu różowego), ale krótki czas (20-40msec) tymczasowych średnich wartości będzie mały i wahający się, sprawiając, że cecha (floor) szumu będzie nierówna. To powoduje trudności w ustaleniu progu detekcji dla obszarów pozbawionych mowy. Wartości theta(n) będą miały wysoką średnią (temporal mean) w obszarach pozbawionych mowy z małą średnią wariancją (rys 2(g)). Pomoże to w ustaleniu odpowiedniego progu do odizolowania obszarów pozbawionych mowy od tych, które mowę zawierają. Zakres theta(n) ze znakiem (rys. 2(f)) jest inny niż wartości theta(n) (rys. 2(g)). Mały tymczasowy obszar wartości theta(n) w obszarach niezawierających  mowy i jego średnia wartość pomagają w dobraniu pasującego progu. Wartości theta(n) w obszarach niezawierających mowy są podyktowane poziomem szumu. Wartości theta(n) w obszarach niezawierających mowy są wyższe dla sygnału zaszumionego szumem różowym -10dB SNR (rys 2(g)) niż dla 5dB SNR (rys 3(g)). Zauważmy, że rozważając wartości  theta(n) bez znaku, tracimy trochę zalet w rozróżnialności obszarów niezawierających mowy, które maja zarówno dodatnie, jak i ujemne wartości - natomiast obszary zawierające mowę mają w większości dodatnie wartości. Wartości theta(n) z M=64 są wykorzystywane do dalszego przetwarzania do podejmowania decyzji. Warto zauważyć zmiany w przeskalowaniu na rys 2(f) i 2(g) oraz 3(f) i 3(g), aby zrozumieć istotę uzywania wartości bezwzględnej, np theta(n) bez znaku.
+ Wartość M nie jest krytyczna. Każda wartość M z przedziału 32-256 wydaje się być dobra, aby zapewnić dobry kontrast pomiędzy obszarami zawierającymi mowę, a tymi, któ©e mowy nie zawierają na wykresie delta(n). W obliczeniach delta(n) brana jest po uwagę tylko wartość bezwzględna wartości chwilowej $(sigma^2(n) - u^2(n))$. Jeżeli znak $(sigma^2(n) - u^2(n))$. jest przypisany(?) do delta(n), wartości będą wahać się w okolicach zera w obszarach pozbawionych mowy 
+ dla większości typów szumów (zobacz rys 2(f) dla szumu różowego), ale krótki czas (20-40msec) tymczasowych średnich wartości będzie mały i wahający się, sprawiając, że cecha (floor) szumu będzie nierówna. To powoduje trudności w ustaleniu progu detekcji dla obszarów pozbawionych mowy. Wartości delta(n) będą miały wysoką średnią (temporal mean) w obszarach pozbawionych mowy z małą średnią wariancją (rys 2(g)). Pomoże to w ustaleniu odpowiedniego progu do odizolowania obszarów pozbawionych mowy od tych, które mowę zawierają. Zakres delta(n) ze znakiem (rys. 2(f)) jest inny niż wartości delta(n) (rys. 2(g)). Mały tymczasowy obszar wartości delta(n) w obszarach niezawierających  mowy i jego średnia wartość pomagają w dobraniu pasującego progu. Wartości delta(n) w obszarach niezawierających mowy są podyktowane poziomem szumu. Wartości delta(n) w obszarach niezawierających mowy są wyższe dla sygnału zaszumionego szumem różowym -10dB SNR (rys 2(g)) niż dla 5dB SNR (rys 3(g)). Zauważmy, że rozważając wartości  delta(n) bez znaku, tracimy trochę zalet w rozróżnialności obszarów niezawierających mowy, które maja zarówno dodatnie, jak i ujemne wartości - natomiast obszary zawierające mowę mają w większości dodatnie wartości. Wartości delta(n) z M=64 są wykorzystywane do dalszego przetwarzania do podejmowania decyzji. Warto zauważyć zmiany w przeskalowaniu na rys 2(f) i 2(g) oraz 3(f) i 3(g), aby zrozumieć istotę uzywania wartości bezwzględnej, np delta(n) bez znaku.
+ to
+ C. Logika podejmowania decyzji
+  Logika podejmowanej decyzji opiera się o delta(n) dla każdego wyrażenia poprzez wyprowadzeinie najpierw progu detekcji z przyjętego z założenia obszaru zawierającego szum, a później zastosować ten próg na tymczasowo wygładzonych wartosciach delta(n). Rozmiar okna lw wykorzystany do wygładzenia delta(n) jest zaadoptowany w oparciu o estymatę rozpiętości tonalnej (dynamic range) (ro) energii zaszumionego sygnału dla każdego wyrażenia, zakładając, że jest przynajmniej 20\% obszarów zawierających ciszę w każdym wyrażeniu. Binarna decyzja odnośnie mowy i jej braku w każdej chwili czasowej, oznaczana odpowiednio jako 1 i 0, jest dalej wygładzana (podobnie jak w hangover scheme) z wykorzystaniem okna adaptacyjnego, żeby dotrzeć do ostatecznej decyzji detekcji. Następujące 5 kroków opisuje implementację szczegółów w logice podejmowania decyzji:
+  
+  1) Obliczenie progu (theta):
+  Obliczyć średnią $(mi_theta)$ i wariancję $(sigma_theta)$ dla wartości  mniejszych niż 20\% (chodzi tutaj o 20\% probek ze wszystkich próbek w tablicy o najmniejszych wartościach, np jeżeli mamy 100 probek, to sortujemy je od najmniejszej i bierzemy 20 kolejnych probek)
+  
+  Próg $theta = mi_theta + 3*sigma_theta$ jest używany we wszystkich przypadkach. Wartość theta zależy od analizownego wyrażenia (sygnału). Zatem wartość progu, odpowiadająca wartości cechy z theta(n), jest adaptopwana do konkretnego wyrażenia (sygnału) w zależności od charakterystyki sygnału i szumu w tym wyrażeniu.
+  
+  2) Wyznaczenie okna wygładzającego lw:
+  Energia Em sygnału x(n) jest obliczana dla ramki 300msec z przesunieciem 10msec, gdzie m to numer ramki. Rozpiętość tonalna (dynamic range) (ro) sygnału jest obliczana jako:
+  
+  $ro = 10*log10(max_m(Em)/min_m(Em)).$
+  Parametr opisujący długość okna lw do wygładzenia sygnału jest uzyskiwany z rozpiętości tonalnej (dynamic range) (ro) sygnału. Tabela III przedstawia wartości ro dla zaszumionego sygnału mowy dla SNR = -10dB oraz 5dB dla różnych szumów. Wartości ro są wysokie przy 5dB SNR w porównaniu z wartościami dla -10dB SNR dla tego samego szumu. Wartości ro różnią się dla różnych szumów przy tym samym SNR, ponieważ charakterystyki szumów się różnią.Dla mowy z pewnej odległości histogram z wartościami ro dla wyrażeń w przypadku C3 jest pokazany na Rys. 4. Wskaźnik SNR dla mowy z dystansu zależy od warunków środowiskowych oraz od odległości, z jakiej mówca mówi do mikrofonu.  Zaobserwowano, że wartości ro dla mowy z odległości są rozciągnięte w porównaniu z wartościami ro dla różnych szumów. Jest to głównie spowodowane efektem echa. Rozkład wartości ro zależy również od odległości mówcy od mikrofonu. Wartość ro dla każdego wyrażenia (sygnału) jest wykorzystywana do określenia wartości niektórych parametrów do dalszego przetwarzania delta(n) i do otrzymania decyzji o klasyfikacji. W przypadkach gdzie delta(n) reprezentuje charakterystyka dyskryminacyjna przedstawiająca zarówno mowę, jak i jej brak, odpowiadające wartości ro są wysokie, jak zaobserwowano w przypadku szumów volvo, lamparda i karabinu maszynowego. W takich przypadkach używane są małe wartości parametru lw okna wygładzającego.Następujące wartości lw zostały wybrane na drodze przeprowadzonych doświadczeń z sygnałem mowy zaszumionym przez różne typy szumów z różnymi poziomami SNR:
+  
+  lw = 400msec, dla ro<30. (15)
+  
+  lw = 300msec, dla 30<=ro<40. (16)
+  
+  lw = 200msec, dla ro>40. (17)
+  
+  
+ 3) Logika podejmowania decyzji w każdej chwili czasowej:
  
- C. Logika podejmowania decyzji 
+ Wartości delta(n) są uśredniane przez okno o rozmiarze lw, aby otrzymać uśrednione wartości $delta_sr(n)$ w każdej próbce o indeksie n. Decyzja jest podejmowana według następujących zależności:
+ 
+ $d(n) = 1, dla delta_sr(n)>theta
+ d(n) = 0, dla delta_sr(n)<=theta.
+ $
+ 
+ 4) Wygładzenie decyzji na poziomie próbek:
+ 
+ Decyzja d(n) dla każdej próbki jest okienkowana o rozmiarach okienek 300msec, 400msec, 600msec, dla, odpowiednio, 3 przedziałów ro wskazanych w (15), (16), (17). Załóżmy, że eta jest progiem (w procentach) w zależności od wartości d(n), które dają 1 w okienku. Jeżeli wartość procentowa wartości d(n), które wynoszą 1 w okienku, jest wyższa niż wartość eta, wtedy ostateczna decyzja df(n) jest ustawiana na 1 w chwili czasowej n, w przeciwnym wypadku - 0. Wartość przypisana dla eta to 60%.
+ 
+ 5) Decyzja na poziomie ramek:
+ 
+ Decyzja w metodzie AMR jest podejmowana dla każdej ramki, co 10msec. W kolejności do porównania zaproponowanej metodyz metodą AMR, decyzja df(n) jest konwertowana na 10msec ramkę w oparciu o podjętą decyzję. Dla każdej 10msec, nienakładającej się ramki, jeżeli przeważająca ilość decyzji df(n) wynosi 1, to cała ramka jest oznaczana jako zawierająca mowę, w przeciwnym wypadku jest oznaczana jako niezawierająca mowy. Informacje dotyczące sygnałów mowy pozyskane z empirycznie, są rownież otrzymywane z każdej 10msec ramki.
+  
  
 
 \chapter{Implementacja programu}
