@@ -26,7 +26,18 @@ public:
 
     vector<complex<double>> countFilterOutput(vector<complex<SampleType>> &wav);
 
-    vector<SampleType> countSignalEnvelope(vector<complex<double>> &wav);
+    vector<SampleType> countEnvelope(vector<complex<double>> &wav);
+
+    vector<SampleType> countSFFEnvelope(SignalSource &wav, int normalizedFrequency);
+
+    double countWeightValue(vector<SampleType> envelope);
+
+    vector<SampleType> scaleSignal(vector<SampleType> wavEnvelope, double weight);
+
+    SignalSource addGaussianNoiseToSignal(SignalSource signal);
+
+    vector<SampleType>
+    countSFFEnvelopesForFrequencies(SignalSource &source, int beginFrequency, int endFrequency, int interval);
 };
 
 
