@@ -17,7 +17,7 @@ public:
     virtual ~Signal();
 
     Aquila::WaveFile* signalOriginal;
-    int samplesCount;
+    unsigned int samplesCount;
     vector<Aquila::SampleType> samplesOriginal;
     Aquila::FrequencyType samplingFrequency;
     vector<Aquila::SampleType> samplesNoised;

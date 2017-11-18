@@ -9,6 +9,7 @@
 SFFDetector::SFFDetector(string filename) {
     _signal = new Signal(filename);
     _envelope = new Envelope(_signal->samplesCount);
+
 }
 
 //SFF_Combo_c6()
@@ -18,6 +19,8 @@ void SFFDetector::detect() {
     /* dodanie szumu */
     cout<<"signal original "<<_signal->signalOriginal->sample(100);
     cout<<"original "<<_signal->samplesOriginal[100]<<endl;
+
+    //przekazywac wskaznik do struktury jako argument
     _signal->samplesNoised = addGaussNoise(_signal->samplesOriginal, 0.0001);
     cout<<"noised "<<_signal->samplesNoised[100]<<endl;
 
@@ -49,8 +52,6 @@ void SFFDetector::detect() {
     _envelope->theta = countTheta();
 
     cout<<"2"<<endl;
-//    cout<<"beta "<<_envelope->beta<<endl;
-//    cout<<"theta "<<_envelope->theta<<endl;
 
     singleFrequencyFilteringDetect();
 
@@ -71,7 +72,7 @@ void SFFDetector::detect() {
 /// funkcja dodajaca szum do sygnalu
 /// \param signal
 /// \param noiseMult - mnoznik szumu
-vector<Aquila::SampleType> SFFDetector::addGaussNoise(vector<Aquila::SampleType> signalToNoised, double noiseMult) {
+vector<Aquila::SampleType> SFFDetector::addGaussNoise(const vector<Aquila::SampleType>& signalToNoised, double noiseMult) {
     //zmienne lokalne do wygenerowania szumu
     clock_t  timer;
     //RAND_MAX - maksymalna wartosc zwrocona przez rand()
@@ -97,7 +98,7 @@ vector<Aquila::SampleType> SFFDetector::addGaussNoise(vector<Aquila::SampleType>
 }
 
 
-vector<Aquila::SampleType> SFFDetector::diffSamples(vector<Aquila::SampleType> signalToDiff) {
+vector<Aquila::SampleType> SFFDetector::diffSamples(const vector<Aquila::SampleType>& signalToDiff) {
     vector<Aquila::SampleType> samplesDifferential;
     samplesDifferential.push_back(0);
     for (int i = 1; i <signalToDiff.size() ; i++) {
@@ -215,7 +216,7 @@ vector<double> SFFDetector::singleFrequencyFilteringEnvelope() {
     return delt;
 }
 
-vector<double> SFFDetector::smooth(vector<double> signal) {
+vector<double> SFFDetector::smooth(vector<double>& signal) {
     vector<double> smoothedSignal;
     cout<<"dupa?"<<endl;
     for (int i = 1; i < signal.size()-1; i++) {
@@ -385,10 +386,6 @@ void SFFDetector::singleFrequencyFilteringDetect() {
     }
 
 
-//    for (int k = 0; k <this->_speachBeginnings.size() ; k++) {
-//    cout<<"speach beginnings: "<<_speachBeginnings.size()<<endl;
-//    }
-
 
 }
 
@@ -447,18 +444,18 @@ vector<double> SFFDetector::singleFrequencyEnvelope(double frequency) {
         //cout<<_envelope->factorXi[i]<<endl;
     }
 
-//    /* obwednia - wzor z artykulu*/
-//    if (_envelope->singleFrequencyEnvelope.size() == 0){
-//        for (int j = 0; j < _signal->samplesCount ; j++) {
-//            _envelope->singleFrequencyEnvelope.push_back(_envelope->factorXr[j]*_envelope->factorXr[j] - _envelope->factorXi[j] * _envelope->factorXi[j]);
-//            //cout<<_envelope->singleFrequencyEnvelope[j]<<endl;
-//        }
-//    } else{
-//        for (int j = 0; j < _envelope->singleFrequencyEnvelope.size() ; j++) {
-//            _envelope->singleFrequencyEnvelope[j] = _envelope->factorXr[j]*_envelope->factorXr[j] - _envelope->factorXi[j] * _envelope->factorXi[j];
-//            //cout<<_envelope->singleFrequencyEnvelope[j]<<endl;
-//        }
-//    }
+    /* obwednia - wzor z artykulu*/
+    if (_envelope->singleFrequencyEnvelope.size() == 0){
+        for (int j = 0; j < _signal->samplesCount ; j++) {
+            _envelope->singleFrequencyEnvelope.push_back(_envelope->factorXr[j]*_envelope->factorXr[j] - _envelope->factorXi[j] * _envelope->factorXi[j]);
+            //cout<<_envelope->singleFrequencyEnvelope[j]<<endl;
+        }
+    } else{
+        for (int j = 0; j < _envelope->singleFrequencyEnvelope.size() ; j++) {
+            _envelope->singleFrequencyEnvelope[j] = _envelope->factorXr[j]*_envelope->factorXr[j] - _envelope->factorXi[j] * _envelope->factorXi[j];
+            //cout<<_envelope->singleFrequencyEnvelope[j]<<endl;
+        }
+    }
 
     for (int j = 0; j < _signal->samplesCount ; j++) {
         singleFrequencyEnvelope.push_back(_envelope->factorXr[j]*_envelope->factorXr[j] - _envelope->factorXi[j] * _envelope->factorXi[j]);

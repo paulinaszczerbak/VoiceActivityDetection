@@ -4,7 +4,7 @@
 
 #include "../inc/Envelope.h"
 
-Envelope::Envelope(int samplesCount) {
+Envelope::Envelope(unsigned int samplesCount) {
     this->samplesCount=samplesCount;
     this->differBef = true;
     this->smoothing = true;

@@ -28,7 +28,7 @@ private:
     //wskaznik do struktury zawierajacej numery indeksow probek
     //kończących aktywnosc mowcy
     vector<int> _speachEndings;
-    vector<Aquila::SampleType> addGaussNoise(vector<Aquila::SampleType> signalToNoised, double noiseMult);
+    vector<Aquila::SampleType> addGaussNoise(const vector<Aquila::SampleType>& signalToNoised, double noiseMult);
     vector<double> densityForPositiveValues(std::vector<double> VAETab, double max /*, double* VAEDensity,short sPosNb=801*/);
     vector<double> singleFrequencyEnvelope(double frequency);
     vector<double> singleFrequencyFilteringEnvelope();
@@ -37,10 +37,10 @@ private:
     double countBeta();
     double countTheta();
     double calculateRo(Signal* signal);
-    vector<double> smooth(std::vector<double> signal);
+    vector<double> smooth(std::vector<double>& signal);
     double countEnergy(Aquila::FramesCollection* frames, Aquila::SampleType frameIndex);
     void singleFrequencyFilteringDetect();
-    vector<Aquila::SampleType> diffSamples(vector<Aquila::SampleType> signalToDiff);
+    vector<Aquila::SampleType> diffSamples(const vector<Aquila::SampleType>& signalToDiff);
 
 public:
     //SFFDetector(std::string filename):signal(new Signal(filename)){}

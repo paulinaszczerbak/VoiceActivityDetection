@@ -11,14 +11,14 @@ using namespace std;
 
 class Envelope {
     virtual ~Envelope();
-    vector<double> singleFrequencyEnvelope;
-    int samplesCount;
+
+    unsigned int samplesCount;
     double* filterFactor;
     double densityForLeftPart;
     double densityForRightPart;
 public:
-    Envelope(int samplesCount);
-
+    Envelope(unsigned int samplesCount);
+    vector<double> singleFrequencyEnvelope;
     const double singlePoleModule = 0.97;
     vector<double> factorXr;
     vector<double> factorXi;
