@@ -36,8 +36,11 @@ public:
 
     SignalSource addGaussianNoiseToSignal(SignalSource signal);
 
-    vector<SampleType>
-    countSFFEnvelopesForFrequencies(SignalSource &source, int beginFrequency, int endFrequency, int interval);
+    vector<SampleType> countSFFEnvelopesForFrequencies(SignalSource &source, int beginFrequency, int endFrequency, int interval);
+
+    double countThreshold(vector<SampleType> delta);
+
+    double countDynamicRange(SignalSource source);
 };
 
 

@@ -6,6 +6,7 @@
 #include <fstream>
 #include <algorithm>
 #include <functional>
+#include <aquila/source/FramesCollection.h>
 #include "../inc/Detector.h"
 using namespace Aquila;
 
@@ -29,19 +30,30 @@ void Detector::detect(SignalSource& wav) {
     int normalizedFrequency = 3200;
     //add some gaussian noise
     SignalSource wavNoised = addGaussianNoiseToSignal(wav);
-    //todo: count SFFEnvelopes for 185 frequencies 300-4000Hz by 20Hz
+    //count SFFEnvelopes for 185 frequencies 300-4000Hz by 20Hz
     int beginFrequency = 300;
     int endFrequency = 4001;
     int interval = 20;
-    vector<SampleType> meanFromSquareOfEnvelopes = countSFFEnvelopesForFrequencies(wavNoised, beginFrequency, endFrequency, interval);
+    //delta - corresponding to the article
+    vector<SampleType> delta = countSFFEnvelopesForFrequencies(wavNoised, beginFrequency, endFrequency, interval);
 
+    double threshold = countThreshold(delta);
+
+    //todo: count DYNAMIC RANGE
+    // count ro = 10*log10 * (max_m(E_m))/(min_m(E_m)) - dynamic range
+    // it's needed to count smoothing window l_w
+    double ro = countDynamicRange(wavNoised);
+
+    //todo: DECISION LOGIC AT EACH SAMPLING INSTANT
+    //the values of delta(n) are averaged over a window of size l_w to obtain the averaged
+    // value delta(n) at each sample index n
     //writing to file to plot results
-    system("touch result2ToPlot");
+    system("touch result3ToPlot");
     //otwieram plik do zapisu
-    ofstream file("result2ToPlot");
+    ofstream file("result3ToPlot");
     if(file){
-        for (size_t i = 0; i< meanFromSquareOfEnvelopes.size() ; i++) {
-            file << meanFromSquareOfEnvelopes[i] << endl;
+        for (size_t i = 0; i< delta.size() ; i++) {
+            file << delta[i] << endl;
         }
         file.close();
     } else{
@@ -221,6 +233,7 @@ vector<SampleType> Detector::countSFFEnvelopesForFrequencies(SignalSource &sourc
     // - po kazdym policzeniu obwiedni dodaje kolejne probki (wlasciwie to ich kwadraty)
     vector<SampleType> meanSquareEnvelope(source.getSamplesCount(), 0);
 
+    //sum of squares for different frequencies
     for (int frequency = beginFrequency; frequency <endFrequency; frequency=frequency+interval) {
         cout<<frequency<< endl;
         //count Single Frequency Filtered envelope
@@ -237,13 +250,106 @@ vector<SampleType> Detector::countSFFEnvelopesForFrequencies(SignalSource &sourc
             meanSquareEnvelope[currentIndex] += (*it)*(*it);
             currentIndex++;
         }
-        //todo: COUNT STANDARD DEVIATION !!!
 
     }
 
     int amountOfEnvelopes = (endFrequency-beginFrequency)/interval;
     meanSquareEnvelope = scaleSignal(meanSquareEnvelope, (1.000/amountOfEnvelopes));
 
-    return meanSquareEnvelope;
+    //COUNT STANDARD DEVIATION
+    //we need to iterate on frequencies and count everything once again
+    //to count standard deviation sigma(n) = sqrt((1/(n-1) * sum(i=1, n, (xi-x_sr)^2)
+    vector<SampleType> standardDeviationSquareEnvelope(source.getSamplesCount(), 0);
+    for (int frequency = beginFrequency; frequency <endFrequency; frequency=frequency+interval) {
+        cout<<frequency<< endl;
+        //count Single Frequency Filtered envelope
+        vector<SampleType> SFFEnvelope = countSFFEnvelope(source, frequency);
+        //count weight value for specific normalizedFrequency
+        double weight = countWeightValue(SFFEnvelope);
+        //scale envelope
+        vector<SampleType> weightedComponentEnvelope = scaleSignal(SFFEnvelope, weight);
+
+        //count squares of envelope values
+        //add squares to meanSquareEnvelope values
+        int currentIndex(0);
+        double sumOfDeviations(0);
+        for (vector<SampleType>::iterator it=weightedComponentEnvelope.begin(); it!=weightedComponentEnvelope.end(); it++){
+            //count sum(xi-x_sr)^2
+            standardDeviationSquareEnvelope[currentIndex] += ((*it)*(*it) - meanSquareEnvelope[currentIndex])*((*it)*(*it) - meanSquareEnvelope[currentIndex]);
+            currentIndex++;
+        }
+
+    }
+//    standardDeviationSquareEnvelope[currentIndex]
+//        = sqrt((1/(currentIndex-1)) * sumOfDeviations);
+    //multiply sum of squares by 1/(n-1)
+    standardDeviationSquareEnvelope = scaleSignal(standardDeviationSquareEnvelope, 1.000/(amountOfEnvelopes-1));
+    for (auto& x : standardDeviationSquareEnvelope) {
+        x = sqrt(x);
+    }
+
+    //todo: count dela(n) = sqrt(abs(sigma^2(n) - ni^2(n)),M), where sigma = standard deviation, ni = mean,
+    // M should be in range 32 to 256
+    vector<SampleType> delta(source.getSamplesCount(), 0);
+    int sqrtLevel = 64;
+    int currentIndex(0);
+    for (int i = 0; i < delta.size() ; i++) {
+        delta[i] = pow(abs((standardDeviationSquareEnvelope[i]*standardDeviationSquareEnvelope[i])
+        - (meanSquareEnvelope[i]*meanSquareEnvelope[i])), 1.0/sqrtLevel);
+    }
+
+
+    return delta;
+}
+
+/***
+ * Compute the mean (mi_theta) and the wariance (sigma_theta) of the lower 20% of the values of delta(n) over an utterance
+ * A threshold of theta = mi_theta + 3*sigma_theta is used in all cases.
+ * The theta value depends on each utterance
+ * @param delta
+ * @return
+ */
+double Detector::countThreshold(vector<SampleType> delta) {
+    //todo: sort delta and get 20% first values
+    sort(delta.begin(), delta.end());
+    //get 20% first samples
+    int amountOfSamples = (int)(delta.size()*0.2);
+    vector<SampleType> splitedDelta(delta.begin(), delta.begin()+amountOfSamples);
+    //todo: count mean and varinace for splitedDelta
+    double mean(0);
+    //mean - maybe is there any function in stl??
+    for(auto& x : splitedDelta){
+        mean += mean + x;
+    }
+    mean=mean/splitedDelta.size();
+
+    //variance: ((1/(n-1) * sum(i=1, n, (xi-x_sr)^2)
+    double varinace(0);
+    for(auto& x : splitedDelta){
+        varinace = (x-mean)*(x-mean);
+    }
+    varinace = varinace*(1.0/(splitedDelta.size()-1));
+
+    //threshold theta
+    double threshold = mean + 3*varinace;
+
+
+    return threshold;
+}
+
+double Detector::countDynamicRange(SignalSource source) {
+    //todo: count energy of the signal (source) - energy  is computed over a frame of 300msec for a frame shift
+    //of 10msec, where m is the frame index
+    double frameLengthInSecs = 0.3;
+    unsigned int samplesPerFrame = (unsigned int) (source.getSampleFrequency() * frameLengthInSecs);
+    unsigned int samplesInShift = (unsigned int) (source.getSampleFrequency() * frameLengthInSecs);
+    unsigned int commonSamples = samplesPerFrame-samplesInShift;
+    FramesCollection *frames=new FramesCollection(source, samplesPerFrame, commonSamples);
+    vector<double> energyPerFrame = countSignalEnergy(source);
+
+    //todo: find max and min energy
+
+    //todo: count dynamic range: ro = 10*log10 ((max_m(E_m))/(min_m(E_m)))
+    return 0;
 }
 
