@@ -31,32 +31,22 @@ void Detector::detect(SignalSource& wav) {
     SignalSource wavNoised = addGaussianNoiseToSignal(wav);
     //todo: count SFFEnvelopes for 185 frequencies 300-4000Hz by 20Hz
     int beginFrequency = 300;
-    int endFrequency = 4000;
+    int endFrequency = 4001;
     int interval = 20;
-    vector<SampleType> meanFromSquareOfEnvelopes = countSFFEnvelopesForFrequencies(wavNoised, 300, 4000, 20);
-
-//    //count Single Frequency Filtered envelope
-//    vector<SampleType> SFFEnvelope = countSFFEnvelope(wavNoised, normalizedFrequency);
-//    //count weight value for specefic normalizedFrequency
-//    weight = countWeightValue(SFFEnvelope);
-//    //scale envelope
-//    vector<SampleType> weightedComponentEnvelope = scaleSignal(SFFEnvelope, weight);
-
-    //todo: count the mean of the square of the weighted component envelopes computed across frequency
-//    vector<SampleType> squareOfScaledEnvelope = countSquareOfEachElement(wavEnvelope, weight);
+    vector<SampleType> meanFromSquareOfEnvelopes = countSFFEnvelopesForFrequencies(wavNoised, beginFrequency, endFrequency, interval);
 
     //writing to file to plot results
-//    system("touch result2ToPlot");
-//    //otwieram plik do zapisu
-//    ofstream file("result2ToPlot");
-//    if(file){
-//        for (size_t i = 0; i< weightedComponentEnvelope.size() ; i++) {
-//            file << weightedComponentEnvelope[i] << endl;
-//        }
-//        file.close();
-//    } else{
-//        cout<<"BLAD: nie mozna otworzyc pliku"<<endl;
-//    }
+    system("touch result2ToPlot");
+    //otwieram plik do zapisu
+    ofstream file("result2ToPlot");
+    if(file){
+        for (size_t i = 0; i< meanFromSquareOfEnvelopes.size() ; i++) {
+            file << meanFromSquareOfEnvelopes[i] << endl;
+        }
+        file.close();
+    } else{
+        cout<<"BLAD: nie mozna otworzyc pliku"<<endl;
+    }
 
 }
 
@@ -218,23 +208,41 @@ SignalSource Detector::addGaussianNoiseToSignal(SignalSource signal) {
     return SignalSource(noised, signal.getSampleFrequency());
 }
 
-vector<SampleType>
-Detector::countSFFEnvelopesForFrequencies(SignalSource &source, int beginFrequency, int endFrequency, int interval) {
-    double weight(0);
+/***
+ * Function counting envelopes in for loop for different frequences
+ * @param source - signal to count SFF envelope
+ * @param beginFrequency - frequency in which we start
+ * @param endFrequency - frequency in which we end
+ * @param interval - tells how many Hz is between counted frequences
+ * @return vector with avearges values of SFF envelopes values' squares
+ */
+vector<SampleType> Detector::countSFFEnvelopesForFrequencies(SignalSource &source, int beginFrequency, int endFrequency, int interval) {
     //zapisuje do tego wektora sume kwadratow probek
     // - po kazdym policzeniu obwiedni dodaje kolejne probki (wlasciwie to ich kwadraty)
-    vector<SampleType> meanSquareEnvelope;
+    vector<SampleType> meanSquareEnvelope(source.getSamplesCount(), 0);
 
-    for (int frequency = beginFrequency; frequency <endFrequency; frequency=frequency+20) {
+    for (int frequency = beginFrequency; frequency <endFrequency; frequency=frequency+interval) {
+        cout<<frequency<< endl;
         //count Single Frequency Filtered envelope
         vector<SampleType> SFFEnvelope = countSFFEnvelope(source, frequency);
         //count weight value for specific normalizedFrequency
-        weight = countWeightValue(SFFEnvelope);
+        double weight = countWeightValue(SFFEnvelope);
         //scale envelope
         vector<SampleType> weightedComponentEnvelope = scaleSignal(SFFEnvelope, weight);
 
+        //count squares of envelope values
+        //add squares to meanSquareEnvelope values
+        int currentIndex(0);
+        for (vector<SampleType>::iterator it=weightedComponentEnvelope.begin(); it!=weightedComponentEnvelope.end(); it++){
+            meanSquareEnvelope[currentIndex] += (*it)*(*it);
+            currentIndex++;
+        }
+        //todo: COUNT STANDARD DEVIATION !!!
+
     }
 
+    int amountOfEnvelopes = (endFrequency-beginFrequency)/interval;
+    meanSquareEnvelope = scaleSignal(meanSquareEnvelope, (1.000/amountOfEnvelopes));
 
     return meanSquareEnvelope;
 }
