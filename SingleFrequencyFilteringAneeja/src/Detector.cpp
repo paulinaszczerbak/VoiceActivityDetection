@@ -35,30 +35,31 @@ void Detector::detect(SignalSource& wav) {
     int endFrequency = 4001;
     int interval = 20;
     //delta - corresponding to the article
-    vector<SampleType> delta = countSFFEnvelopesForFrequencies(wavNoised, beginFrequency, endFrequency, interval);
+//    vector<SampleType> delta = countSFFEnvelopesForFrequencies(wavNoised, beginFrequency, endFrequency, interval);
 
-    double threshold = countThreshold(delta);
+//    double threshold = countThreshold(delta);
 
     //todo: count DYNAMIC RANGE
     // count ro = 10*log10 * (max_m(E_m))/(min_m(E_m)) - dynamic range
     // it's needed to count smoothing window l_w
     double ro = countDynamicRange(wavNoised);
+    cout<<ro<<"RO"<<endl;
 
     //todo: DECISION LOGIC AT EACH SAMPLING INSTANT
     //the values of delta(n) are averaged over a window of size l_w to obtain the averaged
     // value delta(n) at each sample index n
     //writing to file to plot results
-    system("touch result3ToPlot");
-    //otwieram plik do zapisu
-    ofstream file("result3ToPlot");
-    if(file){
-        for (size_t i = 0; i< delta.size() ; i++) {
-            file << delta[i] << endl;
-        }
-        file.close();
-    } else{
-        cout<<"BLAD: nie mozna otworzyc pliku"<<endl;
-    }
+//    system("touch result3ToPlot");
+//    //otwieram plik do zapisu
+//    ofstream file("result3ToPlot");
+//    if(file){
+//        for (size_t i = 0; i< delta.size() ; i++) {
+//            file << delta[i] << endl;
+//        }
+//        file.close();
+//    } else{
+//        cout<<"BLAD: nie mozna otworzyc pliku"<<endl;
+//    }
 
 }
 
@@ -338,18 +339,42 @@ double Detector::countThreshold(vector<SampleType> delta) {
 }
 
 double Detector::countDynamicRange(SignalSource source) {
-    //todo: count energy of the signal (source) - energy  is computed over a frame of 300msec for a frame shift
+    //count energy of the signal (source) - energy  is computed over a frame of 300msec for a frame shift
     //of 10msec, where m is the frame index
-    double frameLengthInSecs = 0.3;
-    unsigned int samplesPerFrame = (unsigned int) (source.getSampleFrequency() * frameLengthInSecs);
-    unsigned int samplesInShift = (unsigned int) (source.getSampleFrequency() * frameLengthInSecs);
-    unsigned int commonSamples = samplesPerFrame-samplesInShift;
-    FramesCollection *frames=new FramesCollection(source, samplesPerFrame, commonSamples);
-    vector<double> energyPerFrame = countSignalEnergy(source);
+    vector<double> signalEnergyPerEachFrame = countSignalEnergyPerFrame(source);
 
-    //todo: find max and min energy
+    //find max and min energy
+    double maxEnergy = *max_element(signalEnergyPerEachFrame.begin(), signalEnergyPerEachFrame.end());
+    double minEnergy = *min_element(signalEnergyPerEachFrame.begin(), signalEnergyPerEachFrame.end());
 
     //todo: count dynamic range: ro = 10*log10 ((max_m(E_m))/(min_m(E_m)))
-    return 0;
+    double dynamicRange = 10* log10(maxEnergy/minEnergy);
+    return dynamicRange;
+}
+
+vector<double> Detector::countSignalEnergyPerFrame(SignalSource source) {
+    double frameLengthInSecs = 0.3;
+    double shiftLengthInSecs = 0.1;
+    unsigned int samplesPerFrame = (unsigned int) (source.getSampleFrequency() * frameLengthInSecs);
+    unsigned int samplesInShift = (unsigned int) (source.getSampleFrequency() * shiftLengthInSecs);
+    unsigned int commonSamples = samplesPerFrame-samplesInShift;
+    vector<double> signalFramesEnergy;
+    FramesCollection frames(source, samplesPerFrame, commonSamples);
+    for (auto& frame : frames){
+        signalFramesEnergy.push_back(countSingleFrameEnergy(frame));
+    }
+
+    return signalFramesEnergy;
+}
+
+double Detector::countSingleFrameEnergy(Frame &frame) {
+    double energy(0);
+    for (SignalSource::iterator sample=frame.begin(); sample!=frame.end(); sample++){
+        energy += (*sample)*(*sample);
+    }
+    energy=energy/frame.getSamplesCount();
+
+    return energy;
+
 }
 

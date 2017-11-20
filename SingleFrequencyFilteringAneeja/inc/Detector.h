@@ -41,6 +41,10 @@ public:
     double countThreshold(vector<SampleType> delta);
 
     double countDynamicRange(SignalSource source);
+
+    vector<double> countSignalEnergyPerFrame(SignalSource source);
+
+    double countSingleFrameEnergy(Frame &frame);
 };
 
 
