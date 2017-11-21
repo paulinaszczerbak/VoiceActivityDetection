@@ -35,19 +35,27 @@ void Detector::detect(SignalSource& wav) {
     int endFrequency = 4001;
     int interval = 20;
     //delta - corresponding to the article
-//    vector<SampleType> delta = countSFFEnvelopesForFrequencies(wavNoised, beginFrequency, endFrequency, interval);
+    vector<SampleType> delta = countSFFEnvelopesForFrequencies(wavNoised, beginFrequency, endFrequency, interval);
 
-//    double threshold = countThreshold(delta);
+    double threshold = countThreshold(delta);
 
-    //todo: count DYNAMIC RANGE
+    //count DYNAMIC RANGE
     // count ro = 10*log10 * (max_m(E_m))/(min_m(E_m)) - dynamic range
     // it's needed to count smoothing window l_w
     double ro = countDynamicRange(wavNoised);
-    cout<<ro<<"RO"<<endl;
+
+    //set window size - corresponding to dynamic range value
+    double windowSize = countWindowSize(ro);
+    cout<<"threshold"<<" "<<threshold<<endl;
 
     //todo: DECISION LOGIC AT EACH SAMPLING INSTANT
     //the values of delta(n) are averaged over a window of size l_w to obtain the averaged
     // value delta(n) at each sample index n
+//    vector<SampleType> deltaAveraged = averageSignal(delta, windowSize);
+//    vector<SampleType> decision = makeDecision(deltaAveraged, threshold);
+
+
+
     //writing to file to plot results
 //    system("touch result3ToPlot");
 //    //otwieram plik do zapisu
@@ -311,7 +319,8 @@ vector<SampleType> Detector::countSFFEnvelopesForFrequencies(SignalSource &sourc
  * @return
  */
 double Detector::countThreshold(vector<SampleType> delta) {
-    //todo: sort delta and get 20% first values
+    //TODO: SOMETHING WRONG WITH MEAN
+    //sort delta and get 20% first values
     sort(delta.begin(), delta.end());
     //get 20% first samples
     int amountOfSamples = (int)(delta.size()*0.2);
@@ -320,20 +329,19 @@ double Detector::countThreshold(vector<SampleType> delta) {
     double mean(0);
     //mean - maybe is there any function in stl??
     for(auto& x : splitedDelta){
-        mean += mean + x;
+        mean += x;
     }
-    mean=mean/splitedDelta.size();
 
+    mean=mean/splitedDelta.size();
     //variance: ((1/(n-1) * sum(i=1, n, (xi-x_sr)^2)
-    double varinace(0);
+    double variance(0);
     for(auto& x : splitedDelta){
-        varinace = (x-mean)*(x-mean);
+        variance += (x-mean)*(x-mean);
     }
-    varinace = varinace*(1.0/(splitedDelta.size()-1));
+    variance = variance*(1.0/(splitedDelta.size()-1));
 
     //threshold theta
-    double threshold = mean + 3*varinace;
-
+    double threshold = mean + 3*variance;
 
     return threshold;
 }
@@ -376,5 +384,23 @@ double Detector::countSingleFrameEnergy(Frame &frame) {
 
     return energy;
 
+}
+
+/***
+ * Sets _windowSize as it is said in the article (in msec)
+ * @param ro
+ */
+double Detector::countWindowSize(double ro) {
+    double windowSize;
+    if (ro<30){
+        windowSize=0.4;
+    }
+    else if(ro>=30 && ro<=40){
+        windowSize=0.3;
+    }
+    else if(ro>40){
+        windowSize=0.2;
+    }
+    return windowSize;
 }
 

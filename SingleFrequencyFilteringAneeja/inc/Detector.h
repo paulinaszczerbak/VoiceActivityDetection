@@ -15,6 +15,7 @@ class Detector {
 private:
     double _samplingFrequency;
     vector<int> result;
+    double _windowSize;
 public:
     Detector();
     virtual ~Detector();
@@ -45,6 +46,8 @@ public:
     vector<double> countSignalEnergyPerFrame(SignalSource source);
 
     double countSingleFrameEnergy(Frame &frame);
+
+    double countWindowSize(double ro);
 };
 
 
