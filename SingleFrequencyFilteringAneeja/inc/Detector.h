@@ -21,9 +21,9 @@ public:
     virtual ~Detector();
     void detect(Aquila::SignalSource& wav);
 
-    SignalSource differenceSignal(const Aquila::SignalSource &wav);
+    SignalSource differenceSignal(const SignalSource &wav);
 
-    vector<complex<SampleType>> MultipyByComplexSinusoid(const Aquila::SignalSource& wav, int frequency);
+    vector<complex<SampleType>> MultipyByComplexSinusoid(const SignalSource& wav, int frequency);
 
     vector<complex<double>> countFilterOutput(vector<complex<SampleType>> &wav);
 
@@ -48,6 +48,12 @@ public:
     double countSingleFrameEnergy(Frame &frame);
 
     double countWindowSize(double ro);
+
+    vector<SampleType> averageVector(vector<SampleType>& vector, double size);
+
+    vector<short> makeDecisionAtSampleLevel(vector<SampleType>& averagedVector, double threshold);
+
+    vector<short> smoothDecision(vector<short>& decision, double windowSize);
 };
 
 
