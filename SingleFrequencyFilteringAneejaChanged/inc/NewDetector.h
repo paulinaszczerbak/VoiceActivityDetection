@@ -1,0 +1,14 @@
+//
+// Created by paulina on 25.11.17.
+//
+
+#ifndef VOICEACTIVITYDETECTION_NEWDETECTOR_H
+#define VOICEACTIVITYDETECTION_NEWDETECTOR_H
+
+
+class NewDetector {
+
+};
+
+
+#endif //VOICEACTIVITYDETECTION_NEWDETECTOR_H

@@ -27,42 +27,61 @@ void Detector::detect(SignalSource& wav) {
     _samplingFrequency = wav.getSampleFrequency();
     double weight(0);
     int normalizedFrequency = 3200;
-    //add some gaussian noise
+    ///add some gaussian noise
     SignalSource wavNoised = addGaussianNoiseToSignal(wav);
-    //count SFFEnvelopes for 185 frequencies 300-4000Hz by 20Hz
+    ///count SFFEnvelopes for 185 frequencies 300-4000Hz by 20Hz
     int beginFrequency = 300;
     int endFrequency = 4001;
     int interval = 20;
-    //delta - corresponding to the article
+    ///delta - corresponding to the article
     vector<SampleType> delta = countSFFEnvelopesForFrequencies(wavNoised, beginFrequency, endFrequency, interval);
 
     double threshold = countThreshold(delta);
 
-    //count DYNAMIC RANGE
-    // count ro = 10*log10 * (max_m(E_m))/(min_m(E_m)) - dynamic range
-    // it's needed to count smoothing window l_w
+    ///count DYNAMIC RANGE
+    /// count ro = 10*log10 * (max_m(E_m))/(min_m(E_m)) - dynamic range
+    /// it's needed to count smoothing window l_w
     double ro = countDynamicRange(wavNoised);
     cout<<"ro"<<ro<<endl;
-    //set window size - corresponding to dynamic range value
+    ///set window size - corresponding to dynamic range value
     double windowSize = countWindowSize(ro);
-    cout<<"threshold"<<" "<<threshold<<endl;
 
-    //todo: DECISION LOGIC AT EACH SAMPLING INSTANT
-    //the values of delta(n) are averaged over a window of size l_w to obtain the averaged
-    // value delta(n) at each sample index n
+    ///DECISION LOGIC AT EACH SAMPLING INSTANT
+    ///the values of delta(n) are averaged over a window of size l_w to obtain the averaged
+    /// value delta(n) at each sample index n
     vector<SampleType> deltaAveraged = averageVector(delta, windowSize);
-    vector<short> decision = makeDecisionAtSampleLevel(deltaAveraged, threshold);
-    vector<short> smoothedDecision = smoothDecision(decision, windowSize);
+    SignalSource deltaSignal = vectorToSignalSource(deltaAveraged);
+//    vector<short> decision = makeDecisionAtSampleLevel(deltaAveraged, threshold);
+//    vector<short> smoothedDecision = smoothDecision(decision, windowSize);
+
+    //DECISION LOGIC AT EACH FRAME
+    vector<short> decision = makeDecisionAtFrameLevel(deltaSignal, threshold);
+
+    cout<<"decision"<<decision.size()<<endl;
+    cout<<"wav"<<wav.getSamplesCount()<<endl;
 
     //writing to file to plot results
-    system("touch smoothedResultToPlot");
+    system("touch signalToPlot");
     //otwieram plik do zapisu
-    ofstream file("smoothedResultToPlot");
-    if(file){
-        for (size_t i = 0; i< smoothedDecision.size() ; i++) {
-            file << smoothedDecision[i] << endl;
+    ofstream file1("signalToPlot");
+    if(file1){
+        for (size_t i = 0; i< wavNoised.getSamplesCount() ; i++) {
+            file1 << wavNoised.sample(i) << endl;
         }
-        file.close();
+        file1.close();
+    } else{
+        cout<<"BLAD: nie mozna otworzyc pliku"<<endl;
+    }
+
+    //writing to file to plot results
+    system("touch ResultDecisionToPlot");
+    //otwieram plik do zapisu
+    ofstream file2("ResultDecisionToPlot");
+    if(file2){
+        for (size_t i = 0; i< decision.size() ; i++) {
+            file2 << decision[i] << endl;
+        }
+        file2.close();
     } else{
         cout<<"BLAD: nie mozna otworzyc pliku"<<endl;
     }
@@ -172,7 +191,6 @@ vector<SampleType> Detector::countEnvelope(vector<complex<double>> &complexSigna
     for (vector<complex<SampleType>>::iterator signalSample=complexSignal.begin(); signalSample!=complexSignal.end(); ++signalSample){
         unsigned long currentIndex = (unsigned long)distance(complexSignal.begin(), signalSample);
         envelope.push_back(sqrt((*signalSample).real()*(*signalSample).real() + (*signalSample).imag()*(*signalSample).imag()));
-//        cout<<envelope.at(currentIndex)<<" ";
     }
     //normalize envelope values
 
@@ -242,7 +260,6 @@ vector<SampleType> Detector::countSFFEnvelopesForFrequencies(SignalSource &sourc
 
     //sum of squares for different frequencies
     for (int frequency = beginFrequency; frequency <endFrequency; frequency=frequency+interval) {
-        cout<<frequency<< endl;
         //count Single Frequency Filtered envelope
         vector<SampleType> SFFEnvelope = countSFFEnvelope(source, frequency);
         //count weight value for specific normalizedFrequency
@@ -322,7 +339,6 @@ double Detector::countThreshold(vector<SampleType> delta) {
     //get 20% first samples
     int amountOfSamples = (int)(delta.size()*0.2);
     vector<SampleType> splitedDelta(delta.begin(), delta.begin()+amountOfSamples);
-    cout<< "size"<<splitedDelta.size()<<endl;
     //todo: count mean and varinace for splitedDelta
 //    double mean(0);
     //mean - maybe is there any function in stl??
@@ -332,17 +348,13 @@ double Detector::countThreshold(vector<SampleType> delta) {
     double mean = accumulate( splitedDelta.begin(),
                                  splitedDelta.end(),
                                  0.0)/splitedDelta.size();
-    cout<<"mean"<<mean<<endl;
 //    mean=mean/splitedDelta.size();
     //variance: ((1/(n-1) * sum(i=1, n, (xi-x_sr)^2)
     double variance(0);
     for(auto& x : splitedDelta){
         variance += (x-mean)*(x-mean);
-        cout<<x<<endl;
     }
-    cout<<"variance"<<variance<<endl;
     variance = variance/splitedDelta.size();
-    cout<<"variance"<<variance<<endl;
     //threshold theta
     double threshold = mean + 3*variance;
 
@@ -358,7 +370,7 @@ double Detector::countDynamicRange(SignalSource source) {
     double maxEnergy = *max_element(signalEnergyPerEachFrame.begin(), signalEnergyPerEachFrame.end());
     double minEnergy = *min_element(signalEnergyPerEachFrame.begin(), signalEnergyPerEachFrame.end());
 
-    //todo: count dynamic range: ro = 10*log10 ((max_m(E_m))/(min_m(E_m)))
+    //count dynamic range: ro = 10*log10 ((max_m(E_m))/(min_m(E_m)))
     double dynamicRange = 10* log10(maxEnergy/minEnergy);
     return dynamicRange;
 }
@@ -456,9 +468,8 @@ vector<short> Detector::smoothDecision(vector<short>& decision, double windowSiz
     }
 
     int halfOfSamplesPerWindow = (samplesPerWindow-1)/2;
-    cout<<"half"<<halfOfSamplesPerWindow<<endl;
 
-//    for (vector<short>::iterator it=smoothedDecision.begin()+100;
+//    for (vector<short>::iterator it=smoothedDecision.begin()+101;
 //         it!=smoothedDecision.begin()+halfOfSamplesPerWindow;
 //         it++){
 //        double sumInWindow = accumulate( it-100,
@@ -489,4 +500,46 @@ vector<short> Detector::smoothDecision(vector<short>& decision, double windowSiz
     }
     return smoothedDecision;
 }
+
+/***
+ * The decision is given for every 10 msec frame. For each 10 msec nonoverlapping
+ * frame, if majority of d_f(n) is converted to a 10 msec frame based decision.
+ * @param delta
+ * @return
+ */
+vector<short> Detector::makeDecisionAtFrameLevel(const SignalSource& delta, double threshold) {
+    cout<<"delta"<<delta.getSamplesCount()<<endl;
+    vector<short> decision;
+
+    double frameLengthInSecs = 0.01;
+    unsigned int samplesPerFrame = (unsigned int) (_samplingFrequency * frameLengthInSecs);
+    FramesCollection frames(delta, samplesPerFrame);
+    for (FramesCollection::iterator frame=frames.begin(); frame!=frames.end(); frame++){
+        int speechCounter(0);
+        for (SignalSource::iterator sample=(*frame).begin(); sample!=(*frame).end(); sample++){
+            if(*sample > threshold) {
+                speechCounter++;
+            }
+        }
+        cout<<speechCounter<<endl;
+        if (speechCounter > 0.6*samplesPerFrame){
+            for(SignalSource::iterator sample=(*frame).begin(); sample!=(*frame).end(); sample++){
+                decision.push_back(1);
+            }
+        } else{
+            for(SignalSource::iterator sample=(*frame).begin(); sample!=(*frame).end(); sample++){
+                decision.push_back(0);
+            }
+        }
+    }
+
+    return decision;
+}
+
+
+
+SignalSource Detector::vectorToSignalSource(vector<SampleType> vectorToConvert) {
+    return SignalSource(vectorToConvert);
+}
+
 

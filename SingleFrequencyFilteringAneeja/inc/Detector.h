@@ -18,12 +18,14 @@ private:
     double _windowSize;
 public:
     Detector();
+
     virtual ~Detector();
-    void detect(Aquila::SignalSource& wav);
+
+    void detect(Aquila::SignalSource &wav);
 
     SignalSource differenceSignal(const SignalSource &wav);
 
-    vector<complex<SampleType>> MultipyByComplexSinusoid(const SignalSource& wav, int frequency);
+    vector<complex<SampleType>> MultipyByComplexSinusoid(const SignalSource &wav, int frequency);
 
     vector<complex<double>> countFilterOutput(vector<complex<SampleType>> &wav);
 
@@ -37,7 +39,8 @@ public:
 
     SignalSource addGaussianNoiseToSignal(SignalSource signal);
 
-    vector<SampleType> countSFFEnvelopesForFrequencies(SignalSource &source, int beginFrequency, int endFrequency, int interval);
+    vector<SampleType>
+    countSFFEnvelopesForFrequencies(SignalSource &source, int beginFrequency, int endFrequency, int interval);
 
     double countThreshold(vector<SampleType> delta);
 
@@ -49,12 +52,15 @@ public:
 
     double countWindowSize(double ro);
 
-    vector<SampleType> averageVector(vector<SampleType>& vector, double size);
+    vector<SampleType> averageVector(vector<SampleType> &vector, double size);
 
-    vector<short> makeDecisionAtSampleLevel(vector<SampleType>& averagedVector, double threshold);
+    vector<short> makeDecisionAtSampleLevel(vector<SampleType> &averagedVector, double threshold);
 
-    vector<short> smoothDecision(vector<short>& decision, double windowSize);
+    vector<short> smoothDecision(vector<short> &decision, double windowSize);
+
+    vector<short> makeDecisionAtFrameLevel(const SignalSource &delta, double threshold);
+
+    SignalSource vectorToSignalSource(vector<SampleType> vectorToConvert);
+
 };
-
-
 #endif //VOICEACTIVITYDETECTION_DETECTOR_H
