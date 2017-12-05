@@ -18,7 +18,7 @@ set(SOURCE_FILES
         src/EnergyBasedDetector.cpp
         src/ResultPlotter.cpp
         src/SingleFrameEnergyFinder.cpp
-        src/SohnsDetector.cpp src/SFFDetector.cpp inc/SFFDetector.h)
+        src/SohnsDetector.cpp inc/SFFDetector.h SingleFrequencyFilteringMc/src/SFFDetector.cpp SingleFrequencyFilteringMc/inc/SFFDetector.h SingleFrequencyFilteringMc/src/Envelope.cpp SingleFrequencyFilteringMc/inc/Envelope.h SingleFrequencyFilteringMc/src/Signal.cpp SingleFrequencyFilteringMc/inc/Signal.h SingleFrequencyFilteringAneeja/src/Detector.cpp SingleFrequencyFilteringAneeja/inc/Detector.h SingleFrequencyFilteringAneejaChanged/src/NewDetector.cpp SingleFrequencyFilteringAneejaChanged/inc/NewDetector.h EnergyBased/src/EnergyDetector.cpp EnergyBased/inc/EnergyDetector.h)
 
 add_executable(VoiceActivityDetection ${SOURCE_FILES})
 

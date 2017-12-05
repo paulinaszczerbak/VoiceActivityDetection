@@ -1,8 +1,25 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Aparat mowy cz\IeC {\l }owieka}}{6}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Sprz\IeC {\k e}\IeC {\.z}enie zwrotne w wytwarzaniu mowy}}{6}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Przebieg sygna\IeC {\l }u w dziedzinie czasu dla s\IeC {\l }owa \emph {kabanos}}}{7}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Widmo sygna\IeC {\l }u dla s\IeC {\l }owa \emph {kabanos}}}{7}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Przebieg czasowy s\IeC {\l }owa \emph {kabanos} i jego wzorcowa detekcja}}{21}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Wynik detekcji algorytmu bazuj\IeC {\k a}cego na energii sygna\IeC {\l }u}}{22}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Wynik detekcji algorytmu SFF}}{22}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Wynik detekcji algorytmu SFF2}}{22}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Odleg\IeC {\l }o\IeC {\'s}\IeC {\'c} od wzorcowych pr\IeC {\'o}bek dla poszczegolnych algorytm\IeC {\'o}w, wyra\IeC {\.z}ona w pr\IeC {\'o}bkach}}{23}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Przebieg czasowy s\IeC {\l }owa \emph {zapami\IeC {\k e}taj} i jego wzorcowa detekcja}}{23}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Wynik detekcji algorytmu bazuj\IeC {\k a}cego na energii sygna\IeC {\l }u}}{24}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Wynik detekcji algorytmu SFF}}{24}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Wynik detekcji algorytmu SFF2}}{24}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces R\IeC {\'o}\IeC {\.z}nice mi\IeC {\k e}dzy wzorcowymi pr\IeC {\'o}bkami}}{25}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Przebieg czasowy s\IeC {\l }owa \emph {kabanos} i jego wzorcowa detekcja}}{25}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Wynik detekcji algorytmu bazuj\IeC {\k a}cego na energii sygna\IeC {\l }u}}{26}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Wynik detekcji algorytmu SFF}}{26}
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Wynik detekcji algorytmu SFF2}}{26}
+\contentsline {figure}{\numberline {5.15}{\ignorespaces Przebieg czasowy s\IeC {\l }owa \emph {zapami\IeC {\k e}taj} i jego wzorcowa detekcja}}{27}
 \addvspace {10\p@ }

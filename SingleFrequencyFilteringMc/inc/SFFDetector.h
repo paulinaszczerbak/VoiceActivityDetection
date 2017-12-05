@@ -12,6 +12,7 @@
 #include "Envelope.h"
 
 using namespace std;
+using namespace Aquila;
 
 class SFFDetector {
 private:
@@ -20,7 +21,7 @@ private:
     //obwiednia sygnału
     Envelope* _envelope;
     const double PI = 3.14;
-    //co to ?????
+    //liczba punktów gęstości
     static const int sPosNb = 801;
     //wskaznik do struktury zawierajacej numery indeksow probek
     //rozpoczynajacych aktywnosc mowcy
@@ -37,9 +38,9 @@ private:
     double countBeta();
     double countTheta();
     double calculateRo(Signal* signal);
-    vector<double> smooth(std::vector<double>& signal);
+    vector<double> smooth(std::vector<double>& signal, int loopCount);
     double countEnergy(Aquila::FramesCollection* frames, Aquila::SampleType frameIndex);
-    void singleFrequencyFilteringDetect();
+    vector<short> singleFrequencyFilteringDetect(const SignalSource& signalToDetect);
     vector<Aquila::SampleType> diffSamples(const vector<Aquila::SampleType>& signalToDiff);
 
 public:

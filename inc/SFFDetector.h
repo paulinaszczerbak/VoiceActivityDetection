@@ -10,8 +10,8 @@
 #include <aquila/source/WaveFileHandler.h>
 #include <vector>
 #include <aquila/source/FramesCollection.h>
-#include "../SingleFrequencyFiltering/inc/Envelope.h"
-#include "../SingleFrequencyFiltering/inc/Signal.h"
+#include "../SingleFrequencyFilteringMc/inc/Envelope.h"
+#include "../SingleFrequencyFilteringMc/inc/Signal.h"
 
 using namespace std;
 
@@ -20,6 +20,9 @@ class SFFDetector {
 private:
     //sygnal WAV poddany detekcji
     Signal* _signal;
+
+    Aquila::SampleType* signalOriginal;
+
     //obwiednia sygnału
     Envelope* _envelope;
     const double PI = 3.14;

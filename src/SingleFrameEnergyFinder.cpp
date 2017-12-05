@@ -3,8 +3,10 @@
 //
 
 #include <aquila/source/FramesCollection.h>
+#include <iostream>
 #include "../inc/SingleFrameEnergyFinder.h"
 
+using namespace std;
 
 SingleFrameEnergyFinder::SingleFrameEnergyFinder() {
     this->singleFrameEnergy=0;
@@ -17,15 +19,19 @@ SingleFrameEnergyFinder::~SingleFrameEnergyFinder() {
 }
 
 double SingleFrameEnergyFinder::countSingleFrameEnergy(Aquila::WaveFile wav, size_t frameNumber) {
-    Aquila::FramesCollection *frames=new Aquila::FramesCollection(wav, this->samplesPerFrame,this->commonSamples);
+    Aquila::FramesCollection frames(wav, this->samplesPerFrame,this->commonSamples);
     //obliczam energie w jednej, konkretnej ramce
-    for(size_t i=0; i<frames->getSamplesPerFrame();i++){
-        //iteruje po probkach w ramce
-        this->singleFrameEnergy=this->singleFrameEnergy+(frames->frame(frameNumber).sample(i)*frames->frame(frameNumber).sample(i));
+    double frameEnergy(0);
+//    for(size_t i=0; i<frames->getSamplesPerFrame();i++){
+//        //iteruje po probkach w ramce
+//        frameEnergy=frameEnergy+(frames->frame(frameNumber).sample(i)*frames->frame(frameNumber).sample(i));
+//    }
+    for(Aquila::SampleType sample : frames.frame(frameNumber)){
+        frameEnergy += sample*sample;
     }
-    this->singleFrameEnergy=this->singleFrameEnergy/frames->getSamplesPerFrame();
+    frameEnergy=frameEnergy/frames.getSamplesPerFrame();
 
-    return this->singleFrameEnergy;
+    return frameEnergy;
 }
 
 unsigned int SingleFrameEnergyFinder::getSamplesPerFrame() {

@@ -8,6 +8,7 @@
 //#include "../aquila/include/aquila/source/WaveFile.h"
 #include "../aquila/include/aquila/source/FramesCollection.h"
 
+using namespace std;
 
 EnergyBasedDetector::EnergyBasedDetector(){
     this->threshold=new ThresholdFinder();
@@ -34,28 +35,48 @@ void EnergyBasedDetector::detect(Aquila::WaveFile wav) {
 
     //zapis do pliku 0000111000 - wynik detekcji
     //todo: zmienić na plik zawierajacy punkty, w ktorych jest ZMIANA
-    system("touch resultToPlot");
+    //writing to file to plot results
+    system("touch signalToPlotEnergy");
     //otwieram plik do zapisu
-    std::ofstream file("resultToPlot");
+    ofstream file1("signalToPlotEnergy");
+    if(file1){
+        for (size_t i = 0; i< wav.getSamplesCount() ; i++) {
+            file1 << wav.sample(i) << endl;
+        }
+        file1.close();
+    } else{
+        cout<<"BLAD: nie mozna otworzyc pliku"<<endl;
+    }
+
+
+    system("touch resultToPlotEnergy");
+    //otwieram plik do zapisu
+    std::ofstream file("resultToPlotEnergy");
     int xValue(0);
     if(file){
-        for (size_t i = 0; i <framesAmount ; i++) {
+        file<<xValue<<" "<<0<<endl;
+        xValue+=getCommonSamples();
+        for (size_t i = 1; i <framesAmount-1 ; i++) {
             //estymowany prog detekcji
-            //std::cout<<"wchodzi do estymowania progu"<<std::endl;
-            //calculateThresholdEminEmax(wav,i);
-            //std::cout<<"próg detekcji "<<getThreshold()<<std::endl;
+            threshold->calculateThresholdEminEmax(wav,i);
+            std::cout<<"próg detekcji "<<threshold->getThreshold()<<std::endl;
             //std::cout<<"wychodzi"<<std::endl;
-            if(countSingleFrameEnergy(wav,i)<=threshold->getThreshold()){
+            double frameEnergy = countSingleFrameEnergy(wav,i);
+            cout<<"frame en: "<<frameEnergy<<endl;
+            cout<<"threshold: "<<threshold->getThreshold()<<endl;
+
+            if(frameEnergy<=threshold->getThreshold()){
                 file<<xValue<<" "<<0<<std::endl;
                 xValue+=getCommonSamples();
                 //xValue+=(getSamplesPerFrame()/2);
             }
             else {
-                file<<xValue<<" "<<10000<<std::endl;
+                file<<xValue<<" "<<1<<std::endl;
                 xValue+=getCommonSamples();
                 //xValue+=(getSamplesPerFrame()/2);
             }
         }
+        file<<xValue<<" "<<0<<endl;
         file.close();
     } else{
         std::cout<<"BLAD: nie mozna otworzyc pliku"<<std::endl;

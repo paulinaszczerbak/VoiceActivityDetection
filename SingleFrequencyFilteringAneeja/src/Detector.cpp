@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <functional>
 #include <aquila/source/FramesCollection.h>
+#include <valarray>
 #include "../inc/Detector.h"
 using namespace Aquila;
 
@@ -29,6 +30,8 @@ void Detector::detect(SignalSource& wav) {
     int normalizedFrequency = 3200;
     ///add some gaussian noise
     SignalSource wavNoised = addGaussianNoiseToSignal(wav);
+//    double noiseMultiplication=0.0001;
+//    SignalSource wavNoised = addGaussianNoiseToSignalTimer(wav, noiseMultiplication);
     ///count SFFEnvelopes for 185 frequencies 300-4000Hz by 20Hz
     int beginFrequency = 300;
     int endFrequency = 4001;
@@ -36,51 +39,66 @@ void Detector::detect(SignalSource& wav) {
     ///delta - corresponding to the article
     vector<SampleType> delta = countSFFEnvelopesForFrequencies(wavNoised, beginFrequency, endFrequency, interval);
 
-    double threshold = countThreshold(delta);
-
     ///count DYNAMIC RANGE
     /// count ro = 10*log10 * (max_m(E_m))/(min_m(E_m)) - dynamic range
     /// it's needed to count smoothing window l_w
     double ro = countDynamicRange(wavNoised);
-    cout<<"ro"<<ro<<endl;
     ///set window size - corresponding to dynamic range value
     double windowSize = countWindowSize(ro);
+    cout<<"windowSize"<<windowSize<<endl;
+
+    vector<SampleType> deltaAveraged = averageVector(delta, windowSize);
+//    vector<SampleType> deltaAveraged = smoothSignal(delta, 100);
+
+    ///count THRESHOLD
+    double threshold = countThreshold(deltaAveraged, windowSize);
+    cout<<"threshold"<<threshold<<endl;
 
     ///DECISION LOGIC AT EACH SAMPLING INSTANT
     ///the values of delta(n) are averaged over a window of size l_w to obtain the averaged
     /// value delta(n) at each sample index n
-    vector<SampleType> deltaAveraged = averageVector(delta, windowSize);
-    SignalSource deltaSignal = vectorToSignalSource(deltaAveraged);
-//    vector<short> decision = makeDecisionAtSampleLevel(deltaAveraged, threshold);
-//    vector<short> smoothedDecision = smoothDecision(decision, windowSize);
+//    vector<short> decision = makeDecisionAtSampleLevel(delta, threshold);
+//    decision = smoothDecision(decision, windowSize);
 
-    //DECISION LOGIC AT EACH FRAME
-    vector<short> decision = makeDecisionAtFrameLevel(deltaSignal, threshold);
+
+    ///DECISION LOGIC AT EACH FRAME
+    vector<short> decision = makeDecisionAtFrameLevel(SignalSource(deltaAveraged), threshold);
+    //set first and last sample as nonspeech
+    decision[0]=0;
+    decision[decision.size()-1]=0;
 
     cout<<"decision"<<decision.size()<<endl;
+//    cout<<"delta[10000]"<<deltaAveraged.at(10000)<<endl;
+//    cout<<"delta[40000]"<<deltaAveraged.at(40000)<<endl;
     cout<<"wav"<<wav.getSamplesCount()<<endl;
 
     //writing to file to plot results
-    system("touch signalToPlot");
+    system("touch signalToPlotSFFArticle");
     //otwieram plik do zapisu
-    ofstream file1("signalToPlot");
+    ofstream file1("signalToPlotSFFArticle");
     if(file1){
         for (size_t i = 0; i< wavNoised.getSamplesCount() ; i++) {
             file1 << wavNoised.sample(i) << endl;
         }
+//        for (size_t i = 0; i< delta.size() ; i++) {
+//            file1 << delta.at(i) << endl;
+//        }
         file1.close();
     } else{
         cout<<"BLAD: nie mozna otworzyc pliku"<<endl;
     }
 
     //writing to file to plot results
-    system("touch ResultDecisionToPlot");
+    system("touch ResultToPlotSFFArticle");
     //otwieram plik do zapisu
-    ofstream file2("ResultDecisionToPlot");
+    ofstream file2("ResultToPlotSFFArticle");
     if(file2){
         for (size_t i = 0; i< decision.size() ; i++) {
-            file2 << decision[i] << endl;
+            file2 << decision.at(i) << endl;
         }
+//        for (size_t i = 0; i< deltaAveraged.size() ; i++) {
+//            file2 << deltaAveraged.at(i) << endl;
+//        }
         file2.close();
     } else{
         cout<<"BLAD: nie mozna otworzyc pliku"<<endl;
@@ -95,7 +113,6 @@ void Detector::detect(SignalSource& wav) {
  * @return
  */
 vector<SampleType> Detector::countSFFEnvelope(SignalSource &wav, int normalizedFrequency) {
-    //todo: add noise to signal
     //difference the signal
     SignalSource wavDifferenced = differenceSignal(wav);
 
@@ -227,7 +244,7 @@ vector<SampleType> Detector::scaleSignal(vector<SampleType> wavEnvelope, double 
  * @param signal
  * @return
  */
-SignalSource Detector::addGaussianNoiseToSignal(SignalSource signal) {
+SignalSource Detector::addGaussianNoiseToSignal(const SignalSource& signal) {
 
     vector<SampleType> noised(signal.begin(), signal.end());
     // Define random generator with Gaussian distribution
@@ -311,7 +328,7 @@ vector<SampleType> Detector::countSFFEnvelopesForFrequencies(SignalSource &sourc
         x = sqrt(x);
     }
 
-    //todo: count dela(n) = sqrt(abs(sigma^2(n) - ni^2(n)),M), where sigma = standard deviation, ni = mean,
+    // dela(n) = sqrt(abs(sigma^2(n) - ni^2(n)),M), where sigma = standard deviation, ni = mean,
     // M should be in range 32 to 256
     vector<SampleType> delta(source.getSamplesCount(), 0);
     int sqrtLevel = 64;
@@ -332,32 +349,38 @@ vector<SampleType> Detector::countSFFEnvelopesForFrequencies(SignalSource &sourc
  * @param delta
  * @return
  */
-double Detector::countThreshold(vector<SampleType> delta) {
-    //sort delta and get 20% first values
-//    vector<SampleType> test = {3,5,3,3,5,6,4,2,1,8};
+double Detector::countThreshold(vector<SampleType> delta, double smoothingWindowSize) {
+    ///get 20% first samples
+    int amountOfNotSmoothedSamples = (int)(_samplingFrequency * smoothingWindowSize);
+    int amountOfSamplesToThreshold = (int)(delta.size()*0.2);
+    cout<<"amount of not smoothed samples: "<<amountOfNotSmoothedSamples<<endl;
+    cout<<"amount of 20%  samples: "<<amountOfSamplesToThreshold<<endl;
+
+    ///sort delta and get 20% first values
     sort(delta.begin(), delta.end());
-    //get 20% first samples
-    int amountOfSamples = (int)(delta.size()*0.2);
-    vector<SampleType> splitedDelta(delta.begin(), delta.begin()+amountOfSamples);
-    //todo: count mean and varinace for splitedDelta
-//    double mean(0);
-    //mean - maybe is there any function in stl??
-//    for(auto& x : splitedDelta){
-//        mean += x;
-//    }
+//    sort(&delta.at(5000), &delta.at(55000));
+//    cout<<"SPLIT START: "<<distance(delta.begin(),delta.begin()+amountOfNotSmoothedSamples/2)<<endl;
+//    cout<<"SPLIT END: "<<distance(delta.begin(), delta.begin()+(amountOfNotSmoothedSamples/2) + amountOfSamplesToThreshold)<<endl;
+
+    vector<SampleType> splitedDelta(delta.begin(), delta.begin()+amountOfSamplesToThreshold);
+//    vector<SampleType> splitedDelta(&delta.at(5000), &delta.at(18500));
+
+    ///count mean and varinace for splitedDelta
+
     double mean = accumulate( splitedDelta.begin(),
                                  splitedDelta.end(),
-                                 0.0)/splitedDelta.size();
-//    mean=mean/splitedDelta.size();
-    //variance: ((1/(n-1) * sum(i=1, n, (xi-x_sr)^2)
-    double variance(0);
+                                 0.00000000)/splitedDelta.size();
+
+    ///variance: ((1/(n-1) * sum(i=1, n, (xi-x_sr)^2)
+    double variance(0.000000000);
     for(auto& x : splitedDelta){
         variance += (x-mean)*(x-mean);
     }
-    variance = variance/splitedDelta.size();
+    cout<<"mean"<<mean<<endl;
+    variance = variance/(splitedDelta.size()-1);
+    cout<<"variance"<<variance<<endl;
     //threshold theta
-    double threshold = mean + 3*variance;
-
+    double threshold = mean + 3.000000000*variance;
     return threshold;
 }
 
@@ -420,26 +443,60 @@ double Detector::countWindowSize(double ro) {
 }
 
 /***
+ * Smoothing assuming that we get a window of size windowSize and count average value for this window
+ * average is set to sample placed in the middle of the window
+ * to smooth first and last halfOfSamplesPerWindow amount of samples is needed different smoothing function
  *
  * @param vectorToAverage
  * @param windowSize
  * @return
  */
 vector<SampleType> Detector::averageVector(vector<SampleType>& vectorToAverage, double windowSize) {
-    vector<SampleType> averaged = vectorToAverage;
+    vector<SampleType> averaged(vectorToAverage.size(), 0);
 
     int samplesPerWindow = (int)(_samplingFrequency * windowSize);
     if(samplesPerWindow%2 == 0){
         samplesPerWindow += 1;
     }
+
+
     int halfOfSamplesPerWindow = (samplesPerWindow-1)/2;
-    for (vector<SampleType>::iterator it=averaged.begin()+halfOfSamplesPerWindow;
-         it!=averaged.end()-halfOfSamplesPerWindow;
+
+    //main smoothing
+    for (vector<SampleType>::iterator it=vectorToAverage.begin()+halfOfSamplesPerWindow;
+         it!=vectorToAverage.end()-halfOfSamplesPerWindow;
          it++){
         double average = accumulate( it-halfOfSamplesPerWindow,
                                      it+halfOfSamplesPerWindow+1,
                                      0.0)/samplesPerWindow;
-        *it=average;
+        long index = distance(vectorToAverage.begin(), it);
+        averaged[index]=average;
+    }
+
+//    smoothing beginning
+    int counter(0);
+    for (vector<SampleType>::iterator it=vectorToAverage.begin();
+         it!=vectorToAverage.begin()+halfOfSamplesPerWindow;
+         it++){
+        double average = accumulate( it-counter,
+                                     it+samplesPerWindow-counter,
+                                     0.0)/samplesPerWindow;
+        long index = distance(vectorToAverage.begin(), it);
+        averaged[index]=average;
+        counter++;
+    }
+
+    //smoothing end
+    counter=0;
+    for (vector<SampleType>::iterator it=vectorToAverage.end()-halfOfSamplesPerWindow;
+         it!=vectorToAverage.end();
+         it++){
+        double average = accumulate( it-halfOfSamplesPerWindow-counter,
+                                     it+halfOfSamplesPerWindow-counter,
+                                     0.0)/samplesPerWindow;
+        long index = distance(vectorToAverage.begin(), it);
+        averaged[index]=average;
+        counter++;
     }
     return averaged;
 }
@@ -459,24 +516,22 @@ vector<short> Detector::makeDecisionAtSampleLevel(vector<SampleType>& averagedVe
 
 vector<short> Detector::smoothDecision(vector<short>& decision, double windowSize) {
     vector<short> smoothedDecision = decision;
-    double threshold = 0.6;
-    double tempWindowSize(0.3);
-    int samplesPerWindow = (int)(_samplingFrequency * tempWindowSize);
-//    samplesPerWindow=100;
+    int samplesPerWindow = (int)(_samplingFrequency * windowSize);
     if(samplesPerWindow%2 == 0){
         samplesPerWindow += 1;
     }
 
-    int halfOfSamplesPerWindow = (samplesPerWindow-1)/2;
+    int halfOfSamplesPerWindow = samplesPerWindow/2;
 
-//    for (vector<short>::iterator it=smoothedDecision.begin()+101;
+    int counter(0);
+//    for (vector<short>::iterator it=smoothedDecision.begin();
 //         it!=smoothedDecision.begin()+halfOfSamplesPerWindow;
 //         it++){
-//        double sumInWindow = accumulate( it-100,
-//                                         it+101,
+//        double sumInWindow = accumulate( it-counter,
+//                                         it+samplesPerWindow-counter,
 //                                         0.0);
 //
-//        if(sumInWindow > 0.6*201){
+//        if(sumInWindow > 0.6*samplesPerWindow){
 //            *it = 1;
 //        } else{
 //            *it = 0;
@@ -484,18 +539,27 @@ vector<short> Detector::smoothDecision(vector<short>& decision, double windowSiz
 //
 //    }
 
-    for (vector<short>::iterator it=smoothedDecision.begin()+halfOfSamplesPerWindow;
-         it!=smoothedDecision.end()-halfOfSamplesPerWindow;
+    cout<<"06samples :"<<0.6*samplesPerWindow<<endl;
+    for (vector<short>::iterator it=decision.begin()+halfOfSamplesPerWindow;
+         it!=decision.end()-halfOfSamplesPerWindow+1;
          it++){
-        double sumInWindow = accumulate( it-halfOfSamplesPerWindow,
+        int sumInWindow = accumulate( it-halfOfSamplesPerWindow,
                                      it+halfOfSamplesPerWindow+1,
-                                     0.0);
-
+                                     0);
+        cout<<"sumInWindow "<<sumInWindow<<endl;
         if(sumInWindow > 0.6*samplesPerWindow){
-            *it = 1;
+//            *it = 1;
+            //trzeba wpisywac do oddzielnej tablicy, bo potem to co sie teraz policzy, bierze udzial w kolejnych obliczeniach...
+            //a tak ma nie byc
+            cout<<"dupa"<<endl;
+            long index = distance(decision.begin(), it);
+            smoothedDecision[index]=1;
         } else{
-            *it = 0;
+//            *it = 0;
+            long index = distance(decision.begin(), it);
+            smoothedDecision[index]=0;
         }
+//        cout<<"decision: " <<*it<<endl;
 
     }
     return smoothedDecision;
@@ -508,11 +572,12 @@ vector<short> Detector::smoothDecision(vector<short>& decision, double windowSiz
  * @return
  */
 vector<short> Detector::makeDecisionAtFrameLevel(const SignalSource& delta, double threshold) {
-    cout<<"delta"<<delta.getSamplesCount()<<endl;
+//    cout<<"delta"<<delta.getSamplesCount()<<endl;
     vector<short> decision;
 
     double frameLengthInSecs = 0.01;
     unsigned int samplesPerFrame = (unsigned int) (_samplingFrequency * frameLengthInSecs);
+    cout<<"samplesperframe"<<samplesPerFrame<<endl;
     FramesCollection frames(delta, samplesPerFrame);
     for (FramesCollection::iterator frame=frames.begin(); frame!=frames.end(); frame++){
         int speechCounter(0);
@@ -542,4 +607,40 @@ SignalSource Detector::vectorToSignalSource(vector<SampleType> vectorToConvert) 
     return SignalSource(vectorToConvert);
 }
 
+SignalSource Detector::addGaussianNoiseToSignalTimer(SignalSource &signal, double multiplication) {
+    //zmienne lokalne do wygenerowania szumu
+    clock_t  timer;
+    //RAND_MAX - maksymalna wartosc zwrocona przez rand()
+    long centr = RAND_MAX/2;
+    long random1(0), random2(0);
+    vector<Aquila::SampleType> samplesNoised;
+
+    timer = clock();
+    srand(timer);
+    for (long i = 0; i < signal.getSamplesCount() ; i++) {
+        random1=0;
+        for (int j = 0; j < 16 ; j++) {
+            random2 = rand();
+            random1 += random2 - centr;
+        }
+        //dodatkowe dzielenie w przypadku kompilatora 64-bitowego
+        random1 /= 65536;
+        random1 /= 8;
+        //_signal->samplesNoised[i] = _signal->samplesOriginal[i] + noiseMult * random1;
+        samplesNoised.push_back(signal.sample(i) + multiplication * random1);
+    }
+    return SignalSource(samplesNoised, signal.getSampleFrequency());
+
+}
+
+vector<SampleType> Detector::smoothSignal(vector<SampleType>& signal, int loops) {
+    vector<double> smoothedSignal = signal;
+
+    for (int j = 0; j < loops; j++) {
+        for (int i = 1; i < signal.size()-1; i++) {
+            smoothedSignal[i] = smoothedSignal[i-1]*0.25 + smoothedSignal[i]*0.5 + smoothedSignal[i+1]*0.25;
+        }
+    }
+    return smoothedSignal;
+}
 

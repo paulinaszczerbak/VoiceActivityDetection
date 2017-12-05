@@ -58,11 +58,13 @@ void NewDetector::detect(SignalSource& wav) {
 //    vector<short> smoothedDecision = smoothDecision(decision, windowSize);
     ///DECISION LOGIC AT EACH FRAME
     vector<short> decision = makeDecisionAtFrameLevel(deltaSignal, thresholdBeta);
+    decision[0]=0;
+    decision[decision.size()-1]=0;
 
     //writing to file to plot results
-    system("touch signalToPlot");
+    system("touch signalToPlotNewDetector");
     //otwieram plik do zapisu
-    ofstream file1("signalToPlot");
+    ofstream file1("signalToPlotNewDetector");
     if(file1){
         for (size_t i = 0; i< wavNoised.getSamplesCount() ; i++) {
             file1 << wavNoised.sample(i) << endl;
@@ -73,9 +75,9 @@ void NewDetector::detect(SignalSource& wav) {
     }
 
     //writing to file to plot results
-    system("touch ResultDecisionToPlot");
+    system("touch ResultToPlotNewDetector");
     //otwieram plik do zapisu
-    ofstream file2("ResultDecisionToPlot");
+    ofstream file2("ResultToPlotNewDetector");
     if(file2){
         for (size_t i = 0; i< decision.size(); i++) {
             file2 << decision.at(i) << endl;
@@ -109,15 +111,15 @@ vector<SampleType> NewDetector::countSingleSFFEnvelope(SignalSource &wavDifferen
     vector<double> XReal(wavDifferenced.getSamplesCount(), 0);
     vector<double> XImaginary(wavDifferenced.getSamplesCount(), 0);
 
-    ///recursive square filter
+    ///recursive quadrature filter
     for (int i = 1; i < wavDifferenced.getSamplesCount(); i++) {
-        XReal[i] = wavDifferenced.sample(i) + amplitude1 * XReal[i-1] - amplitude2 * XImaginary[i-1];
-        XImaginary[i] = amplitude1 * XImaginary[i-1] + amplitude2 * XReal[i-1];
+        XReal[i] = wavDifferenced.sample(i) + amplitude1 * XReal.at(i-1) - amplitude2 * XImaginary.at(i-1);
+        XImaginary[i] = amplitude1 * XImaginary.at(i-1) + amplitude2 * XReal.at(i-1);
     }
 
     ///envelope
     for (int j = 0; j < wavDifferenced.getSamplesCount(); j++) {
-        wavEnvelope.push_back(sqrt(XReal[j]*XReal[j] * XImaginary[j]*XImaginary[j]));
+        wavEnvelope.push_back(sqrt(XReal.at(j)*XReal.at(j) * XImaginary.at(j)*XImaginary.at(j)));
     }
 
 //    vector<double>::iterator max = max_element(wavEnvelope.begin(), wavEnvelope.end());
@@ -331,25 +333,26 @@ double NewDetector::countThresholdBeta(vector<SampleType> delta) {
     double dM(0.0);
     int sM(0);
     for (int i = 200; i < 600; i++) {
-        if (density[i]>dM){
-            dM = density[i];
+        if (density.at(i)>dM){
+            dM = density.at(i);
             sM = i;
         }
     }
     int leftMax = sM;
-
+//    cout<<"left"<<leftMax<<endl;
     ///right max - in range(601, 800)
 //    double rightMax = *max_element(density.begin()+601, density.begin()+800);
     dM = 0.0;
     sM = 0;
     for (int i = 601; i < 800; i++) {
-        if (density[i]>dM){
-            dM = density[i];
+        if (density.at(i)>dM){
+            dM = density.at(i);
             sM = i;
         }
     }
     int rightMax = sM;
 
+//    cout<<"right"<<rightMax<<endl;
     ///minimum between leftMax and rightMax
 //    double  minLocal = *min_element(max_element(density.begin()+200, density.begin()+600),
 //                                   max_element(density.begin()+601, density.begin()+800));
@@ -359,12 +362,12 @@ double NewDetector::countThresholdBeta(vector<SampleType> delta) {
     dM = 10;
     sM = 0;
     for (int i = leftMax; i < rightMax; i++) {
-        if (density[i]<dM){
-            dM = density[i];
+        if (density.at(i)<dM){
+            dM = density.at(i);
             sM = i;
         }
     }
-
+//    cout<<"min"<<sM<<endl;
 //    double distance = maxDelta / amountOfDensityPoints;
     double dist = maxDelta / 800;
     cout<<"maxDelta"<<maxDelta<<endl;

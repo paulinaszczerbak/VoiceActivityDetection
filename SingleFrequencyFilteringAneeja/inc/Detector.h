@@ -37,12 +37,12 @@ public:
 
     vector<SampleType> scaleSignal(vector<SampleType> wavEnvelope, double weight);
 
-    SignalSource addGaussianNoiseToSignal(SignalSource signal);
+    SignalSource addGaussianNoiseToSignal(const SignalSource& signal);
 
     vector<SampleType>
     countSFFEnvelopesForFrequencies(SignalSource &source, int beginFrequency, int endFrequency, int interval);
 
-    double countThreshold(vector<SampleType> delta);
+    double countThreshold(vector<SampleType> delta, double smoothingWindowSize);
 
     double countDynamicRange(SignalSource source);
 
@@ -62,5 +62,8 @@ public:
 
     SignalSource vectorToSignalSource(vector<SampleType> vectorToConvert);
 
+    SignalSource addGaussianNoiseToSignalTimer(SignalSource &signal, double multiplication);
+
+    vector<SampleType> smoothSignal(vector<SampleType>& signal, int loops);
 };
 #endif //VOICEACTIVITYDETECTION_DETECTOR_H
