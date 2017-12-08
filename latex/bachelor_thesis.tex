@@ -27,7 +27,7 @@
 
 \usepackage{mathtools}
 \usepackage{listings}
-
+\usepackage{rotating}
 
 %pakiet wypisujÄ…cy na marginesie etykiety rĂłwnaĹ„ i rysunkĂłw zdefiniowanych przez \label{}, chcÄ…c wygenerowaÄ‡ finalnÄ… wersjÄ™ dokumentu wystarczy usunÄ…Ä‡ poniĹĽszÄ… liniÄ™
 %\usepackage{showlabels}
@@ -108,6 +108,11 @@ Rozdział 5. przedstawia sposób oceny wyników. Zawiera  wyniki detekcji dla po
  
 \begin{figure}
  	\section{Sygnał w dziedzinie czasu oraz w dziedzinie częstotliwości}
+	Powstawanie głosu jest bardzo złożonym zjawiskiem akustyczno - mechanicznym, a jego bazowym składnikiem jest dźwięk. W kategoriach fizycznych dźwięk tworzą drgania mechaniczne, a w organiźmie człowieka takim generatorem drgań jest krtań. Charakter tego dźwięku, zwany też tonem krtaniowym (lub tonem podstawowym), zależy od właściwości fałdów głosowych - ich długości, napięcia, elastyczności i masy oraz od charakteru przepływu powietrza. Ton krtaniowy ma określoną wysokośc i natężenie, ale sam w sobie jest słaby i bezbarwny. Nabiera odpowiedniej siły i barwy dopiero poprzez przejście przez wyższe partie traktu głosowego.
+	
+	 Mowę możemy podzielić na dźwięczną i bezdźwięczną. Mowa dźwięczna wyróżnia się okresowością - jest bowiem powieleniem tonu krtaniowego. Bezdźwięczna natomiast - ma charakter szumowy, w trakcie jej trwania struny głosowe pozostają nieruchome. Dzięki analizie sygnału w dziedzinie czasu - Rysunek 2.3 - można w prosty sposób wyróżnić dźwięczne fragmenty mowy dzięki regularnie powtarzających się maksimach. 
+	 
+	 Najważniejszym jednak narzędziem do analizowania mowy, jest jego widmo częstotliwościowe - czyli przedstawienie sygnału w dziedzinie częstotliwości, które można otrzymać przy pomocy transformaty Fouriera. Przypada ono na zakres ok 100-8000Hz. Przykład został zaprezentowany na Rysunku 2.4.
  	\begin{center}
  		\includegraphics[scale=0.3]{kabanosTime.png}
  		\caption{Przebieg sygnału w dziedzinie czasu dla słowa \emph{kabanos}}\vspace{5mm}
@@ -308,52 +313,23 @@ Rozdział 5. przedstawia sposób oceny wyników. Zawiera  wyniki detekcji dla po
 W dalszej części pracy, jako, że ten algorytm bazuje na założeniach SFF, będzie nazywany algorytmem SFF2.
 W celu zmniejszenia złożoności obliczeniowej oraz zwiększenia dokładności detekcji, zostały zaproponowane pewne zmiany w algorytmie SFF:\vspace{5mm}
 
-1) Zmiana w sposobie obliczania obwiedni sygnału. Wykorzystana rekursywna filtracja kwadraturowa, poniżej fragment kodu przedstawiający liczenie obwiedni.
-
-\lstset{language=C++,basicstyle=\scriptsize}
-\begin{lstlisting}
-
-vector<SampleType> wavEnvelope;
-const double pi = acos(-1);
-
-double omega = 2*pi*normalizedFrequency/_samplingFrequency;
-double module = 0.97;
-
-///filter factors
-double a1 = module * cos(omega);
-double a2 = module * sin(omega);
-
-///filter initialization
-vector<double> XReal(wavDifferenced.getSamplesCount(), 0);
-vector<double> XImaginary(wavDifferenced.getSamplesCount(), 0);
-
-///recursive quadrature filter
-for (int i = 1; i < wavDifferenced.getSamplesCount(); i++) {
-	XReal[i]=wavDifferenced.sample(i)+a1*XReal.at(i-1)-a2*XImaginary.at(i-1);
-	XImaginary[i]=a1*XImaginary.at(i-1)+a2*XReal.at(i-1);
-}
-
-///envelope
-for (int j = 0; j < wavDifferenced.getSamplesCount(); j++) {
-	wavEnvelope.push_back(sqrt(XReal.at(j)*XReal.at(j)*XImaginary.at(j)*XImaginary.at(j)));
-}
-
-\end{lstlisting}\vspace{5mm}
+1) Zmiana w sposobie obliczania obwiedni sygnału.\vspace{5mm}
 
 2) Metoda SFF zakłada obliczenie 185 obwiedni począwszy od 300Hz do 4000Hz co 20Hz. Doświadczalnie sprawdzono, że wystarczające jest obliczenie co czwartej obwiedni zaczynając od 300Hz, oraz zaczynając od 340Hz, co 20Hz każda. Zatem, zamiast 185 obwiedni, liczonych jest jedynie 92. \vspace{5mm}
 
 3) Zmiana w sposobie liczenia progu detekcji. Liczone jest 15\% z najmniejszych wartości. Tworzony jest również histogram dla $\delta(n)$, na podstawie którego zostaje wyliczonych 15\% najmniejszych wartości. Znacząco zwiększa to szybkość wykonywanych obliczeń.\vspace{5mm}
-//czy tutaj przedstawić proces generowania histogramu i sposób wyznaczania progu?
 
 
 
 \chapter{Implementacja}
-Do zaimplementowania algorytmów skorzystano z biblioteki Aquila, która wspiera operacje na sygnałach oraz z standardowych bibliotek C++, takich jak cmath, stl.
+Do zaimplementowania algorytmów skorzystano z biblioteki Aquila, która wspiera wykonywanie operacji na sygnałach oraz ze standardowych bibliotek C++, takich jak cmath, STL.
 
+\section{Metoda oparta o energię sygnału}
 Implementacja algorytmu bazującego na energii sygnału była dośc prosta i jego główna idea, czyli dynamicznie zmieniający się próg, jest zawarta w następujących liniach kodu:
 \lstset{language=C++,basicstyle=\scriptsize}
 \begin{lstlisting}
-	void ThresholdFinder::calculateThresholdEminEmax(Aquila::WaveFile wav,
+	//DELTA = 1.00
+	void EnergyBased::calculateThresholdEminEmax(Aquila::WaveFile wav,
 	 size_t currentFrameNumber) {
 		
 		double singleFrameEnergy=frameEn.countSingleFrameEnergy(wav,currentFrameNumber);
@@ -400,29 +376,318 @@ Implementacja algorytmu bazującego na energii sygnału była dośc prosta i jeg
 		
 	}
 \end{lstlisting}\vspace{5mm}
-gdzie $DELTA=1.00$
 
+\section{Metoda bazująca na obwiedni sygnału podzielonego na pasma z filtracją pojedynczych częstotliwości}
+Tutaj cały proces jest nieco bardziaj złożony. Na początek warto przedstawić sposób liczenia obwiedni sygnału, ponieważ jest to jedna z rzeczy, które różnią SFF od SFF2.
+\lstset{language=C++,basicstyle=\scriptsize}
+\begin{lstlisting}
+/**
+* counting Single Frequency Filtering envelope for specific frequency
+* @param wav - signal to process
+* @param normalizedFrequency - specific frequency which will be used to complex sine
+* @return signal's SFF envelope
+*/
+vector<SampleType> SFF::countSFFEnvelope(SignalSource &wav, int normalizedFrequency) {
+//difference the signal
+SignalSource wavDifferenced = differenceSignal(wav);
+
+//multiply signal x(n) by a complex sinusoid of a given normalized frequency wk
+vector<complex<SampleType>> wavMultipliedByComplexSinusoid = MultipyByComplexSinusoid(wavDifferenced, normalizedFrequency);
+
+//count output yk(n) = -r*yk(n-1) +xk(n)
+vector<complex<double>> wavFilterOutput= countFilterOutput(wavMultipliedByComplexSinusoid);
+
+//count envelope
+vector<SampleType> wavEnvelope = countEnvelope(wavFilterOutput);
+
+return wavEnvelope;
+}
+
+/**
+* multiplies signal by complex sinusoid
+* @param source - wav signal
+* @param frequency - signal sampling frequency
+* @return vector with complex values
+*/
+vector<complex<SampleType>> SFF::MultipyByComplexSinusoid(const SignalSource& wav, int normalizedFrequency) {
+
+vector<SampleType> wavVector(wav.begin(), wav.end());
+vector<complex<SampleType>> result;
+//complex sinusoid
+const double pi = acos(-1);
+const complex<double> j(0, 1);
+
+
+double omega_k = (2*pi*normalizedFrequency)/wav.getSampleFrequency();
+for (vector<SampleType>::iterator it=wavVector.begin(); it!=wavVector.end(); ++it){
+	long index = std::distance(wavVector.begin(), it);
+	//exp(j*sr_omega_k*n)
+	result.push_back(*it*exp(j*omega_k*(double)index));
+}
+
+return result;
+}
+
+
+/**
+* Single-pole filter has a pole on the real axis at a distance of r from the origin.
+* the location of the root is at z=-r in the z-plane, which corresponds to half the sampling
+* frequency fs/2
+* The output of the filter is given by
+* yk(n) = -r*yk(n-1) +xk(n)
+* @param wav - vector to filter
+* @return filter's output
+*/
+vector<complex<double>> SFF::countFilterOutput(vector<complex<SampleType>> &wav) {
+const double root = 0.99;   //article
+
+vector<complex<double>> output;
+//y(0)=0
+output.push_back((0.0,0.0));
+
+//iterating starts at index=1, because we use output[index-1]
+for (vector<complex<SampleType>>::iterator signalSample=wav.begin()+1; signalSample!=wav.end(); ++signalSample){
+	unsigned long currentIndex = (unsigned long)distance(wav.begin(), signalSample);
+	output.push_back(output.at(currentIndex-1) *(-root) + *signalSample);
+}
+
+return output;
+}
+
+/***
+* Function counting values for signal's envelope
+* @param complexSignal - signal with complex samples
+* @return signal's envelope
+*/
+vector<SampleType> Detector::countEnvelope(vector<complex<double>> &complexSignal) {
+vector<SampleType> envelope;
+for (vector<complex<SampleType>>::iterator signalSample=complexSignal.begin(); signalSample!=complexSignal.end(); ++signalSample){
+	envelope.push_back(sqrt((*signalSample).real()*(*signalSample).real() + (*signalSample).imag()*(*signalSample).imag()));
+}
+
+return envelope;
+}
+
+\end{lstlisting}\vspace{5mm}
+
+
+ Podczas obliczania progu, aby wybrać 20\% najmniejszych wartości energii $\delta(n)$, wykorzystano bardzo mało wydajną metodę, która zakłada w pierwszej kolejności posortowanie próbek rosnąco i wybranie z nich kolejnych 20\%. Miało to na celu zapewnienie, że wybierane są właściwe próbki do obliczenia progu. Głównym celem niniejszej pracy było  sprawdzenie jakości detekcji algorytmów, a nie ich wydajności. Przy oblicznaiu progu pojawia się problem związany z wcześniejszym wygładzeniem $\delta(n)$. Autor algorytmu podaje sposób, w jaki należy dobrać rozmiar okna wygładzającego oraz jak je zastosować, ale nie wspomina, jak powinny zostać wygładzone skrajne przebiegi $\delta(n)$ (po pół okna z każdej strony pozostaje nieuśrednione). Pozostawienie tych brzegów niewygładzonych skutkuje dobraniem bardzo małego progu detekcji, przez który cały przebieg sygnału zaliczany jest do aktywności mówcy, natomiast wygładzanie tych fragmentów z wykorzystaniem mniejszego okna nie dawało wystarczającego efektu wygładzenia. Zostało to zaimplementowane w następujący sposób - najpierw wygładzana jest część główna sygnału, a następnie początek oraz koniec. Głównna część sygnału jest wygładzana poprzez policzenie średniej arytmetycznej z próbek z okna i przypisać jej wartość do próbki położonej w środku okna (dlatego okno powinno mieć nieparzystą liczbę próbek). Następnie obliczane są średnie dla początkowych próbek - dla tych połozonych poniżej połowy długości okna, ale w taki sposób, by wykorzystywane próbki nie wykraczały poza rozmiar wektora, rozmiar okna pozostaje bez zmian. Poniższy kod prezentuje wygładzanie sygnału.
+
+\lstset{language=C++,basicstyle=\scriptsize}
+\begin{lstlisting}
+vector<SampleType> SFF::averageVector(vector<SampleType>& vectorToAverage, double windowSize) {
+	vector<SampleType> averaged(vectorToAverage.size(), 0);
+	
+	int samplesPerWindow = (int)(_samplingFrequency * windowSize);
+	if(samplesPerWindow%2 == 0){
+		samplesPerWindow += 1;
+	}
+	
+	
+	int halfOfSamplesPerWindow = (samplesPerWindow-1)/2;
+	
+	//main smoothing
+	for (vector<SampleType>::iterator it=vectorToAverage.begin()+halfOfSamplesPerWindow;
+	it!=vectorToAverage.end()-halfOfSamplesPerWindow;
+	it++){
+		double average = accumulate( it-halfOfSamplesPerWindow,
+		it+halfOfSamplesPerWindow+1,
+		0.0)/samplesPerWindow;
+		long index = distance(vectorToAverage.begin(), it);
+		averaged[index]=average;
+	}
+	
+	//    smoothing beginning
+	int counter(0);
+	for (vector<SampleType>::iterator it=vectorToAverage.begin();
+	it!=vectorToAverage.begin()+halfOfSamplesPerWindow;
+	it++){
+		double average = accumulate( it-counter,
+		it+samplesPerWindow-counter,
+		0.0)/samplesPerWindow;
+		long index = distance(vectorToAverage.begin(), it);
+		averaged[index]=average;
+		counter++;
+	}
+	
+	//smoothing end
+	counter=0;
+	for (vector<SampleType>::iterator it=vectorToAverage.end()-halfOfSamplesPerWindow;
+	it!=vectorToAverage.end();
+	it++){
+		double average = accumulate( it-halfOfSamplesPerWindow-counter,
+		it+halfOfSamplesPerWindow-counter,
+		0.0)/samplesPerWindow;
+		long index = distance(vectorToAverage.begin(), it);
+		averaged[index]=average;
+		counter++;
+	}
+	return averaged;
+}
+\end{lstlisting}\vspace{5mm}
+
+Warto również pokazać, w jaki sposób liczony jest próg detekcji $\theta$. Najpierw z wyznaczonej wcześniej funkcji $\delta(n)$ wybieramy 20\% najmniejszych wartości próbek i liczymy dla nich średnią ($\mu_{\theta}$) oraz wariancję ($\sigma_{\theta}$). Próg wyznaczany jest zgodnie ze wzorem:
+
+$$\theta = \mu_{\theta} + 3\sigma_{\theta}$$
+
+  
+\lstset{language=C++,basicstyle=\scriptsize}
+\begin{lstlisting}
+/***
+* Compute the mean (mi_theta) and the wariance (sigma_theta) of the lower 20% of the values of delta(n) over an utterance
+* A threshold of theta = mi_theta + 3*sigma_theta is used in all cases.
+* The theta value depends on each utterance
+*/
+double SFF::countThresholdTheta(vector<SampleType> delta, double smoothingWindowSize) {
+	///get 20% first samples
+	int amountOfNotSmoothedSamples = (int)(_samplingFrequency * smoothingWindowSize);
+	int amountOf20PercentOfSamples = (int)(delta.size()*0.2);
+	
+	///sort delta and get 20% first values
+	sort(delta.begin(), delta.end());
+	
+	vector<SampleType> splitedDelta(delta.begin(), delta.begin()+amountOf20PercentOfSamples);
+	
+	///count mean and varinace for splitedDelta
+	
+	double mean = accumulate(splitedDelta.begin(),
+	splitedDelta.end(),
+	0.0)/splitedDelta.size();
+	
+	///variance: ((1/(n-1) * sum(i=1, n, (xi-x_sr)^2)
+	double variance(0.0);
+	for(auto& x : splitedDelta){
+		variance += (x-mean)*(x-mean);
+	}
+	variance = variance/(splitedDelta.size()-1);
+	
+	///threshold theta
+	double threshold = mean + 3.0*variance;
+	return threshold;
+}
+
+\end{lstlisting}\vspace{5mm}
+
+
+
+\section{Zmieniona metoda bazująca na obwiedni sygnału podzielonego na pasma z filtracją pojedynczych częstotliwości}
+W tym przypadku wyznaczenie obwiedni sygnału wygląda trochę inaczej, co przedstawia poniższy kod:
+
+\lstset{language=C++,basicstyle=\scriptsize}
+\begin{lstlisting}
+
+vector<SampleType> wavEnvelope;
+const double pi = acos(-1);
+
+double omega = 2*pi*normalizedFrequency/_samplingFrequency;
+double module = 0.97;
+
+///filter factors
+double a1 = module * cos(omega);
+double a2 = module * sin(omega);
+
+///filter initialization
+vector<double> XReal(wavDifferenced.getSamplesCount(), 0);
+vector<double> XImaginary(wavDifferenced.getSamplesCount(), 0);
+
+///recursive quadrature filter
+for (int i = 1; i < wavDifferenced.getSamplesCount(); i++) {
+XReal[i]=wavDifferenced.sample(i)+a1*XReal.at(i-1)-a2*XImaginary.at(i-1);
+XImaginary[i]=a1*XImaginary.at(i-1)+a2*XReal.at(i-1);
+}
+
+///envelope
+for (int j = 0; j < wavDifferenced.getSamplesCount(); j++) {
+wavEnvelope.push_back(sqrt(XReal.at(j)*XReal.at(j)*XImaginary.at(j)*XImaginary.at(j)));
+}
+
+\end{lstlisting}\vspace{5mm}
+
+Liczenie progu detekcji $\beta$ polega na wygenerowaniu histogramu, w którym można wyróżnić dwa maksima lokalne - pierwsze z nich to rozkład wartości szumu w sygnale, a drugie to rozkład wartości mowy. Wartość progu wyznaczona zostaje przy pomocy wartości minimum lokalnego zlokalizowanego pomiędzy wyznaczonymi wcześniej maksimami.
+\lstset{language=C++,basicstyle=\scriptsize}
+\begin{lstlisting}
+/***
+* Compute the threshold beta usiing histogram
+*/
+double SFFChanged::countThresholdBeta(vector<SampleType> delta) {
+double maxDelta(0);
+
+///density
+maxDelta = *max_element(delta.begin(), delta.end());
+//histogram
+//AMOUNT_OF_DENSITY_POINTS = 801
+vector<double> density = countDensityForPositiveValues(delta, AMOUNT_OF_DENSITY_POINTS, maxDelta);
+
+///smoothing
+int amountOfLoops(20);
+density = smoothSignal(density, amountOfLoops);
+
+///left max - in range(200, 600) - based on experience
+double dM(0.0);
+int sM(0);
+for (int i = 200; i < 600; i++) {
+	if (density.at(i)>dM){
+		dM = density.at(i);
+		sM = i;
+	}
+}
+int leftMax = sM;
+///right max - in range(601, 800)
+dM = 0.0;
+sM = 0;
+for (int i = 601; i < 800; i++) {
+	if (density.at(i)>dM){
+		dM = density.at(i);
+		sM = i;
+	}
+}
+int rightMax = sM;
+
+dM = 10;
+sM = 0;
+for (int i = leftMax; i < rightMax; i++) {
+	if (density.at(i)<dM){
+		dM = density.at(i);
+		sM = i;
+	}
+}
+double dist = maxDelta / 800;
+double threshold = sM*dist;
+
+return threshold;
+}
+
+
+\end{lstlisting}\vspace{5mm}
+
+
+
+
+\chapter{Wyniki badań}
+\section{Sposób oceny}
+	Do przeprowadzenia badań zostały wybrane 2 sygnały (głos damski oraz głos męski) zawierające pojedyncze słowa oraz 2 sygnały zawierające ciągi słów. Pierwszy etap badań założył manualne wybranie próbek zawierających początki oraz końce wypowiedzi, rozważony został przypadek, gdy	mowa rozpoczyna się w momencie generowania słyszalnych dźwięków przez mówcę.
+	Następnie te same sygnały zostały zbadane przez 3 algorytmy detekcji, które również wybrały numery próbek, które miały reprezentować początki i końce mowy. Dla każdego pomiaru wykonano 10 prób i ostateczne wartości poddane badaniom są średnią wartością z tych prób. Jako główne kryterium oceny przyjęto odległość zdetekowanego rozpoczęcia lub końca aktywności od rozpoczęcia lub końca aktywności ze wzorca (w próbkach). 
+		
+ Następnie została policzona wartość bezwzględna próbki wybranej manualnie oraz próbki wybranej przez algorytm. Często pojawia się sytuacja, że któryś z algorytmów podjął decyzję o większej lub mniejszej ilosci początkow lub końców mowy. W związku z tym dodano nowe kryterium, jakim jest ilość detekcji. Za każdy nadprogramowy początek lub koniec doliczana jest pewna wartość, którą można potraktować jako karę za błąd. Przedstawione w tabelach wartości $Wynik$ zostały obliczone zgodnie ze wzorem 
+ 
+ $$Wynik = |d_{\textrm{wzór}} - d_{alg}|*kara + \sum_{i=1}^{j}| x_{\textrm{wzór}}(i)-x_{alg}(i) |$$, 
+ 
+ gdzie $d_{\textrm{wzór}}$ to sumaryczna ilość początków i końców detekcji we wzorze, $d_{alg}$ to sumaryczna ilość początków i końców detekcji wybranego algorytmu, $kara$ to stała wartość, w tym przypadku ustawiona na $5000$, $i$ to numer kolejnej detekcji, $j$ to ilość wszystkich detekcji, $x_{\textrm{wzór}}(i)$ to nr próbki wybranej manualnie, a $x_{alg}(i)$, to numer próbki wybranej przez algorytm. Wyniki dla poszczególnych algorytmów, w dwóch rozważanych przypadkach zostały przedstawione w tabeli poniżej. Oznaczenia algorytmów: En - algorytm bazujący na energii sygnału, SFF - algorytm bazujący na obwiedni sygnału, SFF2 - zmieniony algorytm SFF.
 
 \begin{figure}
-	\chapter{Wyniki badań}
-	 \section{Sposób oceny}
-			Do przeprowadzenia badań zostały wybrane po 2 sygnały (głos damski oraz głos męski) zawierające pojedyncze słowa oraz po 2 sygnały zawierające ciągi słów. Pierwszy etap badań założył manualne wybranie próbek zawierających początki oraz końce wypowiedzi, rozważone zostały dwa przypadki, gdy: 
-			1.  mowa rozpoczyna się w momencie nabrania powietrza przez mówcę i aktywację strun głosowych,
-			2. 	mowa rozpoczyna się w momencie generowania słyszalnych dźwięków przez mówcę.
-			Następnie te same sygnały zostały zbadane przez 3 algorytmy detekcji, które również wybrały numery próbek, które miały reprezentować początki i końce mowy. Dla każdego pomiaru wykonano 10 prób i ostateczne wartości poddane badaniom są średnią wartością z tych prób. Jako główne kryterium oceny przyjęto odległość zdetekowanego rozpoczęcia lub końca aktywności od rozpoczęcia lub końca aktywności ze wzorca (w próbkach). 
-			
-		 Następnie została policzona wartość bezwzględna próbki wybranej manualnie oraz próbki wybranej przez algorytm. Wyniki dla poszczególnych algorytmów, w dwóch rozważanych przypadkach zostały przedstawione w tabeli poniżej.
-	 \section{Wyniki dla pojedynczych słów}
-	 Na rysunku 5.1 przedstawiono przebieg czasowy wyrazu \emph{kabanos}, głos damski, a na rysunku 5.5 przebieg czasowy wyrazu \emph{zapamiętaj}, głos męski, które zostaną poddane detekcji przez algorytmy, które zostały zaprezentowane w poprzednich rozdziałach. Na rysunkach 5.1 oraz 5.5 detekcja została ustawiona manualnie, jako punkt odniesienia dla innych algorytmów.
-	 Kolejne rysunki zawierają wyniki detekcji.
-		 \begin{center}
-			 	\includegraphics[scale=0.2]{kabanos.png}
-			 	\caption{Przebieg czasowy słowa \emph{kabanos} i jego wzorcowa detekcja}\vspace{5mm}
-		 \end{center}
-	\end{figure}
-	
+\section{Wyniki dla pojedynczych słów}
+	Na rysunku 5.1 przedstawiono przebieg czasowy wyrazu \emph{kabanos}, głos damski, a na rysunku 5.5 przebieg czasowy wyrazu \emph{zapamiętaj}, głos męski, które zostaną poddane detekcji przez algorytmy, które zostały zaprezentowane w poprzednich rozdziałach. Na rysunkach 5.1 oraz 5.5 detekcja została ustawiona manualnie, jako punkt odniesienia dla innych algorytmów.
+	Kolejne rysunki zawierają wyniki detekcji.
+\end{figure}
+
 	\begin{figure}
 		\begin{center}
+			\includegraphics[scale=0.2]{kabanos.png}
+			\caption{Przebieg czasowy słowa \emph{kabanos} i jego wzorcowa detekcja}\vspace{5mm}
+		\end{center}
+	\end{figure}
+	\begin{figure}
+		 \begin{center}
 			 	\includegraphics[scale=0.2]{kabanosEnergy.png}
 			 	\caption{Wynik detekcji algorytmu bazującego na energii sygnału}\vspace{5mm}
 			 	
@@ -436,20 +701,15 @@ gdzie $DELTA=1.00$
 	
 	
 	\begin{figure}
-		Poniższa tabela przedstawia różnicę w próbkach dla każdego algorytmu, w porównaniu z tymi ustawionymi ręcznie. Przedstawione wartości zostały obliczone zgodnie ze wzorem $| x_{man}-x_{alg} |$, gdzie $x_{man}$ to nr próbki wybranej manualnie, a $x_{alg}$, to numer próbki wybranej przez algorytm. 
 	 	\begin{center}
-	 		\begin{tabular}{||c c c c c||} 
+	 		$\begin{array}{ | l | l | l | l | l | }
 	 			\hline
-			 			 &Wzorzec[nr próbki]& En[nr próbki] & SFF[nr próbki] & SFF2[nr próbki] \\ [0.5ex] 
-	 			\hline
-	 			Początek & 16705 & 15360 & 9121 & 13921 \\ 
-	 			\hline
-	 			Koniec & 59712 & 60000 & 61920 & 61920 \\
-	 			\hline
-	 			SUMA RÓŻNIC  & 0 & 1535 & 9792 & 4992 \\
-	 			\hline
-	 		\end{tabular}
-	 		\caption{Odległość od wzorcowych próbek dla poszczegolnych algorytmów, wyrażona w próbkach}\vspace{5mm}
+	 			& \textrm{Wzorzec}&\textrm{En[nr probki]} & \textrm{SFF[nr probki]} & \textrm{SFF2[nr probki]} \\ \hline
+	 			\textrm{Początek} & 6705 & 15360 & 9121 & 13921  \\ \hline
+	 			\textrm{Koniec} & 59712 & 60000 & 61920 & 61920  \\ \hline
+	 			\textrm{SUMA RÓŻNIC} & 0 & 1633 & 9792 & 4992    \\ \hline
+	 		\end{array}$
+	 		\caption{Wyniki działania algorytmów na słowie \emph{kabanos}}\vspace{5mm}
 	 	\end{center}
 	 	
 	 	\begin{center}
@@ -474,100 +734,238 @@ gdzie $DELTA=1.00$
 	 
 	 \begin{figure}
 	 	\begin{center}
-	 		\begin{tabular}{||c c c c c||} 
-	 			\hline
-	 			&Wzorzec[nr próbki] & En[nr próbki] & SFF[nr próbki] & SFF2[nr próbki] \\ [0.5ex] 
-	 			\hline
-	 			Początek1 & 13296 & 12480 & 2 & 12961 \\ 
-	 			\hline
-	 			Koniec1 & 19680 & 20160 & - & 19681 \\ 
-	 			\hline
-	 			Początek2 & 24480 & 24000 & - & 24481 \\ 
-	 			\hline
-	 			Koniec2 & 40512 & 41280 & - & 40321 \\
-	 			\hline
-	 			Początek3 & 43680 & 43200 & - & 43681\\
-	 			\hline
-	 			Koniec3 & 55200 & 55680 & 58081 & 55201\\
-	 			\hline
-	 			SUMA RÓŻNIC & 0 & 3504 & 144527 & 530\\
-	 			\hline
-	 		\end{tabular}
-	 		\caption{Różnice między wzorcowymi próbkami}
+	 		$\begin{array}{ | l | l | l | l | l | }
+	 		\hline
+	 		& Wzorzec & En[nr probki] & SFF[nr probki] & SFF2[nr probki] \\ \hline
+	 		Początek1 & 13296 & 12480 & 2 & 12961 \\ \hline
+	 		Koniec1 & 19680 & 20160 & & 19681   \\ \hline
+	 		Początek2 & 24480 & 24000 & & 24481    \\ \hline
+	 		Koniec2 & 40512 & 41280 & & 40321  \\ \hline
+	 		Początek3 & 43680 & 43200 & & 43681   \\ \hline
+	 		Koniec3 & 55200 & 55680 & 58081 & 55201 \\ \hline
+	 		\textrm{SUMA RÓŻNIC} & 0 & 3504 & 144527 & 530 \\ \hline
+	 		\textrm{Ilość detekcji} & 6 & 6 & 2 & 10 \\ \hline
+	 		\textrm{Wynik} & 0 & 3504 & 36175 & 20530 \\ \hline
+	 		\end{array}
+	 		$
+	 		\caption{Wyniki działania algorytmów na słowie \emph{zapamiętaj}}
 	 	\end{center}
 	 	
-	 	Algorytm SFF2 zdetekował dwa dodatkowe obszary - jeden zawarty między Początek2 i Koniec2, drugi między Początek3 i Koniec3:
-	 	\begin{center}
-	 		\begin{tabular}{||c c||} 
-	 			\hline
-	 			&SFF2 \\ [0.5ex] 
-	 			\hline
-	 			Początek2.1 & 24961 \\ 
-	 			\hline
-	 			Koniec2.1 & 25441 \\ 
-	 			\hline
-	 			Początek2.1 & 45121\\ 
-	 			\hline
-	 			Koniec2.2 &45601\\
-	 			\hline
-	 		\end{tabular}
-	 	\end{center}
 	 \end{figure}
 	 
 	 
- 
 \begin{figure}
 
-	\section{Wyniki dla ciągów słów}
-	Na rysunku 5.9 przedstawiono przebieg czasowy kolejnych słów: \emph{grzech, poprzedni, zapamiętaj, widzenie, ...}, głos damski, a na rysunku 5.13 przebieg czasowy kolejnych  \emph{zapamiętaj}, głos męski, które zostaną poddane detekcji przez algorytmy, które zostały zaprezentowane w poprzednich rozdziałach. Na rysunkach 5.9 oraz 5.13 detekcja została ustawiona manualnie, jako punkt odniesienia dla innych algorytmów.
-	Kolejne rysunki zawierają wyniki detekcji.
-	\begin{center}
-		\includegraphics[scale=0.2]{kabanos.png}
-		\caption{Przebieg czasowy słowa \emph{kabanos} i jego wzorcowa detekcja}\vspace{5mm}
-	\end{center}
+\section{Wyniki dla ciągów słów}
+	Podobnie jak w poprzednim przypadku, na rysunku 5.11 przedstawiono przebieg czasowy kolejnych słów: \emph{grzech, poprzedni, móżdżek, widzenie, dzwoń, proszek, zapamiętaj, dziwak, radzić, fifka, szeregi, gorzki, kiedyś, ogród}, głos damski, natomiast na rysunku 5.16 pokazano wzorcową detekcję przebiegu czasowego kolejnych słów: \emph{poczta, buczek, turniej, radża, wyczyść, sęk, sześć, leżeć, dzień, fajka, wzrok, łazik, zlepek, poziomo},głos męski. Zaznaczono na nich oczekiwaną (wzorcową) detekcję algorytmów.
+	Kolejne rysunki zawierają wyniki detekcji algorytmów.\\
+	
+	
 \end{figure}
 
-\begin{figure}
+
+\begin{sidewaysfigure}
 	\begin{center}
-		\includegraphics[scale=0.2]{kabanosEnergy.png}
+		\resizebox{\width}{2cm}{\includegraphics[scale=0.3]{dbi03w1s14wzor.png}}
+		\caption{Przebieg czasowy ciągu słów dla głosu damskiego i jego wzorcowa detekcja}\vspace{5mm}
+		
+		\resizebox{\width}{2cm}{\includegraphics[scale=0.3]{dbi03w1s14Energy.png}}
 		\caption{Wynik detekcji algorytmu bazującego na energii sygnału}\vspace{5mm}
 		
-		\includegraphics[scale=0.2]{kabanosSFFArticle.png}
+		\resizebox{\width}{2cm}{\includegraphics[scale=0.3]{dbi03w1s14SFFArticle.png}}
 		\caption{Wynik detekcji algorytmu SFF}\vspace{5mm}
 		
-		\includegraphics[scale=0.2]{kabanosSFFChanged.png}
+		\resizebox{\width}{2cm}{\includegraphics[scale=0.3]{dbi03w1s14SFFChanged.png}}
 		\caption{Wynik detekcji algorytmu SFF2}\vspace{5mm}
 	\end{center}
-\end{figure}
+\end{sidewaysfigure}
 
 
 \begin{figure}
-	Poniższa tabela przedstawia różnicę w próbkach dla każdego algorytmu, w porównaniu z tymi ustawionymi ręcznie. Przedstawione wartości zostały obliczone zgodnie ze wzorem $| x_{man}-x_{alg} |$, gdzie $x_{man}$ to nr próbkik wybranej manualnie, a $x_{alg}$, to numer próbki wybranej przez algorytm. 
+	 
 	\begin{center}
-		\begin{tabular}{||c c c c||} 
+		$\begin{array}{ | l | l | l | l | l | }
 			\hline
-			& En & SFF & SFF2 \\ [0.5ex] 
-			\hline\hline
-			Początek & 16703 & 7103 & 2783 \\ 
-			\hline
-			Koniec & 1248 & 2208 & 2208 \\
-			\hline
-		\end{tabular}
+			& \textrm{Wzorzec[nr próbki]} & \textrm{En[nr próbki]} & \textrm{SFF[nr próbki]} & \textrm{SFF2[nr próbki]}  \\ \hline
+			&22506 & 22080 & 18721 & 23041   \\ \hline
+			&51738 & 50880 & 53281 & 49441   \\ \hline
+			&82035 & 81600 & 76801 & 82561   \\ \hline
+			&118179 & 118080 & 132481 & 117601  \\ \hline
+			&152457 & 152160 & 135361 & 153121  \\ \hline
+			&181022 & 180960 & & 180481   \\ \hline
+			&183927 & 183360 & & 183841   \\ \hline
+			&192255 & 192480 & & 190561    \\ \hline
+			&216882 & 216000 & & 219841    \\ \hline
+			&259958 & 259200 & & 257281    \\ \hline
+			&282772 & 281280 & & 285121   \\ \hline
+			&310413 & 310080 & 318721 & 309121   \\ \hline
+			&330914 & 330240 & 323041 & 331201  \\ \hline
+			&351839 & 351840 & 370561 & 351361   \\ \hline
+			& 354455 & 353760 & & 354721  \\ \hline
+			& 359172 & 359040 & & 358561   \\ \hline
+			& 378238 & 377760 & 374881 & 379681  \\ \hline
+			& 388346 & 388320 & & 387841  \\ \hline
+			& 390280 & 388800 & & 390241  \\ \hline
+			& 410592 & 410400 & & 408961  \\ \hline
+			& 412623 & 411840 & & 412801  \\ \hline
+			& 429792 & 429600 & 431521 &  428161  \\ \hline
+			& 448556 & 446400 & 444001 &  448801  \\ \hline
+			& 470851 & 470880 & & 470881   \\ \hline
+			& 473898 & 473280 & & 473761  \\ \hline
+			& 480523 & 480480 & 482881 & 480001  \\ \hline
+			& 497692 & 496800 & 494401 & 497761  \\ \hline
+			& 525016 & 525600 & & 524641 \\ \hline
+			& 528933 & 528480 & & 528961  \\ \hline
+			& 537880 & 537600 & 541921 & 537121   \\ \hline
+			& 556209 & 556320 & 552481 & 558241   \\ \hline
+			& 570960 & 571200 & & 570241  \\ \hline
+			& 574780 & 574080 & & 575521  \\ \hline
+			& 588322 & 589440 & 596641 & 587041  \\ \hline
+			& 603943 & 603360 & 597121 & 604321  \\ \hline
+			& 645333 & 645600 & 646081 & 644161  \\ \hline
+			& 666836 & 663360 & 654721 & 664801  \\ \hline
+			& 683855 & 684000 & & 683521   \\ \hline
+			& 687597 & 686880 & & 687841  \\ \hline
+			& 703231 & 703200 & & 701281  \\ \hline
+			& 721172 & 720480 & & 721441 \\ \hline
+			& 759463 & 759360 & 762721 & 759361   \\ \hline
+			& 775968 & 775200 & 771841 & 776161  \\ \hline
+			& 800470 & 801120 & & 800161 \\ \hline
+			& 805494 & 804960 & & 805441 \\ \hline
+			& 818400 & 810720 & 819360 & 810241   \\ \hline
+			$\bfseries$\textrm{SUMA RÓŻNIC} &$\bfseries 0$ &$\bfseries 2177$ &$\bfseries 222982$ &$\bfseries 5141$ \\ \hline
+			$\bfseries$\textrm{Ilość detekcji} &$\bfseries 46$ &$\bfseries 60$ &$\bfseries 44$ &$\bfseries 72$ \\ \hline
+			$\bfseries$ \textrm{Wynik} &$\bfseries 0 $&$\bfseries 72177$ &$\bfseries 232982$ &$\bfseries 135141$ \\ \hline
+		\end{array}$
+		\caption{Wyniki detekcji algorytmów dla ciągu słów, głos damski}
 	\end{center}
 	
+\end{figure}
+\begin{sidewaysfigure}
 	\begin{center}
-		\includegraphics[scale=0.2]{zapamietaj.png}
-		\caption{Przebieg czasowy słowa \emph{zapamiętaj} i jego wzorcowa detekcja}\vspace{5mm}
+		\resizebox{\width}{2cm}{\includegraphics[scale=0.3]{mwr35w1s14wzor.png}}
+		\caption{Przebieg czasowy ciągu słów dla głosu damskiego i jego wzorcowa detekcja}\vspace{5mm}
+		
+		\resizebox{\width}{2cm}{\includegraphics[scale=0.3]{mwr35w1s14Energy.png}}
+		\caption{Wynik detekcji algorytmu bazującego na energii sygnału}\vspace{5mm}
+		
+		\resizebox{\width}{2cm}{\includegraphics[scale=0.3]{mwr35w1s14SFFArticle.png}}
+		\caption{Wynik detekcji algorytmu SFF}\vspace{5mm}
+		
+		\resizebox{\width}{2cm}{\includegraphics[scale=0.3]{mwr35w1s14SFFChanged.png}}
+		\caption{Wynik detekcji algorytmu SFF2}\vspace{5mm}
 	\end{center}
+\end{sidewaysfigure}
+
+
+\begin{figure}
+	\footnotesize
+	\begin{center}
+		$\begin{array}{ | c | c | c | c | c | }
+		\hline
+		& \textrm{Wzorzec} & \textrm{En[nr probki]} & \textrm{SFF[nr probki]} & \textrm{SFF2[nr probki]} \\ \hline
+		& 15306 & 13440 & 8161 & 13441  \\ \hline
+		& 20545 & & &   \\ \hline
+		& 22161 & & &    \\ \hline
+		& 26800 & 27360 & &   \\ \hline
+		& 30362 & 28800 & &   \\ \hline
+		& 39144 & 40800 & 46081 & 43201   \\ \hline
+		& 68926 & 64320 & 61921 & 64321   \\ \hline
+		& 74062 & 75360 & &   \\ \hline
+		& 77542 & 76800 & &   \\ \hline
+		& 85080 & 86400 & &  \  \\ \hline
+		& 88725 & 87840 & &   \\ \hline
+		& 90341 & 93120 & 103201 & 96001  \\ \hline
+		& 117389 & 116640 & 105121 & 117121  \\ \hline
+		& 140751 & 143040 & 145441 & 144481  \\ \hline
+		& 176084 & 175200 & 165601 & 171841  \\ \hline
+		& 188096 & & &   \\ \hline
+		& 191534 & & & \\ \hline
+		& 201600 & 204000 & & 204961   \\ \hline
+		& 232500 & 226560 & & 226081   \\ \hline
+		& 239956 & 241440 & &   \\ \hline
+		& 244140 & 243360 & &   \\ \hline
+		& 263732 & 264480 & 269281 & 264961   \\ \hline
+		& 287260 & 286560 & 276481 & 286081   \\ \hline
+		& 307634 & & &   \\ \hline
+		& 309728 & & &   \\ \hline
+		& 311125 & 313920 & 326881 & 315361   \\ \hline
+		& 337591 & 336960 & 333601 & 336481   \\ \hline
+		& 366025 & 367200 & 380641 & 368641   \\ \hline
+		& 391540 & 390240 & 381121 & 389281   \\ \hline
+		& 415468 & 416640 & &   \\ \hline
+		& 417943 & 417120 & &   \\ \hline
+		& 421814 & 422400 & 432481 & 424321  \\ \hline
+		& 450122 & 445440 & 433921 & 445441  \\ \hline
+		& 467068 & 468480 & & 469921  \\ \hline
+		& 496200 & 492960 & & 491041  \\ \hline
+		& 509084 & 510240 & &  \\ \hline
+		& 513591 & 513120 & &  \\ \hline
+		& 522984 & 524160 & & 525601 \\ \hline
+		& 548054 & 547200 & & 546721 \\ \hline
+		& 568174 & 569280 & &   \\ \hline
+		& 571918 & 571200 & &  \\ \hline
+		& 573696 & 574560 & 581281 & 576481   \\ \hline
+		& 598131 & 597120 & 587521 & 597601   \\ \hline
+		& 622503 & 624000 & & \\ \hline
+		& 625486 & 624960 & &   \\ \hline
+		& 627898 & 629280 & 634561 & 630721  \\ \hline
+		& 652714 & 651360 & 640321 & 651841  \\ \hline
+		& 668010 & 668640 & &   \\ \hline
+		& 672390 & 671520 & &   \\ \hline
+		& 678102 & 679200 & &  \\ \hline
+		& 681085 & 680640 & &   \\ \hline
+		& 682291 & 683040 & 688801 & 685441  \\ \hline
+		& 706853 & 706080 & 692641 & 706081  \\ \hline
+		& 734970 & 735840 & 743041 & 736801  \\ \hline
+		$\bfseries$\textrm{SUMA RÓŻNIC} & $\bfseries$0 & $\bfseries$8764 & $\bfseries$281165 & $\bfseries$261005 \\ \hline
+		$\bfseries$\textrm{Ilość detekcji} & 54 & 50 & 40 & 28 \\ \hline
+		$\bfseries$\textrm{Wynik} & 0 & 28764 & 351165 & 391005 \\ \hline
+		\end{array}
+		$
+		\caption{Wyniki detekcji algorytmów dla ciągu słów, głos męski}
+	\end{center}
+	
 \end{figure}
 
+\begin{figure}
+\section{Powtórzenie badań przy większym poziomie zaszumienia}
+W wyniku osiągnięcia zadowalających efektów działania algorytmów na sygnałach z minimalnym poziomem zaszumienia, postanowiono sprawdzić, jakie wyniki dzadzą zastosowane na sygnałach o dużo wyższym poziomie zaszumienia. Zastosowano do tego szum Gaussowski o średniej $\mu = 0.0$  oraz o odchyleniu standardowym $\sigma=1000$
+\end{figure}
 
+\begin{sidewaysfigure}
+	\begin{center}
+		\resizebox{\width}{2cm}{\includegraphics[scale=0.3]{noisemwr35w1s14wzor.png}}
+		\caption{Przebieg czasowy ciągu słów dla głosu męskiego i jego wzorcowa detekcja}\vspace{5mm}
+		
+		\resizebox{\width}{2cm}{\includegraphics[scale=0.3]{noisemwr35w1s14Energy.png}}
+		\caption{Wynik detekcji algorytmu bazującego na energii sygnału}\vspace{5mm}
+		
+		\resizebox{\width}{2cm}{\includegraphics[scale=0.3]{noisemwr35w1s14SFFArticle.png}}
+		\caption{Wynik detekcji algorytmu SFF}\vspace{5mm}
+		
+		\resizebox{\width}{2cm}{\includegraphics[scale=0.3]{noisemwr35w1s14SFFChanged.png}}
+		\caption{Wynik detekcji algorytmu SFF2}\vspace{5mm}
+	\end{center}
+\end{sidewaysfigure}
+
+
+\begin{figure}
+	\footnotesize
+	\begin{center}
+		$
+		$
+		\caption{Wyniki detekcji algorytmów dla ciągu słów, głos męski}
+	\end{center}
+	
+\end{figure}
 \chapter{Podsumowanie}
 
 \addcontentsline{toc}{chapter}{Bibliografia} %utworzenie w spisie treĹ›ci pozycji Bibliografia
 \bibliography{bibliografia} % wstawia bibliografiÄ™ korzystajÄ…c z pliku bibliografia.bib - dotyczy BibTeXa, jeĹĽeli nie korzystamy z BibTeXa naleĹĽy uĹĽyÄ‡ otoczenia thebibliography
 %biologiczny proces
 %http://otworzksiazke.pl/images/ksiazki/sygnal_mowy/sygnal_mowy.pdf
+%https://sound.eti.pg.gda.pl/student/amowy/AM_02_teoria_wytwarzania_dzwiekow_mowy.pdf
 %
 %http://www.iaeng.org/IJCS/issues_v36/issue_4/IJCS_36_4_16.pdf
 

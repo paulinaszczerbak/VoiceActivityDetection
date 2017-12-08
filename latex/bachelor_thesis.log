@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  5 DEC 2017 20:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  7 DEC 2017 13:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -570,7 +570,20 @@ File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 File: listings.cfg 2015/06/04 1.6 listings configuration
 ))
 Package: listings 2015/06/04 1.6 (Carsten Heinz)
-\c@theorem=\count116
+
+(/usr/share/texlive/texmf-dist/tex/latex/rotating/rotating.sty
+Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\c@r@tfl@t=\count116
+\rotFPtop=\skip52
+\rotFPbot=\skip53
+\rot@float@box=\box30
+\rot@mess@toks=\toks25
+)
+\c@theorem=\count117
 
 (./bachelor_thesis.aux)
 \openout1 = `bachelor_thesis.aux'.
@@ -592,17 +605,17 @@ LaTeX Font Info:    ... okay on input line 53.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count117
+\scratchcounter=\count118
 \scratchdimen=\dimen134
-\scratchbox=\box30
-\nofMPsegments=\count118
-\nofMParguments=\count119
-\everyMPshowfont=\toks25
-\MPscratchCnt=\count120
+\scratchbox=\box31
+\nofMPsegments=\count119
+\nofMParguments=\count120
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count121
 \MPscratchDim=\dimen135
-\MPnumerator=\count121
-\makeMPintoPDFobject=\count122
-\everyMPtoPDFconversion=\toks26
+\MPnumerator=\count122
+\makeMPintoPDFobject=\count123
+\everyMPtoPDFconversion=\toks27
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -651,17 +664,17 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\c@lstlisting=\count123
-\@temphbadness=\count124
-\@tempvbadness=\count125
-\@temphfuzz=\skip52
-\@temptextwidth=\skip53
-\@temptextheight=\skip54
-\@temptopmargin=\skip55
-\@tempheadheight=\skip56
-\@tempheadsep=\skip57
-\@tempoddsidemargin=\skip58
-\@tempevensidemargin=\skip59
+\c@lstlisting=\count124
+\@temphbadness=\count125
+\@tempvbadness=\count126
+\@temphfuzz=\skip54
+\@temptextwidth=\skip55
+\@temptextheight=\skip56
+\@temptopmargin=\skip57
+\@tempheadheight=\skip58
+\@tempheadsep=\skip59
+\@tempoddsidemargin=\skip60
+\@tempevensidemargin=\skip61
 LaTeX Font Info:    Try loading font information for OML+plm on input line 56.
 
 (/usr/share/texlive/texmf-dist/tex/latex/polski/omlplm.fd
@@ -695,10 +708,10 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 56.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-\@tempheightkier=\skip60
-\@tempheighttkier=\skip61
-\@tempheightspec=\skip62
-\@tempheighttspec=\skip63
+\@tempheightkier=\skip62
+\@tempheighttkier=\skip63
+\@tempheightspec=\skip64
+\@tempheighttspec=\skip65
  [1
 Non-PDF special ignored!
 
@@ -740,10 +753,10 @@ LaTeX Warning: Float too large for page by 11.97636pt on input line 107.
 <kabanosTime.png, id=31, 1564.84625pt x 539.01375pt>
 File: kabanosTime.png Graphic file (type png)
  <use kabanosTime.png>
-Package pdftex.def Info: kabanosTime.png used on input line 112.
+Package pdftex.def Info: kabanosTime.png used on input line 117.
 (pdftex.def)             Requested size: 469.4575pt x 161.70537pt.
 
-Overfull \hbox (14.21342pt too wide) in paragraph at lines 112--113
+Overfull \hbox (14.21342pt too wide) in paragraph at lines 117--118
  [] 
  []
 
@@ -751,10 +764,14 @@ Overfull \hbox (14.21342pt too wide) in paragraph at lines 112--113
 File: kabanosSpectrum.png Graphic file (type png)
 
 <use kabanosSpectrum.png>
-Package pdftex.def Info: kabanosSpectrum.png used on input line 115.
+Package pdftex.def Info: kabanosSpectrum.png used on input line 120.
 (pdftex.def)             Requested size: 411.28555pt x 202.50606pt.
- [5] [6 <./speechmechpl.png> <./feedback.png>]
-[7 <./kabanosTime.png> <./kabanosSpectrum.png>] [8
+
+
+LaTeX Warning: Float too large for page by 63.81631pt on input line 123.
+
+[5] [6 <./speechmechpl.png> <./feedback.png>] [7 <./kabanosTime.png> <./kabanos
+Spectrum.png>] [8
 
 
 ]
@@ -776,18 +793,23 @@ Overfull \vbox (8.3706pt too high) has occurred while \output is active []
 
 
 [15]
-Overfull \hbox (9.52388pt too wide) in paragraph at lines 298--299
+Overfull \hbox (9.52388pt too wide) in paragraph at lines 303--304
 []\T1/cmr/m/n/12 Decyzja $\OML/plm/m/it/12 d\OT4/cmr/m/n/12 (\OML/plm/m/it/12 n
 \OT4/cmr/m/n/12 )$ \T1/cmr/m/n/12 dla ka»-dej prób-ki jest okien-ko-wa-na o roz
 -mia-rach okie-nek 300msec, 400msec,
  []
 
 [16]
-Overfull \hbox (26.19476pt too wide) in paragraph at lines 307--307
+Overfull \hbox (26.19476pt too wide) in paragraph at lines 312--312
 []\T1/cmr/bx/n/17.28 Zmieniony al-go-rytm Sin-gle Fre-qu-en-cy Fil-te-ring (SFF
 2) 
  []
 
+[17] [18
+
+
+]
+Rozdzia\PlPrIeC {\l } 4.
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
@@ -797,202 +819,359 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 )
-LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <5> on input line 317.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 319.
+Overfull \hbox (34.24078pt too wide) in paragraph at lines 335--337
+[][][][][][][][][][][][][][][] 
+ []
 
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 350.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 319.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 350.
+ [19]
+LaTeX Font Info:    External font `plex10' loaded for size
+(Font)              <5> on input line 374.
+LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 384.
 
-Overfull \hbox (29.14198pt too wide) in paragraph at lines 338--339
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+Overfull \hbox (171.9084pt too wide) in paragraph at lines 395--397
+[][][][][][][][][][][][][][][][][][][][] 
  []
 
-[17] [18
 
-
-]
-Rozdzia\PlPrIeC {\l } 4.
-
-Overfull \hbox (34.24078pt too wide) in paragraph at lines 359--361
-[][][][][][][][][][][][][][][] 
+Overfull \hbox (8.74678pt too wide) in paragraph at lines 398--400
+[][][][][][][][][][][][][][][][] 
  []
 
+
+Overfull \hbox (100.52519pt too wide) in paragraph at lines 412--414
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (13.84558pt too wide) in paragraph at lines 434--435
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][] 
+ []
+
+[20]
+Overfull \hbox (115.8216pt too wide) in paragraph at lines 449--450
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (207.6pt too wide) in paragraph at lines 464--465
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (197.4024pt too wide) in paragraph at lines 465--466
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (29.14198pt too wide) in paragraph at lines 478--479
+[][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (13.84558pt too wide) in paragraph at lines 490--491
+[][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \vbox (8.3706pt too high) has occurred while \output is active []
+
+
+[21]
+Overfull \hbox (3.64798pt too wide) in paragraph at lines 515--516
+[][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (161.7108pt too wide) in paragraph at lines 537--538
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (39.33958pt too wide) in paragraph at lines 549--551
+[][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[22]
+Overfull \hbox (1.52522pt too wide) in paragraph at lines 573--573
+\T1/cmr/bx/n/17.28 po-dzie-lo-ne-go na pa-sma z fil-tra-cj¡ po-je-dyn-czych cz¦
+-
+ []
+
+
+Overfull \hbox (44.43839pt too wide) in paragraph at lines 619--621
+[][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \vbox (8.3706pt too high) has occurred while \output is active []
+
+
+[23] [24]
 Rozdzia\PlPrIeC {\l } 5.
-<kabanos.png, id=98, 2208.25pt x 1003.75pt>
+<kabanos.png, id=117, 2208.25pt x 1003.75pt>
 File: kabanos.png Graphic file (type png)
  <use kabanos.png>
-Package pdftex.def Info: kabanos.png used on input line 419.
+Package pdftex.def Info: kabanos.png used on input line 685.
 (pdftex.def)             Requested size: 441.64218pt x 200.74644pt.
 
-
-LaTeX Warning: Float too large for page by 99.65926pt on input line 422.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [19]
-<kabanosEnergy.png, id=102, 2208.25pt x 1003.75pt>
+<kabanosEnergy.png, id=118, 2208.25pt x 1003.75pt>
 File: kabanosEnergy.png Graphic file (type png)
  <use kabanosEnergy.png>
-Package pdftex.def Info: kabanosEnergy.png used on input line 426.
+Package pdftex.def Info: kabanosEnergy.png used on input line 691.
 (pdftex.def)             Requested size: 441.64218pt x 200.74644pt.
 
-<kabanosSFFArticle.png, id=103, 2208.25pt x 1003.75pt>
+<kabanosSFFArticle.png, id=119, 2208.25pt x 1003.75pt>
 File: kabanosSFFArticle.png Graphic file (type png)
 
 <use kabanosSFFArticle.png>
-Package pdftex.def Info: kabanosSFFArticle.png used on input line 429.
+Package pdftex.def Info: kabanosSFFArticle.png used on input line 694.
 (pdftex.def)             Requested size: 441.64218pt x 200.74644pt.
 
-<kabanosSFFChanged.png, id=104, 2208.25pt x 1003.75pt>
+<kabanosSFFChanged.png, id=120, 2208.25pt x 1003.75pt>
 File: kabanosSFFChanged.png Graphic file (type png)
 
 <use kabanosSFFChanged.png>
-Package pdftex.def Info: kabanosSFFChanged.png used on input line 432.
+Package pdftex.def Info: kabanosSFFChanged.png used on input line 697.
 (pdftex.def)             Requested size: 441.64218pt x 200.74644pt.
 
 
-LaTeX Warning: Float too large for page by 29.09782pt on input line 435.
+LaTeX Warning: Float too large for page by 29.09782pt on input line 700.
 
-
-Overfull \hbox (19.83604pt too wide) in paragraph at lines 441--452
- [] 
- []
-
-<zapamietaj.png, id=105, 2208.25pt x 1003.75pt>
+<zapamietaj.png, id=121, 2208.25pt x 1003.75pt>
 File: zapamietaj.png Graphic file (type png)
  <use zapamietaj.png>
-Package pdftex.def Info: zapamietaj.png used on input line 456.
+Package pdftex.def Info: zapamietaj.png used on input line 716.
 (pdftex.def)             Requested size: 441.64218pt x 200.74644pt.
 
-<zapamietajEnergy.png, id=106, 2208.25pt x 1003.75pt>
+<zapamietajEnergy.png, id=122, 2208.25pt x 1003.75pt>
 File: zapamietajEnergy.png Graphic file (type png)
 
 <use zapamietajEnergy.png>
-Package pdftex.def Info: zapamietajEnergy.png used on input line 464.
+Package pdftex.def Info: zapamietajEnergy.png used on input line 724.
 (pdftex.def)             Requested size: 441.64218pt x 200.74644pt.
 
-<zapamietajSFFArticle.png, id=107, 2208.25pt x 1003.75pt>
+<zapamietajSFFArticle.png, id=123, 2208.25pt x 1003.75pt>
 File: zapamietajSFFArticle.png Graphic file (type png)
 
 <use zapamietajSFFArticle.png>
-Package pdftex.def Info: zapamietajSFFArticle.png used on input line 467.
+Package pdftex.def Info: zapamietajSFFArticle.png used on input line 727.
 (pdftex.def)             Requested size: 441.64218pt x 200.74644pt.
 
-<zapamietajSFFChanged.png, id=108, 2208.25pt x 1003.75pt>
+<zapamietajSFFChanged.png, id=124, 2208.25pt x 1003.75pt>
 File: zapamietajSFFChanged.png Graphic file (type png)
 
 <use zapamietajSFFChanged.png>
-Package pdftex.def Info: zapamietajSFFChanged.png used on input line 470.
+Package pdftex.def Info: zapamietajSFFChanged.png used on input line 730.
 (pdftex.def)             Requested size: 441.64218pt x 200.74644pt.
 
 
-LaTeX Warning: Float too large for page by 29.09782pt on input line 473.
+LaTeX Warning: Float too large for page by 29.09782pt on input line 733.
 
 
-Overfull \hbox (19.83604pt too wide) in paragraph at lines 477--496
- [] 
+LaTeX Warning: Command \k invalid in math mode on input line 740.
+
+Missing character: There is no ¡ in font plmi12!
+
+LaTeX Warning: Command \k invalid in math mode on input line 742.
+
+Missing character: There is no ¡ in font plmi12!
+
+LaTeX Warning: Command \k invalid in math mode on input line 744.
+
+Missing character: There is no ¡ in font plmi12!
+
+Underfull \hbox (badness 1014) in paragraph at lines 760--762
+\T1/cmr/m/n/12 Za-zna-czo-no na nich ocze-ki-wa-n¡ (wzor-co-w¡) de-tek-cj¦ al-g
+o-ryt-mów. Ko-lej-ne ry-sun-ki
  []
 
-File: kabanos.png Graphic file (type png)
-<use kabanos.png>
-Package pdftex.def Info: kabanos.png used on input line 525.
-(pdftex.def)             Requested size: 441.64218pt x 200.74644pt.
-File: kabanosEnergy.png Graphic file (type png)
- <use kabanosEnergy.png>
-Package pdftex.def Info: kabanosEnergy.png used on input line 532.
-(pdftex.def)             Requested size: 441.64218pt x 200.74644pt.
-File: kabanosSFFArticle.png Graphic file (type png)
- <use kabanosSFFArticle.png>
-Package pdftex.def Info: kabanosSFFArticle.png used on input line 535.
-(pdftex.def)             Requested size: 441.64218pt x 200.74644pt.
-File: kabanosSFFChanged.png Graphic file (type png)
 
-<use kabanosSFFChanged.png>
-Package pdftex.def Info: kabanosSFFChanged.png used on input line 538.
-(pdftex.def)             Requested size: 441.64218pt x 200.74644pt.
+Underfull \hbox (badness 10000) in paragraph at lines 760--762
+
+ []
+
+<dbi03w1s14wzor.png, id=125, 2208.25pt x 1003.75pt>
+File: dbi03w1s14wzor.png Graphic file (type png)
+ <use dbi03w1s14wzor.png>
+Package pdftex.def Info: dbi03w1s14wzor.png used on input line 769.
+(pdftex.def)             Requested size: 662.48012pt x 301.12732pt.
+
+<dbi03w1s14Energy.png, id=126, 2208.25pt x 1003.75pt>
+File: dbi03w1s14Energy.png Graphic file (type png)
+
+<use dbi03w1s14Energy.png>
+Package pdftex.def Info: dbi03w1s14Energy.png used on input line 772.
+(pdftex.def)             Requested size: 662.48012pt x 301.12732pt.
+
+<dbi03w1s14SFFArticle.png, id=127, 2208.25pt x 1003.75pt>
+File: dbi03w1s14SFFArticle.png Graphic file (type png)
+
+<use dbi03w1s14SFFArticle.png>
+Package pdftex.def Info: dbi03w1s14SFFArticle.png used on input line 775.
+(pdftex.def)             Requested size: 662.48012pt x 301.12732pt.
+
+<dbi03w1s14SFFChanged.png, id=128, 2208.25pt x 1003.75pt>
+File: dbi03w1s14SFFChanged.png Graphic file (type png)
+
+<use dbi03w1s14SFFChanged.png>
+Package pdftex.def Info: dbi03w1s14SFFChanged.png used on input line 778.
+(pdftex.def)             Requested size: 662.48012pt x 301.12732pt.
+
+Overfull \hbox (20.42303pt too wide) in paragraph at lines 787--840
+ []$ 
+ []
 
 
-LaTeX Warning: Float too large for page by 29.09782pt on input line 541.
+LaTeX Warning: Float too large for page by 70.0209pt on input line 843.
 
-File: zapamietaj.png Graphic file (type png)
-<use zapamietaj.png>
-Package pdftex.def Info: zapamietaj.png used on input line 559.
-(pdftex.def)             Requested size: 441.64218pt x 200.74644pt.
- [20] [21
+<mwr35w1s14wzor.png, id=129, 2208.25pt x 1003.75pt>
+File: mwr35w1s14wzor.png Graphic file (type png)
+ <use mwr35w1s14wzor.png>
+Package pdftex.def Info: mwr35w1s14wzor.png used on input line 846.
+(pdftex.def)             Requested size: 662.48012pt x 301.12732pt.
+
+<mwr35w1s14Energy.png, id=130, 2208.25pt x 1003.75pt>
+File: mwr35w1s14Energy.png Graphic file (type png)
+
+<use mwr35w1s14Energy.png>
+Package pdftex.def Info: mwr35w1s14Energy.png used on input line 849.
+(pdftex.def)             Requested size: 662.48012pt x 301.12732pt.
+
+<mwr35w1s14SFFArticle.png, id=131, 2208.25pt x 1003.75pt>
+File: mwr35w1s14SFFArticle.png Graphic file (type png)
+
+<use mwr35w1s14SFFArticle.png>
+Package pdftex.def Info: mwr35w1s14SFFArticle.png used on input line 852.
+(pdftex.def)             Requested size: 662.48012pt x 301.12732pt.
+
+<mwr35w1s14SFFChanged.png, id=132, 2208.25pt x 1003.75pt>
+File: mwr35w1s14SFFChanged.png Graphic file (type png)
+
+<use mwr35w1s14SFFChanged.png>
+Package pdftex.def Info: mwr35w1s14SFFChanged.png used on input line 855.
+(pdftex.def)             Requested size: 662.48012pt x 301.12732pt.
+LaTeX Font Info:    External font `plex10' loaded for size
+(Font)              <10> on input line 864.
+LaTeX Font Info:    External font `plex10' loaded for size
+(Font)              <7> on input line 864.
 
 
- <./kabanos.png>] [22 <./kabanosEnergy.png> <./kabanosSFFArticle.png> <./kabano
-sSFFChanged.png>] [23 <./zapamietaj.png>] [24 <./zapamietajEnergy.png> <./zapam
-ietajSFFArticle.png> <./zapamietajSFFChanged.png>] [25] [26] [27] [28
+LaTeX Warning: Float too large for page by 43.24068pt on input line 929.
+
+<noisemwr35w1s14wzor.png, id=133, 2208.25pt x 1003.75pt>
+File: noisemwr35w1s14wzor.png Graphic file (type png)
+
+<use noisemwr35w1s14wzor.png>
+Package pdftex.def Info: noisemwr35w1s14wzor.png used on input line 938.
+(pdftex.def)             Requested size: 662.48012pt x 301.12732pt.
+
+<noisemwr35w1s14Energy.png, id=134, 2208.25pt x 1003.75pt>
+File: noisemwr35w1s14Energy.png Graphic file (type png)
+
+<use noisemwr35w1s14Energy.png>
+Package pdftex.def Info: noisemwr35w1s14Energy.png used on input line 941.
+(pdftex.def)             Requested size: 662.48012pt x 301.12732pt.
+
+<noisemwr35w1s14SFFArticle.png, id=135, 2208.25pt x 1003.75pt>
+File: noisemwr35w1s14SFFArticle.png Graphic file (type png)
+
+<use noisemwr35w1s14SFFArticle.png>
+Package pdftex.def Info: noisemwr35w1s14SFFArticle.png used on input line 944.
+(pdftex.def)             Requested size: 662.48012pt x 301.12732pt.
+
+<noisemwr35w1s14SFFChanged.png, id=136, 2208.25pt x 1003.75pt>
+File: noisemwr35w1s14SFFChanged.png Graphic file (type png)
+
+<use noisemwr35w1s14SFFChanged.png>
+Package pdftex.def Info: noisemwr35w1s14SFFChanged.png used on input line 947.
+(pdftex.def)             Requested size: 662.48012pt x 301.12732pt.
+ [25
+
+
+] [26 <./kabanos.png>] [27 <./kabanosEnergy.png> <./kabanosSFFArticle.png> <./k
+abanosSFFChanged.png>] [28 <./zapamietaj.png>] [29 <./zapamietajEnergy.png> <./
+zapamietajSFFArticle.png> <./zapamietajSFFChanged.png>] [30] [31 <./dbi03w1s14w
+zor.png> <./dbi03w1s14Energy.png> <./dbi03w1s14SFFArticle.png> <./dbi03w1s14SFF
+Changed.png>] [32] [33 <./mwr35w1s14wzor.png> <./mwr35w1s14Energy.png> <./mwr35
+w1s14SFFArticle.png> <./mwr35w1s14SFFChanged.png>] [34] [35] [36 <./noisemwr35w
+1s14wzor.png> <./noisemwr35w1s14Energy.png> <./noisemwr35w1s14SFFArticle.png> <
+./noisemwr35w1s14SFFChanged.png>]
+[37] [38
 
 
 ]
 Rozdzia\PlPrIeC {\l } 6.
-(./bachelor_thesis.bbl [29] [30
+(./bachelor_thesis.bbl [39] [40
 
 
 ]
 
 LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
-) [31] [32
+) [41] [42
 
 
 ] (./bachelor_thesis.lof)
 \tf@lof=\write5
 \openout5 = `bachelor_thesis.lof'.
 
- [33] [34
+ [43] [44
 
 
 ] (./bachelor_thesis.lot)
 \tf@lot=\write6
 \openout6 = `bachelor_thesis.lot'.
 
- [35]
+ [45]
 (./bachelor_thesis.aux) ) 
 Here is how much of TeX's memory you used:
- 5658 strings out of 494918
- 75034 string characters out of 6180101
- 174957 words of memory out of 5000000
- 8794 multiletter control sequences out of 15000+600000
- 23528 words of font info for 54 fonts, out of 8000000 for 9000
+ 5997 strings out of 494918
+ 80521 string characters out of 6180101
+ 203613 words of memory out of 5000000
+ 9101 multiletter control sequences out of 15000+600000
+ 32852 words of font info for 72 fonts, out of 8000000 for 9000
  34 hyphenation exceptions out of 8191
- 38i,15n,58p,1903b,1361s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,15n,58p,1903b,1699s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/paulina/.texmf-var/fonts/pk/ljfour/jknappen/ec
-/ecti0800.600pk> </home/paulina/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx0800
-.600pk> </home/paulina/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk>{/
-usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plmi.enc} </home/paulina/.texmf
--var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk>{/usr/share/texlive/texmf-dist/
-fonts/enc/dvips/pl/plms.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/p
-lme.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plrm.enc} </home/paul
-ina/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/paulina/.texm
-f-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/paulina/.texmf-var/fon
-ts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/paulina/.texmf-var/fonts/pk/ljf
-our/jknappen/ec/ecrm1200.600pk> </home/paulina/.texmf-var/fonts/pk/ljfour/jknap
-pen/ec/ecbx1200.600pk> </home/paulina/.texmf-var/fonts/pk/ljfour/jknappen/ec/ec
-bx2488.600pk> </home/paulina/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2074.60
-0pk> </home/paulina/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </ho
-me/paulina/.texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1728.600pk> </home/paulin
-a/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/pl/plex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/pl/plmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plmi6.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plmi8.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/pl/plr12.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/pl/plr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/pl/plsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plsy8.pf
-b>
-Output written on bachelor_thesis.pdf (37 pages, 3501840 bytes).
+/ecbx1000.600pk>{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plrm.enc} </h
+ome/paulina/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/pauli
+na/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/paulina/.texmf
+-var/fonts/pk/ljfour/jknappen/ec/ecbx0800.600pk> </home/paulina/.texmf-var/font
+s/pk/ljfour/jknappen/ec/ecti0800.600pk>{/usr/share/texlive/texmf-dist/fonts/enc
+/dvips/pl/plmi.enc} </home/paulina/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1
+440.600pk>{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plms.enc}{/usr/shar
+e/texlive/texmf-dist/fonts/enc/dvips/pl/plme.enc} </home/paulina/.texmf-var/fon
+ts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/paulina/.texmf-var/fonts/pk/ljf
+our/jknappen/ec/ecbx1095.600pk> </home/paulina/.texmf-var/fonts/pk/ljfour/jknap
+pen/ec/ecbx1728.600pk> </home/paulina/.texmf-var/fonts/pk/ljfour/jknappen/ec/ec
+rm1200.600pk> </home/paulina/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.60
+0pk> </home/paulina/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </ho
+me/paulina/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2074.600pk> </home/paulin
+a/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/paulina/.texmf-
+var/fonts/pk/ljfour/jknappen/ec/eccc1728.600pk> </home/paulina/.texmf-var/fonts
+/pk/ljfour/jknappen/ec/ecrm2074.600pk></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/pl/plex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plmi12.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plmi6.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/pl/plmi8.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/pl/plr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/pl/plr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plr8.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/pl/plsy10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/pl/plsy8.pfb>
+Output written on bachelor_thesis.pdf (47 pages, 4953632 bytes).
 PDF statistics:
- 767 PDF objects out of 1000 (max. 8388607)
- 173 compressed objects within 2 object streams
+ 940 PDF objects out of 1000 (max. 8388607)
+ 205 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
- 61 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 121 words of extra memory for PDF output out of 10000 (max. 10000000)
 

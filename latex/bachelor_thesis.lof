@@ -7,19 +7,29 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Przebieg czasowy s\IeC {\l }owa \emph {kabanos} i jego wzorcowa detekcja}}{21}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Wynik detekcji algorytmu bazuj\IeC {\k a}cego na energii sygna\IeC {\l }u}}{22}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Wynik detekcji algorytmu SFF}}{22}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Wynik detekcji algorytmu SFF2}}{22}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Odleg\IeC {\l }o\IeC {\'s}\IeC {\'c} od wzorcowych pr\IeC {\'o}bek dla poszczegolnych algorytm\IeC {\'o}w, wyra\IeC {\.z}ona w pr\IeC {\'o}bkach}}{23}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Przebieg czasowy s\IeC {\l }owa \emph {zapami\IeC {\k e}taj} i jego wzorcowa detekcja}}{23}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Wynik detekcji algorytmu bazuj\IeC {\k a}cego na energii sygna\IeC {\l }u}}{24}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Wynik detekcji algorytmu SFF}}{24}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Wynik detekcji algorytmu SFF2}}{24}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces R\IeC {\'o}\IeC {\.z}nice mi\IeC {\k e}dzy wzorcowymi pr\IeC {\'o}bkami}}{25}
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Przebieg czasowy s\IeC {\l }owa \emph {kabanos} i jego wzorcowa detekcja}}{25}
-\contentsline {figure}{\numberline {5.12}{\ignorespaces Wynik detekcji algorytmu bazuj\IeC {\k a}cego na energii sygna\IeC {\l }u}}{26}
-\contentsline {figure}{\numberline {5.13}{\ignorespaces Wynik detekcji algorytmu SFF}}{26}
-\contentsline {figure}{\numberline {5.14}{\ignorespaces Wynik detekcji algorytmu SFF2}}{26}
-\contentsline {figure}{\numberline {5.15}{\ignorespaces Przebieg czasowy s\IeC {\l }owa \emph {zapami\IeC {\k e}taj} i jego wzorcowa detekcja}}{27}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Przebieg czasowy s\IeC {\l }owa \emph {kabanos} i jego wzorcowa detekcja}}{26}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Wynik detekcji algorytmu bazuj\IeC {\k a}cego na energii sygna\IeC {\l }u}}{27}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Wynik detekcji algorytmu SFF}}{27}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Wynik detekcji algorytmu SFF2}}{27}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Wyniki dzia\IeC {\l }ania algorytm\IeC {\'o}w na s\IeC {\l }owie \emph {kabanos}}}{28}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Przebieg czasowy s\IeC {\l }owa \emph {zapami\IeC {\k e}taj} i jego wzorcowa detekcja}}{28}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Wynik detekcji algorytmu bazuj\IeC {\k a}cego na energii sygna\IeC {\l }u}}{29}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Wynik detekcji algorytmu SFF}}{29}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Wynik detekcji algorytmu SFF2}}{29}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Wyniki dzia\IeC {\l }ania algorytm\IeC {\'o}w na s\IeC {\l }owie \emph {zapami\IeC {\k e}taj}}}{30}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Przebieg czasowy ci\IeC {\k a}gu s\IeC {\l }\IeC {\'o}w dla g\IeC {\l }osu damskiego i jego wzorcowa detekcja}}{31}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Wynik detekcji algorytmu bazuj\IeC {\k a}cego na energii sygna\IeC {\l }u}}{31}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Wynik detekcji algorytmu SFF}}{31}
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Wynik detekcji algorytmu SFF2}}{31}
+\contentsline {figure}{\numberline {5.15}{\ignorespaces Wyniki detekcji algorytm\IeC {\'o}w dla ci\IeC {\k a}gu s\IeC {\l }\IeC {\'o}w, g\IeC {\l }os damski}}{32}
+\contentsline {figure}{\numberline {5.16}{\ignorespaces Przebieg czasowy ci\IeC {\k a}gu s\IeC {\l }\IeC {\'o}w dla g\IeC {\l }osu damskiego i jego wzorcowa detekcja}}{33}
+\contentsline {figure}{\numberline {5.17}{\ignorespaces Wynik detekcji algorytmu bazuj\IeC {\k a}cego na energii sygna\IeC {\l }u}}{33}
+\contentsline {figure}{\numberline {5.18}{\ignorespaces Wynik detekcji algorytmu SFF}}{33}
+\contentsline {figure}{\numberline {5.19}{\ignorespaces Wynik detekcji algorytmu SFF2}}{33}
+\contentsline {figure}{\numberline {5.20}{\ignorespaces Wyniki detekcji algorytm\IeC {\'o}w dla ci\IeC {\k a}gu s\IeC {\l }\IeC {\'o}w, g\IeC {\l }os m\IeC {\k e}ski}}{34}
+\contentsline {figure}{\numberline {5.21}{\ignorespaces Przebieg czasowy ci\IeC {\k a}gu s\IeC {\l }\IeC {\'o}w dla g\IeC {\l }osu m\IeC {\k e}skiego i jego wzorcowa detekcja}}{36}
+\contentsline {figure}{\numberline {5.22}{\ignorespaces Wynik detekcji algorytmu bazuj\IeC {\k a}cego na energii sygna\IeC {\l }u}}{36}
+\contentsline {figure}{\numberline {5.23}{\ignorespaces Wynik detekcji algorytmu SFF}}{36}
+\contentsline {figure}{\numberline {5.24}{\ignorespaces Wynik detekcji algorytmu SFF2}}{36}
+\contentsline {figure}{\numberline {5.25}{\ignorespaces Wyniki detekcji algorytm\IeC {\'o}w dla ci\IeC {\k a}gu s\IeC {\l }\IeC {\'o}w, g\IeC {\l }os m\IeC {\k e}ski}}{37}
 \addvspace {10\p@ }

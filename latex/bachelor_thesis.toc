@@ -16,9 +16,13 @@
 \contentsline {subsection}{\numberline {3.3.3}Logika podejmowania decyzji}{15}
 \contentsline {section}{\numberline {3.4}Zmieniony algorytm Single Frequency Filtering (SFF2)}{17}
 \contentsline {chapter}{\numberline {4}Implementacja}{19}
-\contentsline {chapter}{\numberline {5}Wyniki bada\IeC {\'n}}{21}
-\contentsline {section}{\numberline {5.1}Spos\IeC {\'o}b oceny}{21}
-\contentsline {section}{\numberline {5.2}Wyniki dla pojedynczych s\IeC {\l }\IeC {\'o}w}{21}
-\contentsline {section}{\numberline {5.3}Wyniki dla ci\IeC {\k a}g\IeC {\'o}w s\IeC {\l }\IeC {\'o}w}{25}
-\contentsline {chapter}{\numberline {6}Podsumowanie}{29}
-\contentsline {chapter}{Bibliografia}{29}
+\contentsline {section}{\numberline {4.1}Metoda oparta o energi\IeC {\k e} sygna\IeC {\l }u}{19}
+\contentsline {section}{\numberline {4.2}Metoda bazuj\IeC {\k a}ca na obwiedni sygna\IeC {\l }u podzielonego na pasma z filtracj\IeC {\k a} pojedynczych cz\IeC {\k e}stotliwo\IeC {\'s}ci}{20}
+\contentsline {section}{\numberline {4.3}Zmieniona metoda bazuj\IeC {\k a}ca na obwiedni sygna\IeC {\l }u podzielonego na pasma z filtracj\IeC {\k a} pojedynczych cz\IeC {\k e}stotliwo\IeC {\'s}ci}{23}
+\contentsline {chapter}{\numberline {5}Wyniki bada\IeC {\'n}}{25}
+\contentsline {section}{\numberline {5.1}Spos\IeC {\'o}b oceny}{25}
+\contentsline {section}{\numberline {5.2}Wyniki dla pojedynczych s\IeC {\l }\IeC {\'o}w}{26}
+\contentsline {section}{\numberline {5.3}Wyniki dla ci\IeC {\k a}g\IeC {\'o}w s\IeC {\l }\IeC {\'o}w}{30}
+\contentsline {section}{\numberline {5.4}Powt\IeC {\'o}rzenie bada\IeC {\'n} przy wi\IeC {\k e}kszym poziomie zaszumienia}{35}
+\contentsline {chapter}{\numberline {6}Podsumowanie}{39}
+\contentsline {chapter}{Bibliografia}{39}
