@@ -68,8 +68,6 @@ void Detector::detect(SignalSource& wav) {
     decision[decision.size()-1]=0;
 
     cout<<"decision"<<decision.size()<<endl;
-//    cout<<"delta[10000]"<<deltaAveraged.at(10000)<<endl;
-//    cout<<"delta[40000]"<<deltaAveraged.at(40000)<<endl;
     cout<<"wav"<<wav.getSamplesCount()<<endl;
 
     //writing to file to plot results

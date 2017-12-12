@@ -35,7 +35,8 @@ int main()
 //    Aquila::WaveFile wav("../../eastwood_lawyers.wav");
 //    Aquila::WaveFile wav("../../mbi02w1.wav");
 //    Aquila::WaveFile wav("../../mbi04w1.wav");
-    Aquila::WaveFile wav("../../dbi03w1.wav");
+//    Aquila::WaveFile wav("../../dbi03w1s14.wav");
+    Aquila::WaveFile wav("../../mwr35w1s14.wav");
 
 
 

@@ -31,7 +31,7 @@ double ThresholdFinder::getThreshold() {
 
 //oblicza poczatkowy prog detekcji na podstawie sredniej energii z pierwszych 100ms nagrania
 //stwierdzono, ze przed kazda wypowiedzia czlowiek potrzebuje chwili na nabranie powietrza itp
-void ThresholdFinder::calculateThreshold100ms(Aquila::WaveFile wav) {
+void ThresholdFinder::calculateThreshold100ms(Aquila::SignalSource wav) {
     //*********************RAMKI
     SingleFrameEnergyFinder *frame=new SingleFrameEnergyFinder;
     double sumOfEnergy(0);

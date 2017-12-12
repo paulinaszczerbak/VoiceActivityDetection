@@ -23,13 +23,13 @@ void EnergyBasedDetector::detect(Aquila::WaveFile wav) {
 //    //ustawiam liczbe probek w ramce
     unsigned int samplesInSingleFrameAmount(wav.getSampleFrequency()*getFrameLengthInSECs());
     setSamplesPerFrame(samplesInSingleFrameAmount);
-
+    Aquila::SignalSource wavNoised = addGaussianNoiseToSignal(wav);
     //próg detekcji obliczany na podstawie pierwszych 100ms pliku
-    threshold->calculateThreshold100ms(wav);
+    threshold->calculateThreshold100ms(wavNoised);
 
     //std::cout<<"próg detekcji "<<getThreshold()<<std::endl;
 
-    Aquila::FramesCollection *frames=new Aquila::FramesCollection(wav, getSamplesPerFrame(), getCommonSamples());
+    Aquila::FramesCollection *frames=new Aquila::FramesCollection(wavNoised, getSamplesPerFrame(), getCommonSamples());
     //std::cout<<"samples "<<getSamplesPerFrame()<<std::endl;
     size_t framesAmount=frames->count();
 
@@ -40,8 +40,8 @@ void EnergyBasedDetector::detect(Aquila::WaveFile wav) {
     //otwieram plik do zapisu
     ofstream file1("signalToPlotEnergy");
     if(file1){
-        for (size_t i = 0; i< wav.getSamplesCount() ; i++) {
-            file1 << wav.sample(i) << endl;
+        for (size_t i = 0; i< wavNoised.getSamplesCount() ; i++) {
+            file1 << wavNoised.sample(i) << endl;
         }
         file1.close();
     } else{
@@ -116,5 +116,22 @@ void EnergyBasedDetector::detect(Aquila::WaveFile wav) {
 //    }
 
 
+}
+
+Aquila::SignalSource EnergyBasedDetector::addGaussianNoiseToSignal(Aquila::WaveFile signal) {
+    vector<Aquila::SampleType> noised(signal.begin(), signal.end());
+    // Define random generator with Gaussian distribution
+    const double mean = 0.0;
+    const double stddev = 0.1;
+
+    auto dist = std::bind(std::normal_distribution<double>{mean, stddev},
+                          std::mt19937(std::random_device{}()));
+
+    // Add Gaussian noise
+    for (auto& x : noised) {
+        x = x + dist();
+    }
+
+    return Aquila::SignalSource(noised, signal.getSampleFrequency());
 }
 

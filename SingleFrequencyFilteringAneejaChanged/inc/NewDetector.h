@@ -75,6 +75,8 @@ public:
     countDensityForPositiveValues(vector<SampleType> vectorToCount, unsigned long amountOfDensityPoints, double maxDelta);
 
     double countThresholdTheta(vector<SampleType> vector);
+
+    SignalSource addGaussianNoiseToSignal2(SignalSource &source);
 };
 
 

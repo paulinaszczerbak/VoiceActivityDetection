@@ -18,7 +18,7 @@ SingleFrameEnergyFinder::~SingleFrameEnergyFinder() {
 
 }
 
-double SingleFrameEnergyFinder::countSingleFrameEnergy(Aquila::WaveFile wav, size_t frameNumber) {
+double SingleFrameEnergyFinder::countSingleFrameEnergy(Aquila::SignalSource wav, size_t frameNumber) {
     Aquila::FramesCollection frames(wav, this->samplesPerFrame,this->commonSamples);
     //obliczam energie w jednej, konkretnej ramce
     double frameEnergy(0);

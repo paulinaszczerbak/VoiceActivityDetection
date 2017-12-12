@@ -23,7 +23,7 @@ public:
     ThresholdFinder();
     virtual ~ThresholdFinder();
     double getThreshold();
-    void calculateThreshold100ms(Aquila::WaveFile wav);
+    void calculateThreshold100ms(Aquila::SignalSource wav);
     void calculateThresholdEminEmax(Aquila::WaveFile wav, size_t currentFrameNumber);
 
 };

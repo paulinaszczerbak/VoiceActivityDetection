@@ -24,6 +24,8 @@ public:
     EnergyBasedDetector();
     virtual ~EnergyBasedDetector();
     void detect(Aquila::WaveFile wav);
+
+    Aquila::SignalSource addGaussianNoiseToSignal(Aquila::WaveFile file);
 };
 
 

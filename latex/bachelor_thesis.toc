@@ -2,27 +2,27 @@
 \contentsline {chapter}{\numberline {2}Generowanie sygna\IeC {\l }u mowy}{5}
 \contentsline {section}{\numberline {2.1}Mowa w \IeC {\.z}yciu cz\IeC {\l }owieka}{5}
 \contentsline {section}{\numberline {2.2}Biologiczny proces generowania mowy}{5}
-\contentsline {section}{\numberline {2.3}Sygna\IeC {\l } w dziedzinie czasu oraz w dziedzinie cz\IeC {\k e}stotliwo\IeC {\'s}ci}{7}
-\contentsline {chapter}{\numberline {3}Wybrane metody detekcji aktywno\IeC {\'s}ci m\IeC {\'o}wcy}{9}
-\contentsline {section}{\numberline {3.1}Czym jest detekcja aktywno\IeC {\'s}ci m\IeC {\'o}wcy oraz gdzie si\IeC {\k e} j\IeC {\k a} wykorzystuje}{9}
-\contentsline {section}{\numberline {3.2}Metoda bazuj\IeC {\k a}ca na energii sygna\IeC {\l }u z adaptacyjnym wsp\IeC {\'o}\IeC {\l }czynnikiem skaluj\IeC {\k a}cym}{10}
-\contentsline {subsection}{\numberline {3.2.1}Pocz\IeC {\k a}tkowy pr\IeC {\'o}g detekcji}{10}
-\contentsline {subsection}{\numberline {3.2.2}Pr\IeC {\'o}g detekcji zmieniaj\IeC {\k a}cy si\IeC {\k e} dynamicznie w czasie}{10}
-\contentsline {subsection}{\numberline {3.2.3}Wyznaczanie progu}{10}
-\contentsline {subsection}{\numberline {3.2.4}Rozszerzenie algorytmu}{11}
-\contentsline {section}{\numberline {3.3}Metoda bazuj\IeC {\k a}ca na obwiedni sygna\IeC {\l }u podzielonego na pasma z filtracj\IeC {\k a} pojedynczych cz\IeC {\k e}stotliwo\IeC {\'s}ci}{12}
-\contentsline {subsection}{\numberline {3.3.1}Obwiednie sygna\IeC {\l }u dla ka\IeC {\.z}dej cz\IeC {\k e}stotliwo\IeC {\'s}ci}{12}
-\contentsline {subsection}{\numberline {3.3.2}Wa\IeC {\.z}one sk\IeC {\l }adowe obwiedni sygna\IeC {\l }u mowy}{13}
-\contentsline {subsection}{\numberline {3.3.3}Logika podejmowania decyzji}{15}
-\contentsline {section}{\numberline {3.4}Zmieniony algorytm Single Frequency Filtering (SFF2)}{17}
-\contentsline {chapter}{\numberline {4}Implementacja}{19}
-\contentsline {section}{\numberline {4.1}Metoda oparta o energi\IeC {\k e} sygna\IeC {\l }u}{19}
-\contentsline {section}{\numberline {4.2}Metoda bazuj\IeC {\k a}ca na obwiedni sygna\IeC {\l }u podzielonego na pasma z filtracj\IeC {\k a} pojedynczych cz\IeC {\k e}stotliwo\IeC {\'s}ci}{20}
-\contentsline {section}{\numberline {4.3}Zmieniona metoda bazuj\IeC {\k a}ca na obwiedni sygna\IeC {\l }u podzielonego na pasma z filtracj\IeC {\k a} pojedynczych cz\IeC {\k e}stotliwo\IeC {\'s}ci}{23}
-\contentsline {chapter}{\numberline {5}Wyniki bada\IeC {\'n}}{25}
-\contentsline {section}{\numberline {5.1}Spos\IeC {\'o}b oceny}{25}
-\contentsline {section}{\numberline {5.2}Wyniki dla pojedynczych s\IeC {\l }\IeC {\'o}w}{26}
-\contentsline {section}{\numberline {5.3}Wyniki dla ci\IeC {\k a}g\IeC {\'o}w s\IeC {\l }\IeC {\'o}w}{30}
-\contentsline {section}{\numberline {5.4}Powt\IeC {\'o}rzenie bada\IeC {\'n} przy wi\IeC {\k e}kszym poziomie zaszumienia}{35}
-\contentsline {chapter}{\numberline {6}Podsumowanie}{39}
-\contentsline {chapter}{Bibliografia}{39}
+\contentsline {section}{\numberline {2.3}Sygna\IeC {\l } w dziedzinie czasu oraz w dziedzinie cz\IeC {\k e}stotliwo\IeC {\'s}ci}{8}
+\contentsline {chapter}{\numberline {3}Wybrane algorytmy detekcji aktywno\IeC {\'s}ci m\IeC {\'o}wcy}{9}
+\contentsline {section}{\numberline {3.1}Czym jest detekcja aktywno\IeC {\'s}ci m\IeC {\'o}wcy}{9}
+\contentsline {section}{\numberline {3.2}Algorytm bazuj\IeC {\k a}cy na energii sygna\IeC {\l }u z adaptacyjnym wsp\IeC {\'o}\IeC {\l }czynnikiem skaluj\IeC {\k a}cym }{10}
+\contentsline {subsection}{\numberline {3.2.1}Pocz\IeC {\k a}tkowy pr\IeC {\'o}g detekcji \cite {energyAlgorithm}}{10}
+\contentsline {subsection}{\numberline {3.2.2}Pr\IeC {\'o}g detekcji zmieniaj\IeC {\k a}cy si\IeC {\k e} dynamicznie w czasie \cite {energyAlgorithm}}{10}
+\contentsline {subsection}{\numberline {3.2.3}Wyznaczanie progu \cite {energyAlgorithm}}{12}
+\contentsline {subsection}{\numberline {3.2.4}Rozszerzenie algorytmu \cite {energyAlgorithm}}{12}
+\contentsline {section}{\numberline {3.3}Algorytm bazuj\IeC {\k a}cy na obwiedni sygna\IeC {\l }u podzielonego na pasma z filtracj\IeC {\k a} pojedynczych cz\IeC {\k e}stotliwo\IeC {\'s}ci \cite {SFFAlgorithm}}{13}
+\contentsline {subsection}{\numberline {3.3.1}Obwiednie sygna\IeC {\l }u dla ka\IeC {\.z}dej cz\IeC {\k e}stotliwo\IeC {\'s}ci}{13}
+\contentsline {subsection}{\numberline {3.3.2}Wa\IeC {\.z}one sk\IeC {\l }adowe obwiedni sygna\IeC {\l }u mowy}{15}
+\contentsline {subsection}{\numberline {3.3.3}Logika podejmowania decyzji}{16}
+\contentsline {section}{\numberline {3.4}Zmieniony algorytm Single Frequency Filtering (SFF2)}{20}
+\contentsline {chapter}{\numberline {4}Wyniki bada\IeC {\'n}}{21}
+\contentsline {section}{\numberline {4.1}Spos\IeC {\'o}b oceny}{21}
+\contentsline {section}{\numberline {4.2}Wyniki dla pojedynczych s\IeC {\l }\IeC {\'o}w}{22}
+\contentsline {section}{\numberline {4.3}Wyniki dla ci\IeC {\k a}g\IeC {\'o}w s\IeC {\l }\IeC {\'o}w}{26}
+\contentsline {section}{\numberline {4.4}Powt\IeC {\'o}rzenie bada\IeC {\'n} przy wi\IeC {\k e}kszym poziomie zaszumienia}{31}
+\contentsline {chapter}{\numberline {5}Podsumowanie}{35}
+\contentsline {chapter}{\numberline {6}Dodatek A - Implementacja}{39}
+\contentsline {section}{\numberline {6.1}Algorytm oparty o energi\IeC {\k e} sygna\IeC {\l }u}{39}
+\contentsline {section}{\numberline {6.2}Algorytm bazuj\IeC {\k a}cy na obwiedni sygna\IeC {\l }u podzielonego na pasma z filtracj\IeC {\k a} pojedynczych cz\IeC {\k e}stotliwo\IeC {\'s}ci}{40}
+\contentsline {section}{\numberline {6.3}Zmieniona metoda bazuj\IeC {\k a}ca na obwiedni sygna\IeC {\l }u podzielonego na pasma z filtracj\IeC {\k a} pojedynczych cz\IeC {\k e}stotliwo\IeC {\'s}ci}{43}
+\contentsline {chapter}{Bibliografia}{44}

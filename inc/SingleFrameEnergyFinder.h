@@ -16,7 +16,7 @@ private:
 public:
     SingleFrameEnergyFinder();
     virtual ~SingleFrameEnergyFinder();
-    double countSingleFrameEnergy(Aquila::WaveFile wav,size_t frameNumber);
+    double countSingleFrameEnergy(Aquila::SignalSource wav, size_t frameNumber);
     unsigned int getSamplesPerFrame();
     unsigned int getCommonSamples();
     void setSamplesPerFrame(unsigned int samplesAmount);

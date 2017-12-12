@@ -28,7 +28,8 @@ void NewDetector::detect(SignalSource& wav) {
     double weight(0);
     int normalizedFrequency = 3200;
     ///add some gaussian noise
-    SignalSource wavNoised = addGaussianNoiseToSignal(wav, 0.0001);
+//    SignalSource wavNoised = addGaussianNoiseToSignal(wav, 1);
+    SignalSource wavNoised = addGaussianNoiseToSignal2(wav);
     ///count SFFEnvelopes for 185 frequencies 300-4000Hz by 20Hz
     int beginFrequency = 300;
     int amountOfFrequencies = 186;
@@ -43,12 +44,12 @@ void NewDetector::detect(SignalSource& wav) {
 
     ///THRESHOLD BETA
     double thresholdBeta = countThresholdBeta(delta);
-    double thresholdTheta = countThresholdTheta(delta);
+//    double thresholdTheta = countThresholdTheta(delta);
     //TODO BETAMULTIPLICATION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     double betaMultiplication = 1.0;
     thresholdBeta *= betaMultiplication;
-    cout<<"thresholdBeta"<<thresholdBeta<<endl;
-    cout<<"thresholdTheta "<<thresholdTheta<<endl;
+//    cout<<"thresholdBeta"<<thresholdBeta<<endl;
+//    cout<<"thresholdTheta "<<thresholdTheta<<endl;
 
     SignalSource deltaSignal = vectorToSignalSource(delta);
     ///DECISION LOGIC AT EACH SAMPLING INSTANT
@@ -356,7 +357,6 @@ double NewDetector::countThresholdBeta(vector<SampleType> delta) {
     ///minimum between leftMax and rightMax
 //    double  minLocal = *min_element(max_element(density.begin()+200, density.begin()+600),
 //                                   max_element(density.begin()+601, density.begin()+800));
-    //todo: MINIMUM TO INDEX, A TEN MAX WYZEJ, TO WARTOSC???
 //    long minLocalIndex = std::distance(density.begin(), min_element(max_element(density.begin()+200, density.begin()+600),
 //                                                                    max_element(density.begin()+601, density.begin()+800)));
     dM = 10;
@@ -619,5 +619,22 @@ double NewDetector::countThresholdTheta(vector<SampleType> delta) {
     double threshold = mean + 3*variance;
 
     return threshold;
+}
+
+SignalSource NewDetector::addGaussianNoiseToSignal2(SignalSource &signal) {
+    vector<SampleType> noised(signal.begin(), signal.end());
+    // Define random generator with Gaussian distribution
+    const double mean = 0.0;
+    const double stddev = 0.1;
+
+    auto dist = std::bind(std::normal_distribution<double>{mean, stddev},
+                          std::mt19937(std::random_device{}()));
+
+    // Add Gaussian noise
+    for (auto& x : noised) {
+        x = x + dist();
+    }
+
+    return SignalSource(noised, signal.getSampleFrequency());
 }
 
